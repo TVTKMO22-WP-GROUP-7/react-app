@@ -15,3 +15,7 @@
 Create new account:
 
 ![Create account](https://user-images.githubusercontent.com/112495020/225021086-e14b014a-c53d-4b38-bbd4-b70b64f91ee9.png)
+
+Default homescreen:
+
+![Default screen](https://user-images.githubusercontent.com/112495020/225024482-77093f70-d028-4b9c-ac1a-7baf192fa770.png)
