@@ -1,7 +1,11 @@
-<h1>Group members:</h1> 
-<body text=">
+<head>
+  <title><h1>Group members:</h1></title> 
+<body text="red">
+  <p>
 <h2><br>hhennade - Henna Hannila
 <br>jjonnai - Jonna Huotari
 <br>tommi20128 - Tommi Paakkolanvaara
 <br>Haudihou - Joni Huttunen</h2>
+  </p>
 </body>
+</head>
