@@ -16,6 +16,15 @@
 
 ![User creation](https://user-images.githubusercontent.com/112495020/225369714-897cc3fc-aba4-4a68-93d3-7b89234d0fdb.png)
 
-<h2>Default homescreen:</h2>
+<h2>Homescreen 1:</h2>
 
-![Default screen](https://user-images.githubusercontent.com/112495020/225024482-77093f70-d028-4b9c-ac1a-7baf192fa770.png)
+![Homescreen 1](https://user-images.githubusercontent.com/112495020/225370072-bea8353e-9ae8-4471-a0e3-85f877975e86.png)
+
+<h2>Homescreen 2:</h2>
+
+![Homescreen 2](https://user-images.githubusercontent.com/112495020/225370359-67c6e69b-fff9-42a5-b8d2-959233700850.png)
+
+<h2>Customization page:</h2>
+
+![Customize screen](https://user-images.githubusercontent.com/112495020/225374011-20adee3d-430f-4190-a071-9cb027395806.png)
+
