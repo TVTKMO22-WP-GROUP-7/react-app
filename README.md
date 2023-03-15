@@ -6,3 +6,25 @@
 <br>tommi20128 - Tommi Paakkolanvaara
 <br>Haudihou - Joni Huttunen</h2>
 
+<h1>Interface plans:</h1>
+
+<h2>Log in:</h2>
+
+![Log in](https://user-images.githubusercontent.com/112495020/225019355-0a5234bc-1659-4829-912b-0a6677198eba.png)
+
+<h2>Create new account:</h2>
+
+![User creation](https://user-images.githubusercontent.com/112495020/225369714-897cc3fc-aba4-4a68-93d3-7b89234d0fdb.png)
+
+<h2>Homescreen 1:</h2>
+
+![Homescreen 1](https://user-images.githubusercontent.com/112495020/225370072-bea8353e-9ae8-4471-a0e3-85f877975e86.png)
+
+<h2>Homescreen 2:</h2>
+
+![Homescreen 2](https://user-images.githubusercontent.com/112495020/225370359-67c6e69b-fff9-42a5-b8d2-959233700850.png)
+
+<h2>Customization page:</h2>
+
+![Customize screen](https://user-images.githubusercontent.com/112495020/225374011-20adee3d-430f-4190-a071-9cb027395806.png)
+
