@@ -14,7 +14,7 @@
 
 <h2>Create new account:</h2>
 
-![Create account](https://user-images.githubusercontent.com/112495020/225021086-e14b014a-c53d-4b38-bbd4-b70b64f91ee9.png)
+![User creation](https://user-images.githubusercontent.com/112495020/225369714-897cc3fc-aba4-4a68-93d3-7b89234d0fdb.png)
 
 <h2>Default homescreen:</h2>
 
