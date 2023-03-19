@@ -28,3 +28,6 @@
 
 ![Customize screen](https://user-images.githubusercontent.com/112495020/225374011-20adee3d-430f-4190-a071-9cb027395806.png)
 
+<h2>Account delete:</h2>
+
+![Account delete](https://user-images.githubusercontent.com/112495020/226171098-ccc78f50-e336-4fe8-8764-121e840d38be.png)
