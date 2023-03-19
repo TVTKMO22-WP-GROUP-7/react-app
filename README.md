@@ -22,7 +22,7 @@
 
 <h2>Homescreen 2:</h2>
 
-![Homescreen 2](https://user-images.githubusercontent.com/112495020/225370359-67c6e69b-fff9-42a5-b8d2-959233700850.png)
+![Homescreen 2](https://user-images.githubusercontent.com/112495020/226171350-f0f1601a-0278-4a6c-bd71-dd93a1770896.png)
 
 <h2>Customization page:</h2>
 
