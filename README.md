@@ -18,7 +18,7 @@
 
 <h2>Homescreen 1:</h2>
 
-![Homescreen 1](https://user-images.githubusercontent.com/112495020/225370072-bea8353e-9ae8-4471-a0e3-85f877975e86.png)
+![Homescreen 1](https://user-images.githubusercontent.com/112495020/226171402-beb3ee7f-79ba-4c9e-8052-1446a7692e90.png)
 
 <h2>Homescreen 2:</h2>
 
