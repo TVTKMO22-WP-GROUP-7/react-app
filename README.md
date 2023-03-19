@@ -28,6 +28,10 @@
 
 ![Custom page](https://user-images.githubusercontent.com/112495020/226171473-1cc785d1-4a9c-4f09-bbfd-1d3369145247.png)
 
+<h2>Change password:</h2>
+
+![Change password](https://user-images.githubusercontent.com/112495020/226171672-e5210bd8-cb77-4c80-9b15-0abdab1500e8.png)
+
 <h2>Account delete:</h2>
 
 ![Account delete](https://user-images.githubusercontent.com/112495020/226171098-ccc78f50-e336-4fe8-8764-121e840d38be.png)
