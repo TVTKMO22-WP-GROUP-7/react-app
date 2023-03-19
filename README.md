@@ -24,9 +24,9 @@
 
 ![Homescreen 2](https://user-images.githubusercontent.com/112495020/226171350-f0f1601a-0278-4a6c-bd71-dd93a1770896.png)
 
-<h2>Customization page:</h2>
+<h2>Custom page:</h2>
 
-![Customize screen](https://user-images.githubusercontent.com/112495020/225374011-20adee3d-430f-4190-a071-9cb027395806.png)
+![Custom page](https://user-images.githubusercontent.com/112495020/226171473-1cc785d1-4a9c-4f09-bbfd-1d3369145247.png)
 
 <h2>Account delete:</h2>
 
