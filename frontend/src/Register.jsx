@@ -4,7 +4,7 @@ export const Register = (props) => {
     const [uname, setUsername] = useState('');
     const [passwd, setPassword] = useState('');
     const [confirmPasswd, setConfirmPassword] = useState('');
-    const [name, setName] = useState('');
+    //const [name, setName] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,8 +12,25 @@ export const Register = (props) => {
             alert('Passwords do not match!');
             return;
         }
-        console.log(uname);
         
+        fetch('/api/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: uname,
+                userPassword: passwd
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('User registered successfully');
+                props.onFormSwitch('login');
+            } else {
+                console.error('Failed to register user');
+            }
+        })
     }
 
     return (
