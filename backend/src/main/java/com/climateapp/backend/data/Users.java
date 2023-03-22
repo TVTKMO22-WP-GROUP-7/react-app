@@ -1,5 +1,6 @@
 package com.climateapp.backend.data;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -7,11 +8,17 @@ import jakarta.persistence.Id;
 public class Users {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String username;
     private String password;
 
     public Users() {
+    }
+
+    public Users(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public Users(int id, String username, String password) {
