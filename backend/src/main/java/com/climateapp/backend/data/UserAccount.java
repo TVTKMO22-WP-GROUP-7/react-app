@@ -1,4 +1,4 @@
-package com.climateapp.backend;
+package com.climateapp.backend.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

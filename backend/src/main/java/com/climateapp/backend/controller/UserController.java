@@ -1,4 +1,4 @@
-package com.climateapp.backend;
+package com.climateapp.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.climateapp.service.UserService;
+import com.climateapp.backend.data.UserAccount;
+import com.climateapp.backend.service.UserService;
 
 @RestController
 @RequestMapping("/api/users")
