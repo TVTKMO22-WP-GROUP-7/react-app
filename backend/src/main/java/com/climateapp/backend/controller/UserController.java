@@ -1,8 +1,10 @@
 package com.climateapp.backend.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.climateapp.backend.data.Users;
@@ -10,16 +12,14 @@ import com.climateapp.backend.service.UserService;
 
 @RestController
 public class UserController {
-    UserService uService;
 
     @Autowired
-    public UserController(UserService uService) {
-        this.uService = uService;
+    UserService uService;
+
+    @PostMapping("register")
+    public ResponseEntity<String> register(@RequestParam String username, @RequestParam String password) {
+        Users u = uService.register(username, password);
+        return new ResponseEntity<>(u.getUsername(), HttpStatus.OK);
     }
 
-    @PostMapping("/register")
-    public Users register(@RequestBody Users user) {
-       Users newUser = uService.register(user);
-       return newUser;
-    }
 }
