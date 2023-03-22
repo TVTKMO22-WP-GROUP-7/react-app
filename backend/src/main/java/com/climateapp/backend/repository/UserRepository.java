@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.climateapp.backend.repository;
 
-import com.example.entity.UserAccount;
+import com.climateapp.backend.data.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
