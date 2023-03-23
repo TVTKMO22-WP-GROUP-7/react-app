@@ -12,6 +12,7 @@ import com.climateapp.backend.data.Users;
 public class UserService {
     @Autowired
     UserRepository userRepository;
+   
 
 
     public Users register(String username, String password) {
@@ -29,4 +30,7 @@ public class UserService {
         userRepository.save(u);
         return u;
     }
+
+ 
+    
 }
