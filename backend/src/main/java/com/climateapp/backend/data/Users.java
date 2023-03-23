@@ -9,9 +9,9 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
-    public String username;
-    public String password;
+    private long id;
+    private String username;
+    private String password;
 
     public Users() {
     }
