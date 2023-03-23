@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+//import org.springframework.web.bind.annotation.CrossOrigin;
 import com.climateapp.backend.data.Users;
 import com.climateapp.backend.service.UserService;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
