@@ -25,7 +25,7 @@ public class UserService {
     public Users changePassword(String username, String password) {
         BCryptPasswordEncoder enc = new BCryptPasswordEncoder();
         Users u = userRepository.findIdByUsername(username);
-        u.password = enc.encode(password);
+        u.setPassword(enc.encode(password));
         userRepository.save(u);
         return u;
     }
