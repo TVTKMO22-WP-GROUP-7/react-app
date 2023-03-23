@@ -13,6 +13,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+
     public Users register(String username, String password) {
         BCryptPasswordEncoder enc = new BCryptPasswordEncoder();
         Users u = new Users(username, enc.encode(password));
@@ -20,4 +21,12 @@ public class UserService {
         return u;
     }
 
+
+    public Users changePassword(String username, String password) {
+        BCryptPasswordEncoder enc = new BCryptPasswordEncoder();
+        Users u = userRepository.findIdByUsername(username);
+        u.password = enc.encode(password);
+        userRepository.save(u);
+        return u;
+    }
 }

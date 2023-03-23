@@ -19,7 +19,12 @@ public class UserController {
     @PostMapping("register")
     public ResponseEntity<String> register(@RequestParam String username, @RequestParam String password) {
         Users u = uService.register(username, password);
-        return new ResponseEntity<>(u.getUsername(), HttpStatus.OK);
+        return new ResponseEntity<>(u.username, HttpStatus.OK);
     }
 
+    @PostMapping("changepassword")
+    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String password) {
+        Users u = uService.changePassword(username, password);
+        return new ResponseEntity<>(u.username, HttpStatus.OK);
+    }
 }
