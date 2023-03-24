@@ -7,6 +7,10 @@ import com.climateapp.backend.data.Users;
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
     Users findIdByUsername(String username);
+
+    Users findByUsername(String username);
+
+    Users findPasswordByUsername(String username);
    
 
 }
