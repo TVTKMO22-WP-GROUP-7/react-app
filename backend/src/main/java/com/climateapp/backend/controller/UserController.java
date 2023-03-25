@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.climateapp.backend.data.Users;
 import com.climateapp.backend.repository.UserRepository;
 import com.climateapp.backend.service.UserService;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -24,25 +24,31 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("register")
-    public ResponseEntity<String> register(@RequestParam String username, @RequestParam String password) {
+    @PostMapping("/register")
+    public ResponseEntity<String> register(
+            @RequestParam String username,
+            @RequestParam String password) {
         Users u = uService.register(username, password);
-        return new ResponseEntity<>(u.getUsername(), HttpStatus.OK);
+        if (u == null) {
+            String e = "Username " + username + " already exists!";
+            return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(u.username, HttpStatus.OK);
     }
 
-    @PutMapping("changepassword")
-    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String password) {
-        Users u = uService.changePassword(username, password);
+    @PutMapping("/changepassword")
+    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String oldPassword, @RequestParam String newPassword) {
+        Users u = uService.changePassword(username, oldPassword, newPassword);
         return new ResponseEntity<>(u.getPassword(), HttpStatus.OK);
     }
-  
-    @DeleteMapping("/user/{id}") 
-        String deleteUser(@PathVariable Long id) {
-            if (!userRepository.existsById(id)){
-                return "Id not found";
-            }
-            userRepository.deleteById(id);
-            return "User has been deleted";
+
+    @DeleteMapping("/user/{id}")
+    String deleteUser(@PathVariable Long id) {
+        if (!userRepository.existsById(id)) {
+            return "Id not found";
         }
-  
+        userRepository.deleteById(id);
+        return "User has been deleted";
+    }
+
 }
