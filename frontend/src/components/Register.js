@@ -89,18 +89,20 @@ export default function Register() {
   }
 
   return (
-    <div className="register">
-      <h4>Register new user</h4>
-      <form onSubmit = {handleRegisterSubmit}>
-        <input type="text" name="username" placeholder="Enter username" value={input.username} onChange={onInputChange} onBlur={validateInput}></input>
-        {error.username && <span className="err">{error.username} </span>}
-        <input type="password" name="password" placeholder="Enter password" value={input.password} onChange={onInputChange} onBlur={validateInput}></input>
-        {error.password && <span className="err">{error.password} </span>}
-        <input type="password" name="confirmPassword" placeholder="Enter confirm password" value={input.confirmPassword} onChange={onInputChange} onBlur={validateInput}></input>
-        {error.confirmPassword && <span className="err">{error.confirmPassword} </span>}
-        <button type = "submit">Submit</button>
-      </form>
-      <p>Already have an account? <Link to="/">Log in here</Link></p>
+    <div className="register-container">
+      <div className="register">
+        <h4>Register new user</h4>
+        <form onSubmit = {handleRegisterSubmit}>
+          <input type="text" name="username" placeholder="Enter username" value={input.username} onChange={onInputChange} onBlur={validateInput}></input>
+          {error.username && <span className="err">{error.username} </span>}
+          <input type="password" name="password" placeholder="Enter password" value={input.password} onChange={onInputChange} onBlur={validateInput}></input>
+          {error.password && <span className="err">{error.password} </span>}
+          <input type="password" name="confirmPassword" placeholder="Enter confirm password" value={input.confirmPassword} onChange={onInputChange} onBlur={validateInput}></input>
+          {error.confirmPassword && <span className="err">{error.confirmPassword} </span>}
+          <button type = "submit" style={{ marginTop: '20px' }}>Submit</button>
+        </form>
+        <p>Already have an account? <Link to="/">Log in here</Link></p>
+      </div>
     </div>
   );
 }
