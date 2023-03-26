@@ -99,6 +99,7 @@ export default function ChangePassword() {
   }
 
   return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
     <div>
       <h4>Change password</h4>
       <form onSubmit={handleChangePasswordSubmit}>
@@ -113,6 +114,7 @@ export default function ChangePassword() {
         <button type="submit">Submit</button>
       </form>
       <p>Already have an account? <Link to="/">Log in here</Link></p>
+    </div>
     </div>
   );
 }
