@@ -23,9 +23,13 @@ export default function Register() {
       const result = await axios.post(Constants.API_ADDRESS+ "/register?username=" + event.target.username.value + "&password=" + event.target.password.value+".");
       console.log(result);
       navigate("/", {replace:true});
-    }
-    catch (error) {
-      console.log(error);
+    } catch (error) {
+      console.log(error.response);
+      if (error.response && error.response.status === 403) {
+        setError({username: error.response.data});
+      } else {
+        console.log(error);
+      }
     }
   };
 
