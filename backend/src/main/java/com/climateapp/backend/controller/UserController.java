@@ -37,8 +37,13 @@ public class UserController {
     }
 
     @PutMapping("/changepassword")
-    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String oldPassword, @RequestParam String newPassword) {
+    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String oldPassword,
+            @RequestParam String newPassword) {
         Users u = uService.changePassword(username, oldPassword, newPassword);
+        if( u == null) {
+            String e = "Check that you've written right username and current password";
+            return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+        }
         return new ResponseEntity<>(u.getPassword(), HttpStatus.OK);
     }
 

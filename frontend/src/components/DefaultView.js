@@ -10,6 +10,7 @@ export default function DefaultView() {
                 <div><Link to="/"><button>Logout</button></Link></div>
             </div>
             <p>This is the default view user gets when logged in</p>
+            <p>Tähän alle näkymät V1 ja V2 allekkain ??</p>
         </div>
     )
 }
