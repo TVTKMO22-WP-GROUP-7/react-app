@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,21 +38,34 @@ public class UserController {
     @PutMapping("/changepassword")
     public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String oldPassword,
             @RequestParam String newPassword) {
+        Users checkIfUserExists = userRepository.findByUsername(username);
+        if (checkIfUserExists == null) {
+            String e = "Username " + username + " doesn't exist";
+            return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+        }
         Users u = uService.changePassword(username, oldPassword, newPassword);
-        if( u == null) {
+        if (u == null) {
             String e = "Check that you've written right username and current password";
             return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(u.getPassword(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/user/{id}")
-    String deleteUser(@PathVariable Long id) {
-        if (!userRepository.existsById(id)) {
-            return "Id not found";
+    @DeleteMapping("/deleteaccount")
+    public ResponseEntity<String> deleteAccount(
+            @RequestParam String username,
+            @RequestParam String password) {
+        Users checkIfUserExists = userRepository.findByUsername(username);
+        if (checkIfUserExists == null) {
+            String e = "Username " + username + " doesn't exist";
+            return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
         }
-        userRepository.deleteById(id);
-        return "User has been deleted";
+        Users u = uService.deleteAccount(username, password);
+        if (u == null) {
+            String e = "Check that you've written right password";
+            return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(u.username, HttpStatus.OK);
     }
 
 }

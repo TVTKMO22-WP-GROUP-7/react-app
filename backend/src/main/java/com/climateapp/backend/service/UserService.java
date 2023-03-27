@@ -28,13 +28,28 @@ public class UserService {
     public Users changePassword(String username, String oldPassword, String newPassword) {
         Users currentPassword = userRepository.findPasswordByUsername(username);
         if (currentPassword != null && enc.matches(oldPassword, currentPassword.getPassword())) {
-            return null;
-        }
-        Users updatedUser = userRepository.findIdByUsername(username);
-        updatedUser.setPassword(enc.encode(newPassword));
-        userRepository.save(updatedUser);
-        return updatedUser;
 
+            Users updatedUser = userRepository.findIdByUsername(username);
+            if(updatedUser == null) {
+                return null;
+            }
+            updatedUser.setPassword(enc.encode(newPassword));
+            userRepository.save(updatedUser);
+            return updatedUser;
+        }
+        return null;
+
+    }
+
+
+    public Users deleteAccount(String username, String password) {
+        Users checkPassword = userRepository.findPasswordByUsername(username);
+        if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
+            Users deleteUser = userRepository.findIdByUsername(username);
+            userRepository.delete(deleteUser);
+            return deleteUser;
+        }
+        return null;
     }
 
 }
