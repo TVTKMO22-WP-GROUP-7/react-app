@@ -25,31 +25,32 @@ public class UserService {
         return u;
     }
 
-    public Users changePassword(String username, String oldPassword, String newPassword) {
-        Users currentPassword = userRepository.findPasswordByUsername(username);
-        if (currentPassword != null && enc.matches(oldPassword, currentPassword.getPassword())) {
-
-            Users updatedUser = userRepository.findIdByUsername(username);
-            if(updatedUser == null) {
-                return null;
-            }
-            updatedUser.setPassword(enc.encode(newPassword));
-            userRepository.save(updatedUser);
-            return updatedUser;
+    public Users changePassword(String username, String oldPassword, String newdPassword) {
+        Users u = userRepository.findByUsername(username);
+        if(u == null)
+        {
+            return null;
         }
-        return null;
+       // return enc.matches(oldPassword, u.password) ? u : null;
+        //if (currentPassword != null && enc.matches(oldPassword, currentPassword.getPassword())) {
+           Users updatedUser = userRepository.findIdByUsername(username);
+           updatedUser.setPassword(enc.encode(newdPassword));
+           userRepository.save(updatedUser);
+           return updatedUser;
+        //}
+        //return null;*/
+
 
     }
-
-
     public Users deleteAccount(String username, String password) {
-        Users checkPassword = userRepository.findPasswordByUsername(username);
-        if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
+        //Users checkPassword = userRepository.findPasswordByUsername(username);
+        //if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
             Users deleteUser = userRepository.findIdByUsername(username);
             userRepository.delete(deleteUser);
             return deleteUser;
-        }
-        return null;
+        //}
+        //return null;
     }
+
 
 }

@@ -6,7 +6,6 @@ import Constants from './Constants.json';
 export default function ChangePassword() {
 
   //puuttuu vielä tarkistus että käyttäjä on kirjautunut 
-
   const navigate = useNavigate();
 
   const [input, setInput] = useState({
@@ -27,7 +26,9 @@ export default function ChangePassword() {
     event.preventDefault();
 
     console.log(event.target.username.value);
+    console.log(event.target.oldPassword.value);
     console.log(event.target.newPassword.value);
+    console.log(event.target.confirmedPassword.value);
     console.log(
       "/changepassword?username=" +
       event.target.username.value +
@@ -47,10 +48,6 @@ export default function ChangePassword() {
       console.log(error.response);
       if (error.response && error.response.status === 403) {
         setError({ confirmedPassword: error.response.data });
-      }
-      else 
-      {
-        setError({confirmedPassword: "Something went wrong, please try again later" });
       }
     }
   };
@@ -83,7 +80,6 @@ export default function ChangePassword() {
         case "newPassword":
           if (!value) {
             stateObj[name] = "Please enter password";
-
           }
           else if (input.oldPassword && value === input.oldPassword) {
             stateObj["oldPassword"] = "New password can't be the same as old password";
@@ -92,10 +88,10 @@ export default function ChangePassword() {
             stateObj["confirmedPassword"] = "Passwords don't match";
           }
           else {
-            stateObj["confirmedPassword"] = input.confirmedPassword ? "" : error.confirmedPassword;
+            stateObj["confirmPassword"] = input.confirmedPassword ? "" : error.confirmedPassword;
           }
           break;
-        case "confirmedPassword":
+        case "confirmPassword":
           if (!value) {
             stateObj[name] = "Please enter confirm password";
           }
@@ -126,7 +122,7 @@ export default function ChangePassword() {
           {error.confirmedPassword && <span className="err">{error.confirmedPassword} </span>}
           <button type="submit">Change password</button>
         </form>
-        <p>Already have an account? <Link to="/">Log in here</Link></p>
+        <p> <Link to="/defaultview">Don't want to change password?</Link></p>
       </div>
     </div>
   );

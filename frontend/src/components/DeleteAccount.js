@@ -9,8 +9,8 @@ export default function DeleteAccount() {
   const [input, setInput] = useState({
     username: '',
     password: '',
-
   });
+
   const [error, setError] = useState({
     username: '',
     password: '',
@@ -20,15 +20,25 @@ export default function DeleteAccount() {
 
   const handleDelete = async (remove) => {
     remove.preventDefault();
+
+    console.log(remove.target.username.value);
+    console.log(remove.target.password.value);
+    console.log(
+      "/deleteaccount?username=" +
+      remove.target.username.value +
+      "&oldPassword=" +
+      remove.target.password.value
+    );
     try {
       const result = await axios.delete(Constants.API_ADDRESS + '/deleteaccount?username=' + remove.target.username.value + "&password=" + remove.target.password.value + ".");
       console.log(result);
       navigate("/", { replace: true });
 
     } catch (error) {
-      console.log(error);
-
-      //virhetilanteet tähän.
+      console.log(error.response);
+      if (error.response && error.response.status === 403) {
+        setError({ password: error.response.data });
+      }
     }
   }
   const onInputChange = e => {
@@ -56,6 +66,10 @@ export default function DeleteAccount() {
             stateObj[name] = "Please enter your current password";
           }
           break;
+
+        default:
+          break;
+
       }return stateObj;
     })
   }
@@ -64,19 +78,12 @@ export default function DeleteAccount() {
       <div >
         <h2>Delete Account</h2>
         <form onSubmit={handleDelete}>
-          <div>
-            Username <br />
-            <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
-            {error.username && <span className="err">{error.username} </span>}
-          </div>
-          <div>
-            Password <br />
-            <input type="text" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
-            {error.password && <span className="err">{error.password} </span>}
-          </div>
-          <button type="submit">Delete account</button> <br />
+          <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
+          {error.username && <span className="err">{error.username} </span>}
+          <input type="text" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
+          {error.password && <span className="err">{error.password} </span>}
+          <button type="submit"> Delete account </button>
         </form>
-
       </div>
     </div>
   );

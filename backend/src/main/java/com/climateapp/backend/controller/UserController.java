@@ -38,17 +38,17 @@ public class UserController {
     @PutMapping("/changepassword")
     public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String oldPassword,
             @RequestParam String newPassword) {
-        Users checkIfUserExists = userRepository.findByUsername(username);
-        if (checkIfUserExists == null) {
-            String e = "Username " + username + " doesn't exist";
-            return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
-        }
         Users u = uService.changePassword(username, oldPassword, newPassword);
         if (u == null) {
             String e = "Check that you've written right username and current password";
             return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+        } else {
+            Users updatePassword = userRepository.findIdByUsername(username);
+            updatePassword.setPassword(newPassword);
+            userRepository.save(updatePassword);
         }
-        return new ResponseEntity<>(u.getPassword(), HttpStatus.OK);
+        String e = "Password changed";
+        return new ResponseEntity<>(e, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteaccount")
