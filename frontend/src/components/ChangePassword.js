@@ -48,7 +48,10 @@ export default function ChangePassword() {
       if (error.response && error.response.status === 403) {
         setError({ confirmedPassword: error.response.data });
       }
-
+      else 
+      {
+        setError({confirmedPassword: "Something went wrong, please try again later" });
+      }
     }
   };
 
