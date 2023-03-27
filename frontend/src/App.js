@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/changepassword" element={<ChangePassword />} />
-        <Route path="/defaultview" element={<DefaultView />} />
+        <Route path="/defaultview" element={<DefaultView userLoggedIn ={true}/>} />
         <Route path="/deleteaccount" element={<DeleteAccount />} />
       </Routes>
     </div>

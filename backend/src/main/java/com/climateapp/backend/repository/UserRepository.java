@@ -5,12 +5,17 @@ import org.springframework.stereotype.Repository;
 import com.climateapp.backend.data.Users;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, Long> {
+public interface UserRepository extends JpaRepository<Users, String> {
     Users findIdByUsername(String username);
 
     Users findByUsername(String username);
 
     Users findPasswordByUsername(String username);
+
+   // Users findById(String username);
+    
+
+   // Users deleteById(String username);
    
 
 }
