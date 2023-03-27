@@ -27,8 +27,7 @@ public class UserService {
 
     public Users changePassword(String username, String oldPassword, String newPassword) {
         Users currentPassword = userRepository.findPasswordByUsername(username);
-        if (currentPassword == null)
-        {
+        if (currentPassword != null && enc.matches(oldPassword, currentPassword.getPassword())) {
             return null;
         }
         Users updatedUser = userRepository.findIdByUsername(username);
