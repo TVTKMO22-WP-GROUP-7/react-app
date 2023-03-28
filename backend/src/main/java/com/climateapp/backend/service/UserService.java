@@ -29,13 +29,13 @@ public class UserService {
         Users u = userRepository.findByUsername(username);
         if (u != null) {
             Users updatedUser = userRepository.findIdByUsername(username);
-            if (updatedUser.getPassword().equals(u.getPassword())) {
+            //if (updatedUser.getPassword().equals(u.getPassword())) {
                 updatedUser.setPassword(enc.encode(newPassword));
                 userRepository.save(updatedUser);
                 return updatedUser;
             }
 
-        }
+       // }
         return null;
 
     }
@@ -44,11 +44,11 @@ public class UserService {
         Users u = userRepository.findByUsername(username);
         if (u != null) {
             Users deleteUser = userRepository.findIdByUsername(username);
-            if (deleteUser.getPassword().equals(u.getPassword())) {
+           // if (deleteUser.getPassword().equals(u.getPassword())) {
                 userRepository.delete(deleteUser);
                 return deleteUser;
             }
-        }
+       // }
         return null;
     }
 

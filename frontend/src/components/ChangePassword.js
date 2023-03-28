@@ -118,7 +118,7 @@ export default function ChangePassword() {
     let passwordControls = null;
     switch (changePasswordState) {
       case "idle":
-        passwordControls = <button type="submit">Sign up</button>
+        passwordControls = <button type="submit">Change Password</button>
         break;
 
       case "processing":
@@ -150,7 +150,6 @@ export default function ChangePassword() {
           {error.newPassword && <span className="err">{error.newPassword} </span>}
           <input type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={input.confirmedPassword} onChange={onInputChange} onBlur={validateInput}></input>
           {error.confirmedPassword && <span className="err">{error.confirmedPassword} </span>}
-          <button type="submit">Change password</button>
           <div>
             {
               passwordControls
