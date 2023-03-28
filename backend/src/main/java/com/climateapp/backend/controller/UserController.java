@@ -4,8 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,6 +35,32 @@ public class UserController {
             return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(u.username, HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+        String token = uService.login(username, password);
+        if (token == null) {
+            return new ResponseEntity<>("Wrong username or password", HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(token, HttpStatus.OK);
+    }
+
+    //get private data (username and bearer token)
+    @GetMapping("/private")
+    public ResponseEntity<String> getPrivateData(@RequestHeader("Authorization") String bearer) {
+        
+        if(bearer != null) {
+            if(bearer.startsWith("Bearer")){
+                String token = bearer.split(" ")[1];
+                String username = uService.validateJwt(token);
+                if(username != null) {
+                    return new ResponseEntity<>("Private data "+username + " bearerToken: "+ token, HttpStatus.OK);
+                }
+            }
+           return new ResponseEntity<>("Invalid token", HttpStatus.FORBIDDEN);
+        }     
+        return new ResponseEntity<>("No authorization header", HttpStatus.UNAUTHORIZED);
     }
 
     @PutMapping("/changepassword")
