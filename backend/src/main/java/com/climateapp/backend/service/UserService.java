@@ -25,18 +25,17 @@ public class UserService {
         return u;
     }
 
-    public Users changePassword(String username, String oldPassword, String newdPassword) {
-        Users u = userRepository.findByUsername(username);
+    public Users changePassword(String username, String oldPassword, String newPassword) {
+        Users u = userRepository.findIdByUsername(username);
         if(u == null)
         {
             return null;
         }
-       // return enc.matches(oldPassword, u.password) ? u : null;
+      // return enc.matches(oldPassword, u.password) ? u : null;
         //if (currentPassword != null && enc.matches(oldPassword, currentPassword.getPassword())) {
-           Users updatedUser = userRepository.findIdByUsername(username);
-           updatedUser.setPassword(enc.encode(newdPassword));
-           userRepository.save(updatedUser);
-           return updatedUser;
+           u.setPassword(enc.encode(newPassword));
+           userRepository.save(u);
+           return u;
         //}
         //return null;*/
 
