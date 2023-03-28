@@ -6,9 +6,8 @@ import Constants from './Constants.json';
 export default function ChangePassword() {
 
   //puuttuu vielä tarkistus että käyttäjä on kirjautunut 
-
-  const navigate = useNavigate();
-
+  let navigate = useNavigate();
+  const [changePasswordState, setChangePasswordState] = useState("idle");
   const [input, setInput] = useState({
     username: '',
     oldPassword: '',
@@ -26,6 +25,8 @@ export default function ChangePassword() {
   const handleChangePasswordSubmit = async (event) => {
     event.preventDefault();
 
+    setChangePasswordState("processing");
+
     console.log(event.target.username.value);
     console.log(event.target.newPassword.value);
     console.log(
@@ -37,20 +38,23 @@ export default function ChangePassword() {
       event.target.newPassword.value
     );
 
-
     try {
       const result = await axios.put(Constants.API_ADDRESS + "/changepassword?username=" + event.target.username.value + "&oldPassword=" + event.target.oldPassword.value + "&newPassword=" + event.target.newPassword.value + ".");
       console.log(result);
-      navigate("/defaultview", { replace: true });
-    }
-    catch (error) {
-      console.log(error.response);
+      setChangePasswordState("success");
+      setTimeout(() => {
+        setChangePasswordState("idle")
+        navigate("/defaultview", { replace: true });
+      }, 1500);
+    } catch (error) {
+      console.error(error);
+      setChangePasswordState("error");
+      setTimeout(() => setChangePasswordState("idle"), 1500);
       if (error.response && error.response.status === 403) {
         setError({ confirmedPassword: error.response.data });
       }
-      else 
-      {
-        setError({confirmedPassword: "Something went wrong, please try again later" });
+      else {
+        setError({ confirmedPassword: "Something went wrong, please try again later" });
       }
     }
   };
@@ -109,8 +113,30 @@ export default function ChangePassword() {
       }
       return stateObj;
     });
-  }
 
+  }
+    let passwordControls = null;
+    switch (changePasswordState) {
+      case "idle":
+        passwordControls = <button type="submit">Change Password</button>
+        break;
+
+      case "processing":
+        passwordControls = <span style={{ color: 'blue' }}>Processing password change...</span>
+        break;
+
+      case "success":
+        passwordControls = <span style={{ color: 'green' }}>Password changed</span>
+        break;
+
+      case "error":
+        passwordControls = <span style={{ color: 'red' }}>Error</span>
+        break;
+
+      default:
+        passwordControls = <button type="submit">Go back</button>
+    }
+  
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div>
@@ -124,9 +150,13 @@ export default function ChangePassword() {
           {error.newPassword && <span className="err">{error.newPassword} </span>}
           <input type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={input.confirmedPassword} onChange={onInputChange} onBlur={validateInput}></input>
           {error.confirmedPassword && <span className="err">{error.confirmedPassword} </span>}
-          <button type="submit">Change password</button>
+          <div>
+            {
+              passwordControls
+            }
+          </div>
         </form>
-        <p>Already have an account? <Link to="/">Log in here</Link></p>
+        <p> <Link to="/defaultview">Don't want to change password?</Link></p>
       </div>
     </div>
   );
