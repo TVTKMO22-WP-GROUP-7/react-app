@@ -80,11 +80,12 @@ export default function DeleteAccount() {
         <form onSubmit={handleDelete}>
           <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
           {error.username && <span className="err">{error.username} </span>}
-          <input type="text" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
+          <input type="password" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
           {error.password && <span className="err">{error.password} </span>}
           <button type="submit"> Delete account </button>
         </form>
       </div>
+      <p><Link to= "/defaultview">Don't want to delete account, click here</Link></p>
     </div>
   );
 }

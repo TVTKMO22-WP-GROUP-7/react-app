@@ -42,10 +42,6 @@ public class UserController {
         if (u == null) {
             String e = "Check that you've written right username and current password";
             return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
-        } else {
-            Users updatePassword = userRepository.findIdByUsername(username);
-            updatePassword.setPassword(newPassword);
-            userRepository.save(updatePassword);
         }
         String e = "Password changed";
         return new ResponseEntity<>(e, HttpStatus.OK);

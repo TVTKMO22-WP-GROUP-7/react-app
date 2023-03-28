@@ -26,30 +26,30 @@ public class UserService {
     }
 
     public Users changePassword(String username, String oldPassword, String newPassword) {
-        Users u = userRepository.findIdByUsername(username);
-        if(u == null)
-        {
-            return null;
+        Users u = userRepository.findByUsername(username);
+        if (u != null) {
+            Users updatedUser = userRepository.findIdByUsername(username);
+            if (updatedUser.getPassword().equals(u.getPassword())) {
+                updatedUser.setPassword(enc.encode(newPassword));
+                userRepository.save(updatedUser);
+                return updatedUser;
+            }
+
         }
-      // return enc.matches(oldPassword, u.password) ? u : null;
-        //if (currentPassword != null && enc.matches(oldPassword, currentPassword.getPassword())) {
-           u.setPassword(enc.encode(newPassword));
-           userRepository.save(u);
-           return u;
-        //}
-        //return null;*/
-
+        return null;
 
     }
+
     public Users deleteAccount(String username, String password) {
-        //Users checkPassword = userRepository.findPasswordByUsername(username);
-        //if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
+        Users u = userRepository.findByUsername(username);
+        if (u != null) {
             Users deleteUser = userRepository.findIdByUsername(username);
-            userRepository.delete(deleteUser);
-            return deleteUser;
-        //}
-        //return null;
+            if (deleteUser.getPassword().equals(u.getPassword())) {
+                userRepository.delete(deleteUser);
+                return deleteUser;
+            }
+        }
+        return null;
     }
-
 
 }
