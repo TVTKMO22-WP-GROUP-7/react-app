@@ -1,7 +1,11 @@
 package com.climateapp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Service;
 
 import com.climateapp.backend.repository.UserRepository;
@@ -85,4 +89,14 @@ public class UserService {
         return null;
     }
 
+    public Users deleteAccount(String username, String password) {
+        Users checkPassword = userRepository.findPasswordByUsername(username);
+        if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
+            Users deleteUser = userRepository.findIdByUsername(username);
+            userRepository.delete(deleteUser);
+            return deleteUser;
+        }
+        return null;
+    }
+ 
 }

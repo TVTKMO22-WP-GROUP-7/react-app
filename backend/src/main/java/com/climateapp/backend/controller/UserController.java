@@ -1,10 +1,19 @@
 package com.climateapp.backend.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -75,6 +84,25 @@ public class UserController {
         return new ResponseEntity<>(e, HttpStatus.OK);
     }
 
+
+        
+        @DeleteMapping("/deleteaccount")
+        public ResponseEntity<String> deleteAccount(
+                @RequestParam String username,
+                @RequestParam String password) {
+            Users checkIfUserExists = userRepository.findByUsername(username);
+            if (checkIfUserExists == null) {
+                String e = "Username " + username + " doesn't exist";
+                return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+            }
+            Users u = uService.deleteAccount(username, password);
+            if (u == null) {
+                String e = "Check that you've written right password";
+                return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+            }
+            return new ResponseEntity<>(u.username, HttpStatus.OK);
+        }
+
     @DeleteMapping("/deleteaccount")
     public ResponseEntity<String> deleteAccount(
             @RequestParam String username,
@@ -92,4 +120,11 @@ public class UserController {
         return new ResponseEntity<>(u.username, HttpStatus.OK);
     }
 
+
+        @GetMapping("/users")
+    List<Users> getUsers() {
+        return userRepository.findAll();}
+               
 }
+
+
