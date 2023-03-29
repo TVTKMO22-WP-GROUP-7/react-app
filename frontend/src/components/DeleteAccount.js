@@ -21,10 +21,11 @@ export default function DeleteAccount() {
   });
 
 
-
+//käyttäjän deletointi
   const handleDelete = async (remove) => {
     remove.preventDefault();
-
+    
+//Tulostetaan konsoliin username ja password
     console.log(remove.target.username.value);
     console.log(remove.target.password.value);
     console.log(
@@ -36,9 +37,11 @@ export default function DeleteAccount() {
     try {
       const result = await axios.delete(Constants.API_ADDRESS + '/deleteaccount?username=' + remove.target.username.value + "&password=" + remove.target.password.value + ".");
       console.log(result);
+      alert("Account deleted"); //Poiston vahvistus käyttäjälle
       navigate("/", { replace: true });
 
     } catch (error) {
+      //Mahdolliset virheilmoitukset
       console.log(error.response);
       if (error.response && error.response.status === 403) {
         setError({ password: error.response.data });
@@ -58,7 +61,7 @@ export default function DeleteAccount() {
     let { name, value } = e.target;
     setError(prev => {
       const stateObj = { ...prev, [name]: '' };
-
+//Ilmoitukset tyhjistä kentistä
       switch (name) {
         case "username":
           if (!value) {
@@ -67,7 +70,7 @@ export default function DeleteAccount() {
           break;
         case "password":
           if (!value) {
-            stateObj[name] = "Please enter your current password";
+            stateObj[name] = "Please enter your password";
           }
           break;
 
@@ -77,6 +80,7 @@ export default function DeleteAccount() {
       }return stateObj;
     })
   }
+  //Määritellään sivun rakenne
   return (
     <div >
       <div >
@@ -89,14 +93,14 @@ export default function DeleteAccount() {
           </div>
           <div>
             Password <br />
-            <input type="text" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
+            <input type="password" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
             {error.password && <span className="err">{error.password} </span>}
           </div>
           <button type="submit">Delete account</button> <br />
         </form>
 
       </div>
-      <p><Link to="/defaultview">Don't want to delete account, click here </Link></p>
+      <p><Link to="/defaultview">Don't want to delete account, click here </Link></p> 
     </div>
   );
 }
