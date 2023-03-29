@@ -1,5 +1,6 @@
 import React, {  useState} from 'react'
 import { Link,  useNavigate } from 'react-router-dom'
+import Navbar from './Navbar';
 
 import axios from 'axios';
 import Constants from './Constants.json';
@@ -72,6 +73,8 @@ export default function DeleteAccount() {
 
     }return stateObj;})}
     return (
+      <>
+      <Navbar/>
       <div >
         <div >
           <h2>Delete Account</h2>
@@ -91,6 +94,7 @@ export default function DeleteAccount() {
 
         </div>
       </div>
+      </>
     );
 }
 

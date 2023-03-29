@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Constants from './Constants.json';
+import Navbar from './Navbar';
 
 export default function ChangePassword() {
 
@@ -138,6 +139,8 @@ export default function ChangePassword() {
     }
   
   return (
+    <>
+    <Navbar/>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div>
         <h4>Change password</h4>
@@ -159,5 +162,6 @@ export default function ChangePassword() {
         <p> <Link to="/defaultview">Don't want to change password?</Link></p>
       </div>
     </div>
+    </>
   );
 }

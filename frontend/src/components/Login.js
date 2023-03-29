@@ -83,7 +83,7 @@ export default function Login() {
                         {error.username && <span className="err">{error.username} </span>}
                         <input type="password" name="password" placeholder="Enter password" value={input.password} onChange={onInputChange} onBlur={validateInput}></input>
                         {error.password && <span className="err">{error.password} </span>}
-                        <button type="submit">Log in</button>
+                        <Link to="defaultview"> <button>Log in</button></Link>
                     </form>
                 </div>
             </div>
