@@ -1,9 +1,5 @@
-
 import React, {  useState} from 'react'
 import { Link,  useNavigate } from 'react-router-dom'
-
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 
 import axios from 'axios';
 import Constants from './Constants.json';
@@ -18,9 +14,6 @@ export default function DeleteAccount() {
 
   });
 
-  });
-
-
   const [error, setError] = useState({
     username: '',
     password: '',
@@ -30,18 +23,6 @@ export default function DeleteAccount() {
 
   const handleDelete = async (remove) => {
     remove.preventDefault();
-
- try{
-  const result = await axios.delete(Constants.API_ADDRESS + '/deleteaccount?username=' + remove.target.username.value+ "&password=" + remove.target.password.value +".",
-  
-  );
-  console.log(result);
-  navigate("/", { replace: true });
-    
- } catch (error){
-  console.log(error);
- }
-
 
     console.log(remove.target.username.value);
     console.log(remove.target.password.value);
@@ -62,7 +43,6 @@ export default function DeleteAccount() {
         setError({ password: error.response.data });
       }
     }
-
   }
   const onInputChange = e => {
     const { name, value } = e.target;
@@ -112,28 +92,11 @@ export default function DeleteAccount() {
         </div>
       </div>
     );
-
-
-        default:
-          break;
-
-      }return stateObj;
-    })
-  }
-  return (
-    <div >
-      <div >
-        <h2>Delete Account</h2>
-        <form onSubmit={handleDelete}>
-          <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
-          {error.username && <span className="err">{error.username} </span>}
-          <input type="password" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
-          {error.password && <span className="err">{error.password} </span>}
-          <button type="submit"> Delete account </button>
-        </form>
-      </div>
-      <p><Link to= "/defaultview">Don't want to delete account, click here</Link></p>
-    </div>
-  );
-
 }
+
+
+        
+    
+  
+  
+
