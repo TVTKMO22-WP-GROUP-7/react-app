@@ -75,6 +75,11 @@ public class UserController {
         }
         return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
+    
+    //Rekisteröidään metodi delete-mappaukseen, vaaditaan username ja password.
+    //Jos poisto epäonnistuu välitetään käyttäjälle viesti, jossa pyydetään 
+    //tarkistamaan onko salasana kirjoitettu oikein
+    //pyynnön mennessä läpi ilmoitetaan konsoliin poiston onnistuminen.
     @DeleteMapping("/deleteaccount")
     public ResponseEntity<String> deleteAccount(
             @RequestParam String username,
@@ -91,5 +96,6 @@ public class UserController {
     List<Users> getUsers() {
         return userRepository.findAll();
     }
+
 
 }

@@ -74,23 +74,15 @@ public class UserService {
 
     }
 
+//Tarkistetaan syötetyn salasanan ja tietokannasta löytyvän salasanan vastaavuus.
     public Users deleteAccount(String username, String password) {
-        Users u = userRepository.findByUsername(username);
-        if (u == null) {
-            return null;
-        } else {
-            // if (deleteUser.getPassword().equals(u.getPassword())) {
-            userRepository.delete(u);
-            return u;
-        }
-    }
-    /*public Users deleteAccount(String username, String password) {
         Users checkPassword = userRepository.findPasswordByUsername(username);
         if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
-            Users deleteUser = userRepository.findIdByUsername(username);
-            userRepository.delete(deleteUser);
-            return deleteUser;
+            Users deleteUserAccount = userRepository.findIdByUsername(username);
+            userRepository.delete(deleteUserAccount);
+            return deleteUserAccount;
         }
         return null;
-    }*/
+    }
+ 
 }
