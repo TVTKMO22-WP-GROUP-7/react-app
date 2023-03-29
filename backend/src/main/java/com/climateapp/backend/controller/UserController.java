@@ -67,15 +67,15 @@ public class UserController {
     }
 
     @PutMapping("/changepassword")
-    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String oldPassword,
+    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String password,
             @RequestParam String newPassword) {
-        Users u = uService.changePassword(username, oldPassword, newPassword);
+        Users u = uService.changePassword(username, password, newPassword);
         if (u == null) {
             return new ResponseEntity<>("Check that you've written right username and current password", HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
-    
+
     //Rekisteröidään metodi delete-mappaukseen, vaaditaan username ja password.
     //Jos poisto epäonnistuu välitetään käyttäjälle viesti, jossa pyydetään 
     //tarkistamaan onko salasana kirjoitettu oikein

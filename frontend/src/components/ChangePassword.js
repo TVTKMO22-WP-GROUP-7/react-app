@@ -11,14 +11,14 @@ export default function ChangePassword() {
   const [changePasswordState, setChangePasswordState] = useState("idle");
   const [input, setInput] = useState({
     username: '',
-    oldPassword: '',
+    password: '',
     newPassword: '',
     confirmedPassword: '',
   });
 
   const [error, setError] = useState({
     username: '',
-    oldPassword: '',
+    password: '',
     newPassword: '',
     confirmedPassword: '',
   });
@@ -29,18 +29,19 @@ export default function ChangePassword() {
     setChangePasswordState("processing");
 
     console.log(event.target.username.value);
+    console.log(event.target.password.value);
     console.log(event.target.newPassword.value);
     console.log(
       "/changepassword?username=" +
       event.target.username.value +
-      "&oldPassword=" +
-      event.target.oldPassword.value +
+      "&password=" +
+      event.target.password.value +
       "&newPassword=" +
       event.target.newPassword.value
     );
 
     try {
-      const result = await axios.put(Constants.API_ADDRESS + "/changepassword?username=" + event.target.username.value + "&oldPassword=" + event.target.oldPassword.value + "&newPassword=" + event.target.newPassword.value + ".");
+      const result = await axios.put(Constants.API_ADDRESS + "/changepassword?username=" + event.target.username.value + "&password=" + event.target.password.value + "&newPassword=" + event.target.newPassword.value + ".");
       console.log(result);
       setChangePasswordState("success");
       setTimeout(() => {
@@ -90,8 +91,8 @@ export default function ChangePassword() {
             stateObj[name] = "Please enter password";
 
           }
-          else if (input.oldPassword && value === input.oldPassword) {
-            stateObj["oldPassword"] = "New password can't be the same as old password";
+          else if (input.password && value === input.password) {
+            stateObj["password"] = "New password can't be the same as old password";
           }
           else if (input.confirmedPassword && value !== input.confirmedPassword) {
             stateObj["confirmedPassword"] = "Passwords don't match";
@@ -147,8 +148,8 @@ export default function ChangePassword() {
         <form onSubmit={handleChangePasswordSubmit}>
           <input type="text" name="username" placeholder="Enter username" value={input.username} onChange={onInputChange} onBlur={validateInput}></input>
           {error.username && <span className="err">{error.username} </span>}
-          <input type="password" name="oldPassword" placeholder="Enter your current password" value={input.oldPassword} onChange={onInputChange} onBlur={validateInput}></input>
-          {error.oldPassword && <span className="err">{error.oldPassword} </span>}
+          <input type="password" name="password" placeholder="Enter your current password" value={input.password} onChange={onInputChange} onBlur={validateInput}></input>
+          {error.oldPassword && <span className="err">{error.password} </span>}
           <input type="password" name="newPassword" placeholder="Enter your new password" value={input.newPassword} onChange={onInputChange} onBlur={validateInput}></input>
           {error.newPassword && <span className="err">{error.newPassword} </span>}
           <input type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={input.confirmedPassword} onChange={onInputChange} onBlur={validateInput}></input>
