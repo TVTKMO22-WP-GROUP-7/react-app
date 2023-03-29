@@ -8,6 +8,7 @@ export default function DefaultView() {
                 <div><Link to="/changepassword"><button>Change Password</button></Link></div>
                 <div><Link to="/deleteaccount"><button>Delete Account</button></Link></div>
                 <div><Link to="/"><button>Logout</button></Link></div>
+                <div><Link to="/V1"><button>Visu1</button></Link></div>
             </div>
             <p>This is the default view user gets when logged in</p>
             <p>Tähän alle näkymät V1 ja V2 allekkain ??</p>

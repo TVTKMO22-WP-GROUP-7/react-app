@@ -2,8 +2,6 @@ package com.climateapp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Service;
@@ -24,9 +22,9 @@ public class UserService {
     @Autowired
     PasswordEncoder enc;
 
-    //sercet key for JWT token (can be found in application.properties)
+    // sercet key for JWT token (can be found in application.properties)
     @Value("${jwt.secret}")
-	private String jwtKey;
+    private String jwtKey;
 
     public Users register(String username, String password) {
         Users u = new Users(username, enc.encode(password));
@@ -38,10 +36,10 @@ public class UserService {
         return u;
     }
 
-    //Create JWT token for user using algorithm and secret key
+    // Create JWT token for user using algorithm and secret key
     public String login(String username, String password) {
         Users u = userRepository.findByUsername(username);
-        if(u == null || !enc.matches(password, u.getPassword())) {
+        if (u == null || !enc.matches(password, u.getPassword())) {
             return null;
         }
 
@@ -49,7 +47,7 @@ public class UserService {
         return JWT.create().withSubject(u.username).sign(alg);
     }
 
-    //Verify JWT token and return username if token is valid
+    // Verify JWT token and return username if token is valid
     public String validateJwt(String jwtToken) {
         Algorithm alg = Algorithm.HMAC256(jwtKey);
         JWTVerifier verifier = JWT.require(alg).build();
@@ -66,30 +64,29 @@ public class UserService {
         Users u = userRepository.findByUsername(username);
         if (u != null) {
             Users updatedUser = userRepository.findIdByUsername(username);
-            //if (updatedUser.getPassword().equals(u.getPassword())) {
-                updatedUser.setPassword(enc.encode(newPassword));
-                userRepository.save(updatedUser);
-                return updatedUser;
-            }
+            // if (updatedUser.getPassword().equals(u.getPassword())) {
+            updatedUser.setPassword(enc.encode(newPassword));
+            userRepository.save(updatedUser);
+            return updatedUser;
+        }
 
-       // }
+        // }
         return null;
 
     }
 
     public Users deleteAccount(String username, String password) {
         Users u = userRepository.findByUsername(username);
-        if (u != null) {
-            Users deleteUser = userRepository.findIdByUsername(username);
-           // if (deleteUser.getPassword().equals(u.getPassword())) {
-                userRepository.delete(deleteUser);
-                return deleteUser;
-            }
-       // }
-        return null;
+        if (u == null) {
+            return null;
+        } else {
+            // if (deleteUser.getPassword().equals(u.getPassword())) {
+            userRepository.delete(u);
+            return u;
+        }
     }
 
-    public Users deleteAccount(String username, String password) {
+    /*public Users deleteAccount(String username, String password) {
         Users checkPassword = userRepository.findPasswordByUsername(username);
         if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
             Users deleteUser = userRepository.findIdByUsername(username);
@@ -97,6 +94,6 @@ public class UserService {
             return deleteUser;
         }
         return null;
-    }
- 
+    }*/
+
 }
