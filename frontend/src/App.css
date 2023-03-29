@@ -19,6 +19,22 @@ input {
   border: 1px solid black;
 }
 
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
 .default {
   display: flex;
   flex-direction: column;
