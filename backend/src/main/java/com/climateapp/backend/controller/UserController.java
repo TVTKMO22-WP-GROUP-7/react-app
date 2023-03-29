@@ -2,12 +2,12 @@ package com.climateapp.backend.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -75,7 +75,6 @@ public class UserController {
         }
         return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
-
     @DeleteMapping("/deleteaccount")
     public ResponseEntity<String> deleteAccount(
             @RequestParam String username,
@@ -87,7 +86,8 @@ public class UserController {
         return new ResponseEntity<>("Account deleted", HttpStatus.OK);
     }
 
-    @GetMapping("/users")
+
+        @GetMapping("/users")
     List<Users> getUsers() {
         return userRepository.findAll();
     }

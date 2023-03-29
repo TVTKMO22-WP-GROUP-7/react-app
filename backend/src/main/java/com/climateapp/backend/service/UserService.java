@@ -1,7 +1,6 @@
 package com.climateapp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Service;
@@ -85,7 +84,6 @@ public class UserService {
             return u;
         }
     }
-
     /*public Users deleteAccount(String username, String password) {
         Users checkPassword = userRepository.findPasswordByUsername(username);
         if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
@@ -95,5 +93,4 @@ public class UserService {
         }
         return null;
     }*/
-
 }
