@@ -1,6 +1,6 @@
-import React, {  useState} from 'react'
-import { Link,  useNavigate } from 'react-router-dom'
-import Navbar from './Navbar';
+
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 import axios from 'axios';
 import Constants from './Constants.json';
@@ -71,36 +71,32 @@ export default function DeleteAccount() {
           }
           break;
 
-    }return stateObj;})}
-    return (
-      <>
-      <Navbar/>
+        default:
+          break;
+
+      }return stateObj;
+    })
+  }
+  return (
+    <div >
       <div >
-        <div >
-          <h2>Delete Account</h2>
-          <form onSubmit={handleDelete}>
-        <div>
-          Username <br/>
-          <input type= "text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput}/> <br/>
-          {error.username && <span className="err">{error.username} </span>}
-        </div>
-        <div>
-          Password <br/>
-          <input type= "text" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput}/> <br/>
-          {error.password && <span className="err">{error.password} </span>}
-        </div>
-       <button type="submit">Delete account</button> <br/>
-          </form>
+        <h2>Delete Account</h2>
+        <form onSubmit={handleDelete}>
+          <div>
+            Username <br />
+            <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
+            {error.username && <span className="err">{error.username} </span>}
+          </div>
+          <div>
+            Password <br />
+            <input type="text" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
+            {error.password && <span className="err">{error.password} </span>}
+          </div>
+          <button type="submit">Delete account</button> <br />
+        </form>
 
-        </div>
       </div>
-      </>
-    );
+      <p><Link to="/defaultview">Don't want to delete account, click here </Link></p>
+    </div>
+  );
 }
-
-
-        
-    
-  
-  
-

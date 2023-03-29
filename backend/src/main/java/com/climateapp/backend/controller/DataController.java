@@ -17,19 +17,38 @@ public class DataController {
     @Autowired
     DataService dService;
 
-    @GetMapping("/v1annual")
-    public List<v1annual> getV1Annual()
-    {
-        return dService.getV1Annual();
+    @GetMapping("/annualglobal")
+    public List<V1AnnualGlobal> getAnnualGlobal(){
+        return dService.getAnnualGlobal();
     }
 
-    @GetMapping("/v1monthly")
-    public List<v1monthly> getV1Monthly()
-    {
-        return dService.getV1Monthly();
+    @GetMapping("/annualnorth")
+    public List<V1AnnualNorth> getAnnualNorth(){
+        return dService.getAnnualNorth();
     }
 
-    @GetMapping("/v1reconstruction")
+    @GetMapping("/annualsouth")
+    public List<V1AnnualSouth> getAnnualSouth(){
+        return dService.getAnnualSouth();
+    }
+
+    
+    @GetMapping("/monthlyglobal")
+    public List<V1MonthlyGlobal> getMonthlyGlobal(){
+        return dService.getMonthlyGlobal();
+    }
+
+    @GetMapping("/monthlynorth")
+    public List<V1MonthlyNorth> getMonthlyNorth(){
+        return dService.getMonthlyNorth();
+    }
+
+    @GetMapping("/monthlysouth")
+    public List<V1MonthlySouth> getMonthlySouth(){
+        return dService.getMonthlySouth();
+    }
+
+    @GetMapping("/reconstruction")
     public List<V1reconstruction> getV1Reconstruction()
     {
         return dService.getV1Reconstruction();
