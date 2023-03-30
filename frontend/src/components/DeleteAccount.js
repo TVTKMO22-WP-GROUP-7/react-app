@@ -35,7 +35,7 @@ export default function DeleteAccount() {
       remove.target.password.value
     );
     try {
-      const result = await axios.delete(Constants.API_ADDRESS + '/deleteaccount?username=' + remove.target.username.value + "&password=" + remove.target.password.value + ".");
+      const result = await axios.delete(Constants.API_ADDRESS + '/deleteaccount?username=' + remove.target.username.value + "&password=" + remove.target.password.value);
       console.log(result);
       alert("Account deleted"); //Poiston vahvistus käyttäjälle
       navigate("/", { replace: true });
