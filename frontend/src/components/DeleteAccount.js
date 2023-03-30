@@ -82,8 +82,8 @@ export default function DeleteAccount() {
   }
   //Määritellään sivun rakenne
   return (
-    <div >
-      <div >
+    <div  className="deleteacc">
+      <div>
         <h2>Delete Account</h2>
         <form onSubmit={handleDelete}>
           <div>

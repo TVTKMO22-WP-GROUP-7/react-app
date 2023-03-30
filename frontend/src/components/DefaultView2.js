@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
-export default function DefaultView() {
-  const [page, setPage] = useState(1);
+export default function DefaultView2() {
+  const [page, setPage] = useState(2);
   const navigate = useNavigate();
 
   const handlePageChange = () => {
@@ -15,8 +15,7 @@ export default function DefaultView() {
     <>
       <Navbar />
       <div className="default">
-        <p>This is the default view user gets when logged in</p>
-        <p>Tähän alle näkymät V1 ja V2 allekkain ??</p>
+        <p>This is the second page of the default view.</p>
         <button onClick={handlePageChange}>
           Page {page === 1 ? '1/2' : '2/2'}
         </button>
@@ -24,10 +23,3 @@ export default function DefaultView() {
     </>
   );
 }
-
- 
-
-
-
-
-
