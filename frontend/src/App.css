@@ -44,6 +44,32 @@ input {
   border: 1px solid black;
 }
 
+.custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+.deleteacc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+.changepassword {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 button {
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;

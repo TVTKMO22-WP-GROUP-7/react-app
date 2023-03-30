@@ -79,8 +79,8 @@ export default function ChangePassword() {
   return (
     <>
       <Navbar />
-      <div className="changepassword-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <div className="changepassword">
+      <div className="changepassword">
+        <div>
           <h4>Change password</h4>
           <form onSubmit={handleChangePasswordSubmit}>
             <input type="text" name="username" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)}></input>
