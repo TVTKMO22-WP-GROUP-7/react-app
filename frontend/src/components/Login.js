@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios';
-import { Form, Button } from "react-bootstrap";
 import Constants from './Constants.json';
-
 
 export default function Login() {
 
-    const [username, setUser] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
 
@@ -34,7 +32,7 @@ export default function Login() {
 
     const setAuthToken = (token) => {
         if (token) {
-            axios.defaults.headers.common["Authorization"] = 'Bearer ${token}'
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
             return true
         }
         else{
@@ -47,30 +45,24 @@ export default function Login() {
         <div>
             <div className='login-container'>
                 <div className="login">
-                    <h4>Login</h4>
+                    <h4>Login to private page</h4>
                     <form onSubmit={handleLoginSubmit}>
-                    <Form.Group>
-                        <Form.Control
+                        <input type="text"              
                             autoFocus
-                            id="Loginid"
-                            placeholder="Username"
-                            type="username"
+                            name="username" 
+                            placeholder="Enter Username"
                             value={username}
-                            onChange={(e) => setUser(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Control
-                            id="loginPassword"
-                            placeholder="Password"
-                            type="password"
+                            onChange={(e) => setUsername(e.target.value)}>                        
+                        </input>
+                        <input type="password" 
+                            name="password" 
+                            placeholder="Enter Password"                            
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </Form.Group>
-                    <br></br>
-                    <Button block="true" type="submit" id="loginin">Login</Button>
-                    <Link to="register"><button>Register here</button></Link>
+                            onChange={(e) => setPassword(e.target.value)}>                       
+                        </input>
+                        <button type="submit" style={{ marginTop: '20px' }}>Login</button>
+                        <br></br>
+                        <p>New user? <Link to="/register">Register here</Link></p>
                     </form>
                 </div>
             </div>
