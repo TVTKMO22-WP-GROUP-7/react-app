@@ -34,6 +34,15 @@ public class DataService {
     @Autowired
     V1ReconstructionRepository V1RecoRepo;
 
+    @Autowired
+    V5AllRepo V5AllRepo;
+
+    @Autowired
+    V5SubRepo V5SubRepo;
+
+    @Autowired
+    V5SubFurtherRepo V5SubFurtherRepo;
+
     public List<V1AnnualGlobal> getAnnualGlobal() {
         return V1AnnualGlobalRepo.getAll();
     }
@@ -58,7 +67,19 @@ public class DataService {
         return V1MonthlySouthRepo.getAll();
     }
 
-    public List<V1reconstruction> getV1Reconstruction() {
+    public List<V1Reconstruction> getV1Reconstruction() {
         return V1RecoRepo.getAll();
+    }
+
+    public List<V5All> getV5All() {
+        return V5AllRepo.getAll();
+    }
+
+    public List<V5Sub> getV5Sub() {
+        return V5SubRepo.getAll();
+    }
+
+    public List<V5SubFurther> getV5SubFurther() {
+        return V5SubFurtherRepo.getAll();
     }
 }
