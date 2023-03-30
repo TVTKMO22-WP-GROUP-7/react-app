@@ -49,8 +49,26 @@ public class DataController {
     }
 
     @GetMapping("/reconstruction")
-    public List<V1reconstruction> getV1Reconstruction()
+    public List<V1Reconstruction> getV1Reconstruction()
     {
         return dService.getV1Reconstruction();
+    }
+
+    @GetMapping("/v5all")
+    public List<V5All> getV5All()
+    {
+        return dService.getV5All();
+    }
+
+    @GetMapping("/v5sub")
+    public List<V5Sub> getV5Sub()
+    {
+        return dService.getV5Sub();
+    }
+
+    @GetMapping("/v5subfurther")
+    public List<V5SubFurther> getV5SubFurther()
+    {
+        return dService.getV5SubFurther();
     }
 }
