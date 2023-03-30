@@ -2,7 +2,7 @@ package com.climateapp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.climateapp.backend.repository.UserRepository;
@@ -59,17 +59,21 @@ public class UserService {
         return null;
     }
 
-    public Users changePassword(String username, String oldPassword, String newPassword) {
-        Users u = userRepository.findByUsername(username);
-        if (u != null) {
-            Users updatedUser = userRepository.findIdByUsername(username);
-            // if (updatedUser.getPassword().equals(u.getPassword())) {
+    public Users changePassword(String username, String password, String newPassword) {
+      
+        Users u = userRepository.findIdByUsername(username);
+        if (u != null && enc.matches(password, u.password)) {
+            Users updatedUser = userRepository.findPasswordByUsername(username);
+             if (updatedUser.getPassword().equals(u.getPassword()) ) {
             updatedUser.setPassword(enc.encode(newPassword));
             userRepository.save(updatedUser);
+           // userRepository.save(u);
+    
             return updatedUser;
+         //   return u;
         }
-
-        // }
+    }
+    
         return null;
 
     }
