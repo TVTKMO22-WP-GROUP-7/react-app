@@ -1,9 +1,12 @@
 import React, { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
 	const navRef = useRef();
+	const navigate = useNavigate()
+	const name = localStorage.getItem("token");
 
 	const showNavbar = () => {
 		navRef.current.classList.toggle(
@@ -11,13 +14,19 @@ function Navbar() {
 		);
 	};
 
+	function logout() {
+		localStorage.removeItem("token")
+		navigate("/")
+		window.location.reload(false)
+	}
+
 	return (
 		<header>
-			<h3>USERNAME HERE?</h3>
+			<h3>{name}</h3>
 			<nav ref={navRef}>
 				<a href="/defaultview">Custom Page</a>
 				<a href="/changepassword">Change Password</a>
-				<a href="/">Logout</a>
+				<a href="/" onClick={logout}>Logout</a>
 				<a href="/deleteaccount">Delete account</a>
 				<button
 					className="nav-btn nav-close-btn"
