@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Constants from './Constants.json';
-import Navbar from './Navbar';
 
 export default function ChangePassword() {
 
@@ -24,7 +23,7 @@ export default function ChangePassword() {
     else if (password === "") {
       alert("Password can't be empty")
     }
-    else if (password == newPassword) {
+    else if (password === newPassword) {
       alert("New password can't be the same as your old password")
     } else {
       event.preventDefault();
@@ -43,7 +42,7 @@ export default function ChangePassword() {
           setChangePasswordState("success");
           setTimeout(() => {
             setChangePasswordState("idle")
-            navigate("/defaultview", { replace: true });
+            navigate("/", { replace: true });
           }, 1500);
         }).catch(error => {
           setChangePasswordState("error");
@@ -78,7 +77,6 @@ export default function ChangePassword() {
 
   return (
     <>
-      <Navbar />
       <div className="changepassword">
         <div>
           <h4>Change password</h4>
@@ -93,7 +91,7 @@ export default function ChangePassword() {
               }
             </div>
           </form>
-          <p> <Link to="/defaultview">Don't want to change password?</Link></p>
+          <p> <Link to="/">Don't want to change password?</Link></p>
         </div>
       </div>
     </>

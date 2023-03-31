@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import axios from 'axios';
 import Constants from './Constants.json';
+import Navbar from './Navbar';
 
 export default function DeleteAccount() {
   const navigate = useNavigate();
@@ -82,6 +83,7 @@ export default function DeleteAccount() {
   }
   //Määritellään sivun rakenne
   return (
+    <>
     <div  className="deleteacc">
       <div>
         <h2>Delete Account</h2>
@@ -100,7 +102,8 @@ export default function DeleteAccount() {
         </form>
 
       </div>
-      <p><Link to="/defaultview">Don't want to delete account, click here </Link></p> 
+      <p><Link to="/">Don't want to delete account, click here </Link></p> 
     </div>
+    </>
   );
 }

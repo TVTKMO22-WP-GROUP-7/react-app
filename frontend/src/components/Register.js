@@ -31,7 +31,7 @@ export default function Register() {
           setChangeRegisterState("success");
           setTimeout(() => {
             setChangeRegisterState("idle")
-          navigate("/", { replace: true });
+          navigate("/login", { replace: true });
           }, 1500);
         }).catch(error => {
           setChangeRegisterState("error");
@@ -94,7 +94,7 @@ export default function Register() {
             }
           </div>
         </form>
-        <p>Already have an account? <Link to="/">Log in here</Link></p>
+        <p>Already have an account? <Link to="/login">Log in here</Link></p>
       </div>
     </div>
   );

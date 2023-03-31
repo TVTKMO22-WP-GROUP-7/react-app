@@ -6,7 +6,7 @@ import "./Navbar.css";
 function Navbar() {
 	const navRef = useRef();
 	const navigate = useNavigate()
-	const name = localStorage.getItem("token");
+	const name = localStorage.getItem("username");
 	const location = useLocation();
 
 	const showNavbar = () => {
@@ -15,13 +15,22 @@ function Navbar() {
 
 	function logout() {
 		localStorage.removeItem("token")
+		localStorage.removeItem("username")
 		navigate("/")
 		window.location.reload(false)
 	}
 
-	function getDefaultViewLink() {
+	function changeDefaultView() {
+		if (location.pathname === "/defaultview2") {
+		  return "/";
+		} else {
+		  return "/defaultview2";
+		}
+	  }
+
+	function changeCustomDefaultView() {
 		if (location.pathname === "/custompage") {
-		  return "/defaultview";
+		  return "/";
 		} else {
 		  return "/custompage";
 		}
@@ -29,10 +38,11 @@ function Navbar() {
 
 	return (
 		<header>
-			<h3>{name}</h3>
+			<h3>Current User: {name}</h3>
 			<nav ref={navRef}>
-				<a href={getDefaultViewLink()}>
-				{location.pathname === "/custompage" ? "Default View" : "Custom Page"}
+			<a href={changeDefaultView()}>Change View</a>
+				<a href={changeCustomDefaultView()}>
+				{location.pathname === "/custompage" ? "Default Page" : "Custom Page"}
 				</a>
 				<a href="/changepassword">Change Password</a>
 				<a href="/" onClick={logout}>Logout</a>
