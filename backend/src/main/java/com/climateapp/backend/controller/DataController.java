@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.climateapp.backend.service.DataService;
 
 import com.climateapp.backend.data.database.*;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -71,4 +73,22 @@ public class DataController {
     {
         return dService.getV5SubFurther();
     }
+
+    @GetMapping("/v3event")
+    public List<V3EventTime> getV3EventTime(){
+        return dService.getV3Event();
+    }
+
+    @GetMapping("/v3global")
+    public List<V3Global> getV3Global(){
+        return dService.getV3Global();
+    }
+
+    @GetMapping("/v3carbon")
+        public List<V3Carbon> getV3Carbon(){
+            return dService.getV3Carbon();
+        }
+    
+    
+    
 }

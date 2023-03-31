@@ -32,7 +32,7 @@ export default function DeleteAccount() {
     console.log(
       "/deleteaccount?username=" +
       remove.target.username.value +
-      "&oldPassword=" +
+      "&password=" +
       remove.target.password.value
     );
     try {
