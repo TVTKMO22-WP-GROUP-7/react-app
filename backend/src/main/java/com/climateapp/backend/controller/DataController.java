@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.climateapp.backend.service.DataService;
 
-import com.climateapp.backend.data.*;
+import com.climateapp.backend.data.database.*;
 
 @RestController
 @CrossOrigin(origins = "*")

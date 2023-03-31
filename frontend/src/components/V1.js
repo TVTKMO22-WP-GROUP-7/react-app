@@ -118,7 +118,7 @@ function V1() {
   const data = {
     datasets: [
       {
-        label: "Annual global",
+        label: "Global annual anomalies",
         data: data1,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgb(255, 99, 132)",
@@ -129,7 +129,7 @@ function V1() {
         pointRadius: 1,
       },
       {
-        label: "Annual north",
+        label: "North annual anomalies",
         data: data2,
         borderColor: "rgb(255, 159, 64)",
         backgroundColor: "rgb(255, 159, 64)",
@@ -140,7 +140,7 @@ function V1() {
         pointRadius: 0.2,
       },
       {
-        label: "Annual south",
+        label: "South annual anomalies",
         data: data3,
         borderColor: "rgb(255, 205, 86)",
         backgroundColor: "rgb(255, 205, 86)",
@@ -155,7 +155,7 @@ function V1() {
   const monthly = {
     datasets: [
       {
-        label: "Monthly global",
+        label: "Global monthly anomalies",
         data: data4,
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgb(75, 192, 192)",
@@ -166,7 +166,7 @@ function V1() {
         pointRadius: 1,
       },
       {
-        label: "Monthly north",
+        label: "North monthly anomalies",
         data: data5,
         borderColor: "rgb(54, 162, 235)",
         backgroundColor: "rgb(54, 162, 235)",
@@ -177,7 +177,7 @@ function V1() {
         pointRadius: 1,
       },
       {
-        label: "Monthly south",
+        label: "South monthly anomalies",
         data: data6,
         borderColor: "rgb(153, 102, 255)",
         backgroundColor: "rgb(153, 102, 255)",
@@ -190,7 +190,7 @@ function V1() {
     ],
   };
   const reconstruction = {
-    datasets:[
+    datasets: [
       {
         label: "Reconstruction",
         data: data7,
@@ -215,7 +215,10 @@ function V1() {
       },
       title: {
         display: true,
-        text: "Visualisointi 1",
+        text: "Global historical surface temperature anomalies from January 1850 onwards " + (isAnnual ? "(yearly)" : "(mounthly)"),
+        font: {
+          size: 20
+        }
       },
     },
     scales: {
@@ -223,18 +226,14 @@ function V1() {
       {
         type: 'time',
         time: {
-          unit: "year",
-        },
-        title: {
-          display: true,
-          text: "vuosi",
-        },
+          unit: isAnnual ? "year" : "month",
+        }
       },
       y: {
         type: "linear",
         title: {
           display: true,
-          text: "temperature anomaly",
+          text: "Temperature anomaly (°C)",
         },
       },
     },
@@ -250,7 +249,10 @@ function V1() {
       },
       title: {
         display: true,
-        text: "Reco",
+        text: "Northern Hemisphere 2,000-year temperature reconstruction (starting from year 1)",
+        font: {
+          size: 20
+        }
       },
     },
     scales: {
@@ -262,31 +264,53 @@ function V1() {
         },
         title: {
           display: true,
-          text: "vuosi",
+          text: "Year",
         },
       },
       y: {
         type: "linear",
         title: {
           display: true,
-          text: "t",
+          text: "Temperature reconstruction (°C)",
         },
       },
     },
   };
 
-  function changeData(){
-    if(isAnnual){
+  function changeData() {
+    if (isAnnual && !isReconstruction) {
       return data;
     }
-    else{
+    else if (isAnnual && isReconstruction) {
+      return reconstruction;
+    }
+    else if (!isAnnual && !isReconstruction) {
       return monthly;
     }
+    else {
+      return reconstruction;
+    }
   }
-  function showReconstruction(){
-    if(isReconstruction)
-    return reconstruction;
-    else{
+
+  function changeDataOptions() {
+    if (isAnnual && !isReconstruction) {
+      return options;
+    }
+    else if (isAnnual && isReconstruction) {
+      return ReconstructionOptions;
+    }
+    else if (!isAnnual && !isReconstruction) {
+      return options;
+    }
+    else {
+      return ReconstructionOptions;
+    }
+  }
+
+  function showReconstruction() {
+    if (isReconstruction)
+      return reconstruction;
+    else {
       return null;
     }
   }
@@ -294,14 +318,22 @@ function V1() {
   return (
     <div className="child">
       <div className="container-fluid">
-      <Line data={changeData()} options={options} alt="Anomaly data chart" />
-        <Line data={reconstruction} options={ReconstructionOptions}alt="Reconstruction data chart" />
+        <Line data={changeData()} options={changeDataOptions()} alt="Anomaly data chart" />
       </div>
       <div className="container-fluid">
-        <button onClick={() => setIsAnnual(!isAnnual)} className = "btn btn-outline-primary-mt2">{isAnnual ? "Näytä data kuukausittain" : "Näytä data vuosittain"}</button>
-        <button onClick={() => setIsReconstruction(!isReconstruction)} className = "btn btn-outline-primary-mt2">{isReconstruction ? "Piilota rekonstruktio" : "Näytä rekonstruktio"}</button>
+        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show data monthly" : "Show data yearly"}</button>
+        <button onClick={() => setIsReconstruction(!isReconstruction)} className="btn btn-outline-primary-mt2">{isReconstruction ? "Hide temperature rekonstruction" : "Show temperature reconstruction"}</button>
       </div>
-      <div style={{ Width: 1000 }}>
+      <div className="card mt-4" style={{ width: "24rem" }}>
+        <div className="card-body">
+          <h5 className="card-title">Description</h5>
+          <p className="card-text">This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
+          <p> The chart also shows the northern hemisphere 2,000-year temperature reconstruction (starting from year 1).</p>
+          <p> If you want to see the data press the show 'Temperature Reconstruction-button'</p>
+        </div>
+        <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+        <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts </a></p>
+        <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">Moberg</a></p>
       </div>
     </div>
   );
