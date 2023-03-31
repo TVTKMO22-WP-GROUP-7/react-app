@@ -1,4 +1,4 @@
-package com.climateapp.backend.data;
+package com.climateapp.backend.data.database;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,8 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="v5_all")
-public class V5All {
+@Table(name = "v5_subfurther")
+public class V5SubFurther {
 
     @Id
     @Column(name= "sector")
@@ -16,10 +16,10 @@ public class V5All {
     @Column(name= "share")
     public double share;
 
-    public V5All() {
+    public V5SubFurther() {
     }
 
-    public V5All(String sector, double share) {
+    public V5SubFurther(String sector, double share) {
         this.sector = sector;
         this.share = share;
     }

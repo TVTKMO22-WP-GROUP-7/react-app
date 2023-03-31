@@ -1,4 +1,4 @@
-package com.climateapp.backend.data;
+package com.climateapp.backend.data.database;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

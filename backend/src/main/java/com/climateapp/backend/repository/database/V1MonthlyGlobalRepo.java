@@ -1,10 +1,10 @@
-package com.climateapp.backend.repository;
+package com.climateapp.backend.repository.database;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.climateapp.backend.data.database.V1MonthlyGlobal;
 
-import com.climateapp.backend.data.V1MonthlyGlobal;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface V1MonthlyGlobalRepo extends JpaRepository<V1MonthlyGlobal, String> {
     @Query(value = "SELECT * FROM v1_monthlyglobal", nativeQuery = true)
