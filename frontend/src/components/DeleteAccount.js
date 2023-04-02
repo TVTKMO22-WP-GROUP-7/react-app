@@ -22,11 +22,11 @@ export default function DeleteAccount() {
   });
 
 
-//käyttäjän deletointi
+  //käyttäjän deletointi
   const handleDelete = async (remove) => {
     remove.preventDefault();
-    
-//Tulostetaan konsoliin username ja password
+
+    //Tulostetaan konsoliin username ja password
     console.log(remove.target.username.value);
     console.log(remove.target.password.value);
     console.log(
@@ -62,7 +62,7 @@ export default function DeleteAccount() {
     let { name, value } = e.target;
     setError(prev => {
       const stateObj = { ...prev, [name]: '' };
-//Ilmoitukset tyhjistä kentistä
+      //Ilmoitukset tyhjistä kentistä
       switch (name) {
         case "username":
           if (!value) {
@@ -84,26 +84,26 @@ export default function DeleteAccount() {
   //Määritellään sivun rakenne
   return (
     <>
-    <div  className="deleteacc">
-      <div>
-        <h2>Delete Account</h2>
-        <form onSubmit={handleDelete}>
-          <div>
-            Username <br />
-            <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
-            {error.username && <span className="err">{error.username} </span>}
-          </div>
-          <div>
-            Password <br />
-            <input type="password" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
-            {error.password && <span className="err">{error.password} </span>}
-          </div>
-          <button type="submit">Delete account</button> <br />
-        </form>
+      <div className="deleteacc">
+        <div>
+          <h2>Delete Account</h2>
+          <form onSubmit={handleDelete}>
+            <div>
+              Username <br />
+              <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
+              {error.username && <span className="err">{error.username} </span>}
+            </div>
+            <div>
+              Password <br />
+              <input type="password" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
+              {error.password && <span className="err">{error.password} </span>}
+            </div>
+            <button type="submit">Delete account</button> <br />
+          </form>
 
+        </div>
+        <p><Link to="/">Don't want to delete account, click here </Link></p>
       </div>
-      <p><Link to="/">Don't want to delete account, click here </Link></p> 
-    </div>
     </>
   );
 }

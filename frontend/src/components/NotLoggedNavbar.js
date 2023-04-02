@@ -14,11 +14,11 @@ function NotLoggedNavbar() {
 
 	function changeView() {
 		if (location.pathname === "/defaultview2") {
-		  return "/";
+			return "/";
 		} else {
-		  return "/defaultview2";
+			return "/defaultview2";
 		}
-	  }
+	}
 
 	return (
 		<header>
@@ -26,7 +26,7 @@ function NotLoggedNavbar() {
 			<nav ref={navRef}>
 				<a href={changeView()}>Change View</a>
 				{/* {location.pathname === "/" ? "Default View" : "Default View2"} */}
-				
+
 				<a href="/login"> LogIn</a>
 				<button className="nav-btn nav-close-btn" onClick={showNotLoggedNavbar}>
 					<FaTimes />

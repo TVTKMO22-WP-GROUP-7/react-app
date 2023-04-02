@@ -31,7 +31,7 @@ export default function Register() {
           setChangeRegisterState("success");
           setTimeout(() => {
             setChangeRegisterState("idle")
-          navigate("/login", { replace: true });
+            navigate("/login", { replace: true });
           }, 1500);
         }).catch(error => {
           setChangeRegisterState("error");

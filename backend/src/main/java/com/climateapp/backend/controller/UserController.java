@@ -70,15 +70,16 @@ public class UserController {
             @RequestParam String newPassword) {
         Users u = uService.changePassword(username, password, newPassword);
         if (u == null) {
-            return new ResponseEntity<>("Check that you've written right username and current password", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Check that you've written right username and current password",
+                    HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
 
-    //Rekisteröidään metodi delete-mappaukseen, vaaditaan username ja password.
-    //Jos poisto epäonnistuu välitetään käyttäjälle viesti, jossa pyydetään 
-    //tarkistamaan onko salasana kirjoitettu oikein
-    //pyynnön mennessä läpi ilmoitetaan konsoliin poiston onnistuminen.
+    // Rekisteröidään metodi delete-mappaukseen, vaaditaan username ja password.
+    // Jos poisto epäonnistuu välitetään käyttäjälle viesti, jossa pyydetään
+    // tarkistamaan onko salasana kirjoitettu oikein
+    // pyynnön mennessä läpi ilmoitetaan konsoliin poiston onnistuminen.
     @DeleteMapping("/deleteaccount")
     public ResponseEntity<String> deleteAccount(
             @RequestParam String username,
@@ -90,11 +91,9 @@ public class UserController {
         return new ResponseEntity<>("Account deleted", HttpStatus.OK);
     }
 
-
-        @GetMapping("/users")
+    @GetMapping("/users")
     List<Users> getUsers() {
         return userRepository.findAll();
     }
-
 
 }

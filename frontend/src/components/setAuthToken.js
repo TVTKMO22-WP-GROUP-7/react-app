@@ -5,9 +5,9 @@ const setAuthToken = (token) => {
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
         return true
     }
-    else{
-         console.log("Invalid token")
-         return false
+    else {
+        console.log("Invalid token")
+        return false
     }
 }
 export default setAuthToken;

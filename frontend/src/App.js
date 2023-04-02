@@ -6,7 +6,8 @@ import CustomPage from './components/CustomPage';
 import DefaultView from './components/DefaultView';
 import DefaultView2 from './components/DefaultView2';
 import DeleteAccount from './components/DeleteAccount';
-import V1 from "./components/V1";
+import V1 from "./components/visualisations/V1";
+import V5 from "./components/visualisations/V5";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useCheckAuth from './components/useCheckAuth';
 import Navbar from './components/Navbar';
@@ -28,7 +29,8 @@ function App() {
         <Route path="/" element={<DefaultView />} />
         <Route path="/defaultview2" element={<DefaultView2 />} />
         <Route path="/deleteaccount" element={<DeleteAccount />} />
-        <Route path ="V1" element={<V1 />} />
+        <Route path ="/V1" element={<V1 />} />
+        <Route path ="/V5" element={<V5 />} />
       </Routes>
     </div>
     </BrowserRouter >
