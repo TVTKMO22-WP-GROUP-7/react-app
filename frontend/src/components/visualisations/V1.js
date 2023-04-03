@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import "chartjs-adapter-moment";
 import axios from "axios";
-import Constants from "./Constants.json";
+import Constants from "../Constants.json";
 
 function V1() {
 
@@ -304,14 +304,6 @@ function V1() {
     }
     else {
       return ReconstructionOptions;
-    }
-  }
-
-  function showReconstruction() {
-    if (isReconstruction)
-      return reconstruction;
-    else {
-      return null;
     }
   }
 

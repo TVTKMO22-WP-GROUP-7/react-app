@@ -5,8 +5,8 @@ import setAuthToken from "./setAuthToken"
 const useCheckAuth = () => {
     const [checkAuth, setCheckAuth] = useState(null)
 
-    const isAuthorized = async() => {
-        if(setAuthToken(localStorage.getItem("token")) === true){
+    const isAuthorized = async () => {
+        if (setAuthToken(localStorage.getItem("token")) === true) {
             setCheckAuth(true)
         }
         else {
@@ -16,7 +16,7 @@ const useCheckAuth = () => {
     useEffect(() => {
         isAuthorized()
     }, [checkAuth])
-    
+
     return checkAuth;
 }
 

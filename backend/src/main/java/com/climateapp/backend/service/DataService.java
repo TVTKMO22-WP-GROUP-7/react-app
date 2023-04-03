@@ -1,8 +1,8 @@
 package com.climateapp.backend.service;
 
 import java.util.List;
+import java.util.Map;
 
-import org.aspectj.internal.lang.annotation.ajcDeclareAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -95,7 +95,7 @@ public class DataService {
     public List<V1reconstruction> getV1Reconstruction() {
         return V1RecoRepo.getAll();
     }
-
+    
     public List<V2Annual> getV2Annual() {
         return V2AnnualRepo.getAll();
     }
@@ -128,15 +128,15 @@ public class DataService {
         return V5SubFurtherRepo.getAll();
     }
 
-    public List<V3Carbon> getV3Carbon(){
+    public List<V3Carbon> getV3Carbon() {
         return V3CarbonRepo.getAll();
     }
 
-    public List<V3Global> getV3Global(){
+    public List<V3Global> getV3Global() {
         return V3GlobalRepo.getAll();
     }
 
-    public List<V3EventTime> getV3Event(){
+    public List<V3EventTime> getV3Event() {
         return V3EventRepo.getAll();
     }
 }

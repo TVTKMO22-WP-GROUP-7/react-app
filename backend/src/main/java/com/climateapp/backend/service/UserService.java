@@ -59,25 +59,26 @@ public class UserService {
     }
 
     public Users changePassword(String username, String password, String newPassword) {
-      
+
         Users u = userRepository.findIdByUsername(username);
         if (u != null && enc.matches(password, u.password)) {
             Users updatedUser = userRepository.findPasswordByUsername(username);
-             if (updatedUser.getPassword().equals(u.getPassword()) ) {
-            updatedUser.setPassword(enc.encode(newPassword));
-            userRepository.save(updatedUser);
-           // userRepository.save(u);
-    
-            return updatedUser;
-         //   return u;
+            if (updatedUser.getPassword().equals(u.getPassword())) {
+                updatedUser.setPassword(enc.encode(newPassword));
+                userRepository.save(updatedUser);
+                // userRepository.save(u);
+
+                return updatedUser;
+                // return u;
+            }
         }
-    }
-    
+
         return null;
 
     }
 
-//Tarkistetaan syötetyn salasanan ja tietokannasta löytyvän salasanan vastaavuus.
+    // Tarkistetaan syötetyn salasanan ja tietokannasta löytyvän salasanan
+    // vastaavuus.
     public Users deleteAccount(String username, String password) {
         Users checkPassword = userRepository.findPasswordByUsername(username);
         if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
@@ -87,5 +88,5 @@ public class UserService {
         }
         return null;
     }
- 
+
 }

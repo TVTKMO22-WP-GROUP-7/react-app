@@ -22,27 +22,27 @@ function Navbar() {
 
 	function changeDefaultView() {
 		if (location.pathname === "/defaultview2") {
-		  return "/";
+			return "/";
 		} else {
-		  return "/defaultview2";
+			return "/defaultview2";
 		}
-	  }
+	}
 
 	function changeCustomDefaultView() {
 		if (location.pathname === "/custompage") {
-		  return "/";
+			return "/";
 		} else {
-		  return "/custompage";
+			return "/custompage";
 		}
-	  }
+	}
 
 	return (
 		<header>
 			<h3>Current User: {name}</h3>
 			<nav ref={navRef}>
-			<a href={changeDefaultView()}>Change View</a>
+				<a href={changeDefaultView()}>Change View</a>
 				<a href={changeCustomDefaultView()}>
-				{location.pathname === "/custompage" ? "Default Page" : "Custom Page"}
+					{location.pathname === "/custompage" ? "Default Page" : "Custom Page"}
 				</a>
 				<a href="/changepassword">Change Password</a>
 				<a href="/" onClick={logout}>Logout</a>
