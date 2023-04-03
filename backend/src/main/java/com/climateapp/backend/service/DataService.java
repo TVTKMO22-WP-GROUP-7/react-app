@@ -1,7 +1,6 @@
 package com.climateapp.backend.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +51,7 @@ public class DataService {
 
     @Autowired
     V3GlobalRepo V3GlobalRepo;
+    
 
     public List<V1AnnualGlobal> getAnnualGlobal() {
         return V1AnnualGlobalRepo.getAll();
@@ -81,7 +81,7 @@ public class DataService {
         return V1RecoRepo.getAll();
     }
 
-    public List<Map<String, Object>> getV5All() {
+    public List<V5All> getV5All() {
         return V5AllRepo.getAll();
     }
 

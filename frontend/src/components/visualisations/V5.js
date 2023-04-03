@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import "chartjs-adapter-moment";
-import axios from "axios";
 import Constants from "../Constants.json";
 
 function V5() {
 
-    const [chartData, setChartData] = useState({});
-
     const [data1, setData] = useState([]);
     const [data2, setData2] = useState([]);
     const [data3, setData3] = useState([]);
+
 
     useEffect(() => {
         fetch(Constants.API_ADDRESS + "/v5all")
@@ -47,44 +45,41 @@ function V5() {
     const data = {
         labels: data1.map(item => item.sector),
         datasets: [
-          {
-            data: data1.map(item => item.share),
-            backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-            ],
-          }
+            {
+                data: data1.map(item => item.share),
+                backgroundColor: [
+                    "#9ACD32",
+                    "#ADFF2F",
+                    "#228B22",
+                    "#90EE90",
+                ],
+            }
         ]
-      }
+    }
 
-      const sub = {
+    const sub = {
         labels: data2.map(label => label.sector),
         datasets: [
             {
                 data: data2.map(label => label.share),
                 backgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
+                    "#9ACD32",
+                    "#ADFF2F",
+                    "#90EE90",
+                    "#00FA9A",
+                    "#00FF7F",
+                    "#3CB371",
+                    "#2E8B57",
+                    "#008000",
+                    "#00FFFF",
+                    "#00CED1",
+                    "#48D1CC",
+                    "#00BFFF",
+                    "#7B68EE",
+                    "#B0C4DE",
+                    "#4682B4",
+                    "#4169E1",
+                    "#0000FF",
                 ],
             }
         ]
@@ -96,26 +91,36 @@ function V5() {
             {
                 data: data3.map(label => label.share),
                 backgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56",
+                    "#9ACD32",
+                    "#ADFF2F",
+                    "#90EE90",
+                    "#00FA9A",
+                    "#00FF7F",
+                    "#3CB371",
+                    "#2E8B57",
+                    "#008000",
+                    "#00FFFF",
+                    "#00CED1",
+                    "#48D1CC",
+                    "#00BFFF",
+                    "#7B68EE",
+                    "#B0C4DE",
+                    "#4682B4",
+                    "#4169E1",
+                    "#0000FF",
                 ],
             }
         ]
     }
 
-
     const options = {
         responsive: true,
+        aspectRatio: 5,
+        elements: {
+            arc: {
+                borderWidth: 0
+            }
+        },
         plugins: {
             legend: {
                 position: 'top',
@@ -137,10 +142,10 @@ function V5() {
 
     return (
         <div className="child">
-            <div className="container-fluid">
-                <Doughnut data={data} options={options} height={400} width={600}/>
-                <Doughnut data={sub} options={options} height={400} width={600}/>
-                <Doughnut data={subf} options={options} height={400} width={600}/>
+            <div className="container-fluid" width={1000}>
+                <Doughnut data={data} options={options} height={400} width={600} />
+                <Doughnut data={sub} options={options} height={400} width={600} />
+                <Doughnut data={subf} options={options} height={400} width={600} />
             </div>
         </div>
     );

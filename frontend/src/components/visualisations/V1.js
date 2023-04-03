@@ -120,35 +120,38 @@ function V1() {
       {
         label: "Global annual anomalies",
         data: data1,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgb(255, 99, 132)",
+        borderColor: "rgb(0, 0, 139)",
+        backgroundColor: "rgb(0, 0, 139)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "global_anomaly",
         },
-        pointRadius: 1,
+        borderWidth: 1,
+        pointRadius: 0,
       },
       {
         label: "North annual anomalies",
         data: data2,
-        borderColor: "rgb(255, 159, 64)",
-        backgroundColor: "rgb(255, 159, 64)",
+        borderColor: "rgb(0, 139, 139)",
+        backgroundColor: "rgb(0, 139, 139)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "northern_anomaly",
         },
-        pointRadius: 0.2,
+        borderWidth: 1,
+        pointRadius: 0,
       },
       {
         label: "South annual anomalies",
         data: data3,
-        borderColor: "rgb(255, 205, 86)",
-        backgroundColor: "rgb(255, 205, 86)",
+        borderColor: "rgb(46, 139, 87)",
+        backgroundColor: "rgb(46, 139, 87)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "southern_anomaly",
         },
-        pointRadius: 1,
+        borderWidth: 1,
+        pointRadius: 0,
       },
     ],
   };
@@ -157,35 +160,38 @@ function V1() {
       {
         label: "Global monthly anomalies",
         data: data4,
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgb(75, 192, 192)",
+        borderColor: "rgb(0, 0, 139)",
+        backgroundColor: "rgb(0, 0, 139)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "global_anomaly",
         },
-        pointRadius: 1,
+        borderWidth: 1,
+        pointRadius: 0,
       },
       {
         label: "North monthly anomalies",
         data: data5,
-        borderColor: "rgb(54, 162, 235)",
-        backgroundColor: "rgb(54, 162, 235)",
+        borderColor: "rgb(0, 139, 139)",
+        backgroundColor: "rgb(0, 139, 139)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "northern_anomaly",
         },
-        pointRadius: 1,
+        borderWidth: 1,
+        pointRadius: 0,
       },
       {
         label: "South monthly anomalies",
         data: data6,
-        borderColor: "rgb(153, 102, 255)",
-        backgroundColor: "rgb(153, 102, 255)",
+        borderColor: "rgb(46, 139, 87)",
+        backgroundColor: "rgb(46, 139, 87)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "southern_anomaly",
         },
-        pointRadius: 1,
+        borderWidth: 1,
+        pointRadius: 0,
       },
     ],
   };
@@ -194,13 +200,14 @@ function V1() {
       {
         label: "Reconstruction",
         data: data7,
-        borderColor: "rgb(201, 203, 207)",
-        backgroundColor: "rgb(201, 203, 207)",
+        borderColor: 	"rgb(0,139,139)",
+        backgroundColor: 	"rgb(0,139,139)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "t",
         },
-        pointRadius: 1,
+        borderWidth: 1,
+        pointRadius: 0,
       },
     ],
   };
@@ -253,14 +260,17 @@ function V1() {
         font: {
           size: 20
         }
-      },
+      }
     },
     scales: {
       x:
       {
-        type: 'time',
+        type: 'linear',
         time: {
           unit: "year",
+        },
+        ticks: {
+          stepSize: 10,
         },
         title: {
           display: true,
@@ -314,7 +324,7 @@ function V1() {
       </div>
       <div className="container-fluid">
         <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show data monthly" : "Show data yearly"}</button>
-        <button onClick={() => setIsReconstruction(!isReconstruction)} className="btn btn-outline-primary-mt2">{isReconstruction ? "Hide temperature rekonstruction" : "Show temperature reconstruction"}</button>
+        <button onClick={() => setIsReconstruction(!isReconstruction)} className="btn btn-outline-primary-mt2">{isReconstruction ? "Hide temperature reconstruction" : "Show temperature reconstruction"}</button>
       </div>
       <div className="card mt-4" style={{ width: "24rem" }}>
         <div className="card-body">
