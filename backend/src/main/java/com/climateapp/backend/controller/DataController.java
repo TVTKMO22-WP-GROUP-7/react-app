@@ -55,6 +55,36 @@ public class DataController {
         return dService.getV1Reconstruction();
     }
 
+    @GetMapping("/v2annual")
+    public List<V2Annual> getV2Annual()
+    {
+        return dService.getV2Annual();
+    }
+
+    @GetMapping("/v2monthly")
+    public List<V2Monthly> getV2Monthly()
+    {
+        return dService.getV2Monthly();
+    }
+
+    @GetMapping("/v2core1")
+    public List<V2Core1> getV2Core1()
+    {
+        return dService.getV2Core1();
+    }
+
+    @GetMapping("/v2core2")
+    public List<V2Core2> getV2Core2()
+    {
+        return dService.getV2Core2();
+    }
+
+    @GetMapping("/v2core3")
+    public List<V2Core3> getV2Core3()
+    {
+        return dService.getV2Core3();
+    }
+
     @GetMapping("/v5all")
     public List<V5All> getV5All()
     {
