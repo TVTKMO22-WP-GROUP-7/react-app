@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "v2_icecore1")
+@Table (name = "v2_icecore3")
 public class V2Core3 {
 
     @Id
