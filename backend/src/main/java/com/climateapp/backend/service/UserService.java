@@ -59,22 +59,13 @@ public class UserService {
     }
 
     public Users changePassword(String username, String password, String newPassword) {
-
         Users u = userRepository.findIdByUsername(username);
         if (u != null && enc.matches(password, u.password)) {
-            Users updatedUser = userRepository.findPasswordByUsername(username);
-            if (updatedUser.getPassword().equals(u.getPassword())) {
-                updatedUser.setPassword(enc.encode(newPassword));
-                userRepository.save(updatedUser);
-                // userRepository.save(u);
-
-                return updatedUser;
-                // return u;
-            }
+            u.setPassword(enc.encode(newPassword));
+            userRepository.save(u);
+            return u;
         }
-
         return null;
-
     }
 
     // Tarkistetaan syötetyn salasanan ja tietokannasta löytyvän salasanan

@@ -6,8 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "v5_subfurther")
-public class V5SubFurther {
+@Table(name = "v5_energy")
+public class V5Energy {
 
     @Id
     @Column(name= "sector")
@@ -16,10 +16,10 @@ public class V5SubFurther {
     @Column(name= "share")
     public double share;
 
-    public V5SubFurther() {
+    public V5Energy() {
     }
 
-    public V5SubFurther(String sector, double share) {
+    public V5Energy(String sector, double share) {
         this.sector = sector;
         this.share = share;
     }
