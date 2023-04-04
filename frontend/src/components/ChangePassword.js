@@ -30,15 +30,13 @@ export default function ChangePassword() {
 
       setChangePasswordState("processing");
 
-      await axios.put(Constants.API_ADDRESS + "/changepassword", {},
-        {
-          params: {
-            username,
-            password,
-            newPassword
-          }
-        }).then(response => {
-          console.log(response)
+      await axios.put(Constants.API_ADDRESS + "/changepassword", {
+        username: username,
+        password: password,
+        newPassword: newPassword
+      }).then(response => {
+          console.log(response);
+          console.log(response.config.url);
           setChangePasswordState("success");
           setTimeout(() => {
             setChangePasswordState("idle")

@@ -227,7 +227,7 @@ function V2() {
       return annual;
     }
     else {
-      return icecore;
+      return iceCoreOptions;
     }
   }
 
@@ -247,7 +247,7 @@ function V2() {
         <Line data={changeData()} options={options} />
       </div>
       <div className="container-fluid">
-        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Yearly and monthly data" : "Icecore"}</button>
+        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show Icecore": "Show Yearly and monthly data"}</button>
       </div>
       <div className="card mt-4" style={{ width: "24rem" }}>
         <div className="card-body">

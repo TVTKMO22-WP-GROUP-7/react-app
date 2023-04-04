@@ -1,8 +1,6 @@
 package com.climateapp.backend.service;
 
 import java.util.List;
-//import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -51,15 +49,6 @@ public class DataService {
     V2Core3Repo V2Core3Repo;
 
     @Autowired
-    V5AllRepo V5AllRepo;
-
-    @Autowired
-    V5SubRepo V5SubRepo;
-
-    @Autowired
-    V5SubFurtherRepo V5SubFurtherRepo;
-
-    @Autowired
     V3CarbonRepo V3CarbonRepo;
 
     @Autowired
@@ -67,6 +56,21 @@ public class DataService {
 
     @Autowired
     V3GlobalRepo V3GlobalRepo;
+    
+    @Autowired
+    V5AllRepo V5AllRepo;
+
+    @Autowired
+    V5EnergyRepo V5EnergyRepo;
+
+    @Autowired
+    V5IndustrialRepo V5IndustrialRepo;
+
+    @Autowired
+    V5WasteRepo V5WasteRepo;
+
+    @Autowired
+    V5AfoluRepo V5AfoluRepo;
 
     public List<V1AnnualGlobal> getAnnualGlobal() {
         return V1AnnualGlobalRepo.getAll();
@@ -116,18 +120,6 @@ public class DataService {
         return V2Core3Repo.getAll();
     }
 
-    public List<V5All> getV5All() {
-        return V5AllRepo.getAll();
-    }
-
-    public List<V5Sub> getV5Sub() {
-        return V5SubRepo.getAll();
-    }
-
-    public List<V5SubFurther> getV5SubFurther() {
-        return V5SubFurtherRepo.getAll();
-    }
-
     public List<V3Carbon> getV3Carbon() {
         return V3CarbonRepo.getAll();
     }
@@ -139,4 +131,25 @@ public class DataService {
     public List<V3EventTime> getV3Event() {
         return V3EventRepo.getAll();
     }
+
+    public List<V5All> getV5All() {
+        return V5AllRepo.getAll();
+    }
+
+    public List<V5Energy> getV5Energy() {
+        return V5EnergyRepo.getAll();
+    }
+
+    public List<V5Industrial> getV5Industrial() {
+        return V5IndustrialRepo.getAll();
+    }
+
+    public List<V5Waste> getV5Waste() {
+        return V5WasteRepo.getAll();
+    }
+
+    public List<V5Afolu> getV5Afolu() {
+        return V5AfoluRepo.getAll();
+    }
+
 }

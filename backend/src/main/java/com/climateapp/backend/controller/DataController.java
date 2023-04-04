@@ -1,7 +1,6 @@
 package com.climateapp.backend.controller;
 
 import java.util.List;
-//import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,84 +17,64 @@ public class DataController {
     @Autowired
     DataService dService;
 
-    @GetMapping("/annualglobal")
+    @GetMapping("/v1annualglobal")
     public List<V1AnnualGlobal> getAnnualGlobal() {
         return dService.getAnnualGlobal();
     }
 
-    @GetMapping("/annualnorth")
+    @GetMapping("/v1annualnorth")
     public List<V1AnnualNorth> getAnnualNorth() {
         return dService.getAnnualNorth();
     }
 
-    @GetMapping("/annualsouth")
+    @GetMapping("/v1annualsouth")
     public List<V1AnnualSouth> getAnnualSouth() {
         return dService.getAnnualSouth();
     }
 
-    @GetMapping("/monthlyglobal")
+    @GetMapping("/v1monthlyglobal")
     public List<V1MonthlyGlobal> getMonthlyGlobal() {
         return dService.getMonthlyGlobal();
     }
 
-    @GetMapping("/monthlynorth")
+    @GetMapping("/v1monthlynorth")
     public List<V1MonthlyNorth> getMonthlyNorth() {
         return dService.getMonthlyNorth();
     }
 
-    @GetMapping("/monthlysouth")
+    @GetMapping("/v1monthlysouth")
     public List<V1MonthlySouth> getMonthlySouth() {
         return dService.getMonthlySouth();
     }
 
-    @GetMapping("/reconstruction")
+    @GetMapping("/v1reconstruction")
     public List<V1reconstruction> getV1Reconstruction() {
         return dService.getV1Reconstruction();
     }
 
     @GetMapping("/v2annual")
-    public List<V2Annual> getV2Annual()
-    {
+    public List<V2Annual> getV2Annual() {
         return dService.getV2Annual();
     }
 
     @GetMapping("/v2monthly")
-    public List<V2Monthly> getV2Monthly()
-    {
+    public List<V2Monthly> getV2Monthly() {
         return dService.getV2Monthly();
     }
 
     @GetMapping("/v2core1")
-    public List<V2Core1> getV2Core1()
-    {
+    public List<V2Core1> getV2Core1() {
         return dService.getV2Core1();
     }
 
     @GetMapping("/v2core2")
-    public List<V2Core2> getV2Core2()
-    {
+    public List<V2Core2> getV2Core2() {
         return dService.getV2Core2();
     }
 
     @GetMapping("/v2core3")
-    public List<V2Core3> getV2Core3()
-    {
+    public List<V2Core3> getV2Core3() {
         return dService.getV2Core3();
-    }
-
-    @GetMapping("/v5all")
-    public List<V5All> getV5All() {
-        return dService.getV5All();
-    } 
-
-    @GetMapping("/v5sub")
-    public List<V5Sub> getV5Sub() {
-        return dService.getV5Sub();
-    }
-
-    @GetMapping("/v5subfurther")
-    public List<V5SubFurther> getV5SubFurther() {
-        return dService.getV5SubFurther();
     }
 
     @GetMapping("/v3event")
@@ -113,4 +92,28 @@ public class DataController {
         return dService.getV3Carbon();
     }
 
+    @GetMapping("/v5all")
+    public List<V5All> getV5All() {
+        return dService.getV5All();
+    }
+
+    @GetMapping("/v5energy")
+    public List<V5Energy> getV5Energy() {
+        return dService.getV5Energy();
+    }
+
+    @GetMapping("v5industrial")
+    public List<V5Industrial> getV5Industrial() {
+        return dService.getV5Industrial();
+    }
+
+    @GetMapping("v5waste")
+    public List<V5Waste> getV5Waste() {
+        return dService.getV5Waste();
+    }
+
+    @GetMapping("v5afolu")
+    public List<V5Afolu> getV5Afolu(){
+        return dService.getV5Afolu();
+    }
 }

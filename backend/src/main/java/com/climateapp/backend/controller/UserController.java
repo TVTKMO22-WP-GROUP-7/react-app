@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.climateapp.backend.data.Users;
 import com.climateapp.backend.repository.UserRepository;
 import com.climateapp.backend.service.UserService;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -66,8 +68,10 @@ public class UserController {
     }
 
     @PutMapping("/changepassword")
-    public ResponseEntity<String> changePassword(@RequestParam String username, @RequestParam String password,
-            @RequestParam String newPassword) {
+    public ResponseEntity<String> changePassword(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String password = request.get("password");
+        String newPassword = request.get("newPassword");
         Users u = uService.changePassword(username, password, newPassword);
         if (u == null) {
             return new ResponseEntity<>("Check that you've written right username and current password",
@@ -75,7 +79,6 @@ public class UserController {
         }
         return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
-
     // Rekisteröidään metodi delete-mappaukseen, vaaditaan username ja password.
     // Jos poisto epäonnistuu välitetään käyttäjälle viesti, jossa pyydetään
     // tarkistamaan onko salasana kirjoitettu oikein

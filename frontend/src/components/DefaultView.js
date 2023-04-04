@@ -1,5 +1,6 @@
 import React from 'react';
 import V1 from "./visualisations/V1";
+import V2 from "./visualisations/V2";
 
 export default function DefaultView() {
 
@@ -13,6 +14,7 @@ export default function DefaultView() {
       </div>
       <div>
         <V1 />
+        <V2 />
       </div>
     </>
   );
