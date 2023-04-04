@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
-import Constants from "./Constants.json";
+import Constants from "../Constants.json";
 
 function V3() {
     const [event, setEvent] = useState(true);

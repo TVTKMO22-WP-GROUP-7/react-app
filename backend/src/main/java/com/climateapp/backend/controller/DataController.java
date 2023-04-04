@@ -1,7 +1,7 @@
 package com.climateapp.backend.controller;
 
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -84,9 +84,9 @@ public class DataController {
     }
 
     @GetMapping("/v5all")
-    public List<Map<String, Object>> getV5All() {
+    public List<V5All> getV5All() {
         return dService.getV5All();
-    }
+    } 
 
     @GetMapping("/v5sub")
     public List<V5Sub> getV5Sub() {
