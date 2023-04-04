@@ -1,11 +1,6 @@
 package com.climateapp.backend.service;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
-//import java.util.Map;
->>>>>>> 0d28f78b5f5c3c2dddc6ed4ca6b58214d35213d2
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;

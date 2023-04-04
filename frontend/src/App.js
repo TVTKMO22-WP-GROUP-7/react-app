@@ -31,11 +31,7 @@ function App() {
         <Route path="/defaultview2" element={<DefaultView2 />} />
         <Route path="/deleteaccount" element={<DeleteAccount />} />
         <Route path ="/V1" element={<V1 />} />
-<<<<<<< HEAD
         <Route path= "/V2" element= {<V2 />} />
-=======
-        <Route path ="/V2" element={<V2 />} />
->>>>>>> 0d28f78b5f5c3c2dddc6ed4ca6b58214d35213d2
         <Route path ="/V5" element={<V5 />} />
       </Routes>
     </div>

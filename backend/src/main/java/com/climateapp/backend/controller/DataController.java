@@ -1,10 +1,6 @@
 package com.climateapp.backend.controller;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
-//import java.util.Map;
->>>>>>> 0d28f78b5f5c3c2dddc6ed4ca6b58214d35213d2
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,37 +17,37 @@ public class DataController {
     @Autowired
     DataService dService;
 
-    @GetMapping("/annualglobal")
+    @GetMapping("/v1annualglobal")
     public List<V1AnnualGlobal> getAnnualGlobal() {
         return dService.getAnnualGlobal();
     }
 
-    @GetMapping("/annualnorth")
+    @GetMapping("/v1annualnorth")
     public List<V1AnnualNorth> getAnnualNorth() {
         return dService.getAnnualNorth();
     }
 
-    @GetMapping("/annualsouth")
+    @GetMapping("/v1annualsouth")
     public List<V1AnnualSouth> getAnnualSouth() {
         return dService.getAnnualSouth();
     }
 
-    @GetMapping("/monthlyglobal")
+    @GetMapping("/v1monthlyglobal")
     public List<V1MonthlyGlobal> getMonthlyGlobal() {
         return dService.getMonthlyGlobal();
     }
 
-    @GetMapping("/monthlynorth")
+    @GetMapping("/v1monthlynorth")
     public List<V1MonthlyNorth> getMonthlyNorth() {
         return dService.getMonthlyNorth();
     }
 
-    @GetMapping("/monthlysouth")
+    @GetMapping("/v1monthlysouth")
     public List<V1MonthlySouth> getMonthlySouth() {
         return dService.getMonthlySouth();
     }
 
-    @GetMapping("/reconstruction")
+    @GetMapping("/v1reconstruction")
     public List<V1reconstruction> getV1Reconstruction() {
         return dService.getV1Reconstruction();
     }
@@ -81,24 +77,6 @@ public class DataController {
         return dService.getV2Core3();
     }
 
-<<<<<<< HEAD
-=======
-    @GetMapping("/v5all")
-    public List<V5All> getV5All() {
-        return dService.getV5All();
-    } 
-
-    @GetMapping("/v5sub")
-    public List<V5Sub> getV5Sub() {
-        return dService.getV5Sub();
-    }
-
-    @GetMapping("/v5subfurther")
-    public List<V5SubFurther> getV5SubFurther() {
-        return dService.getV5SubFurther();
-    }
-
->>>>>>> 0d28f78b5f5c3c2dddc6ed4ca6b58214d35213d2
     @GetMapping("/v3event")
     public List<V3EventTime> getV3EventTime() {
         return dService.getV3Event();

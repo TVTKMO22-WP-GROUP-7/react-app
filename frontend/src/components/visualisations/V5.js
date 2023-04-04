@@ -67,9 +67,6 @@ function V5() {
             );
     }, []);
 
-    useEffect(() => {
-        setSelectedSector({ data: data1, label: "All sectors" });
-    }, []);
 
     const data = {
         labels: selectedSector ? selectedSector.data.map(item => item.sector) : [],

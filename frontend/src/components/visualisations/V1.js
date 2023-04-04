@@ -12,7 +12,7 @@ function V1() {
 
   const [data1, setData] = useState([]);
   const getData = () => {
-    axios.get(Constants.API_ADDRESS + "/annualglobal").then((response) => {
+    axios.get(Constants.API_ADDRESS + "/v1annualglobal").then((response) => {
       console.log(response.data);
       setData(response.data);
     })
@@ -27,7 +27,7 @@ function V1() {
 
   const [data2, setData2] = useState([]);
   const getData2 = () => {
-    axios.get(Constants.API_ADDRESS + "/annualnorth").then((response) => {
+    axios.get(Constants.API_ADDRESS + "/v1annualnorth").then((response) => {
       console.log(response.data);
       setData2(response.data);
     })
@@ -42,7 +42,7 @@ function V1() {
 
   const [data3, setData3] = useState([]);
   const getData3 = () => {
-    axios.get(Constants.API_ADDRESS + "/annualsouth").then((response) => {
+    axios.get(Constants.API_ADDRESS + "/v1annualsouth").then((response) => {
       console.log(response.data);
       setData3(response.data);
     })
@@ -57,7 +57,7 @@ function V1() {
 
   const [data4, setData4] = useState([]);
   const getData4 = () => {
-    axios.get(Constants.API_ADDRESS + "/monthlyglobal").then((response) => {
+    axios.get(Constants.API_ADDRESS + "/v1monthlyglobal").then((response) => {
       console.log(response.data);
       setData4(response.data);
     })
@@ -72,7 +72,7 @@ function V1() {
 
   const [data5, setData5] = useState([]);
   const getData5 = () => {
-    axios.get(Constants.API_ADDRESS + "/monthlynorth").then((response) => {
+    axios.get(Constants.API_ADDRESS + "/v1monthlynorth").then((response) => {
       console.log(response.data);
       setData5(response.data);
     })
@@ -87,7 +87,7 @@ function V1() {
 
   const [data6, setData6] = useState([]);
   const getData6 = () => {
-    axios.get(Constants.API_ADDRESS + "/monthlysouth").then((response) => {
+    axios.get(Constants.API_ADDRESS + "/v1monthlysouth").then((response) => {
       console.log(response.data);
       setData6(response.data);
     })
@@ -102,7 +102,7 @@ function V1() {
 
   const [data7, setData7] = useState([]);
   const getData7 = () => {
-    axios.get(Constants.API_ADDRESS + "/reconstruction").then((response) => {
+    axios.get(Constants.API_ADDRESS + "/v1reconstruction").then((response) => {
       console.log(response.data);
       setData7(response.data);
     })
