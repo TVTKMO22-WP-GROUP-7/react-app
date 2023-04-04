@@ -1,0 +1,25 @@
+.button-container {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    margin: 5px;
+    padding: 10px;
+    background-color: #29335c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #29335c;
+}
+
+.chart-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
