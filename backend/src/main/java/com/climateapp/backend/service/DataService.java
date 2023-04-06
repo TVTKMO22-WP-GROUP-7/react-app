@@ -1,6 +1,8 @@
 package com.climateapp.backend.service;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -56,6 +58,9 @@ public class DataService {
 
     @Autowired
     V3GlobalRepo V3GlobalRepo;
+
+    @Autowired
+    V4EmissionsRepo V4EmissionsRepo; 
     
     @Autowired
     V5AllRepo V5AllRepo;
@@ -130,6 +135,10 @@ public class DataService {
 
     public List<V3EventTime> getV3Event() {
         return V3EventRepo.getAll();
+    }
+
+    public List<Map<String, Object>> getV4Emissions() {
+        return V4EmissionsRepo.getAll();
     }
 
     public List<V5All> getV5All() {
