@@ -14,7 +14,7 @@ public class V4Emissions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public String year;
     private Double[] countries;
-    private Double afghanistan;
+    private Double Afghanistan;
     private Double Albania;
     private Double Algeria;
     private Double Andorra;
@@ -258,8 +258,8 @@ public class V4Emissions {
         return this.countries;
     }
 
-    public Double getafghanistan() {
-        return this.afghanistan;
+    public Double getAfghanistan() {
+        return this.Afghanistan;
     }
 
     public Double getAlbania() {
