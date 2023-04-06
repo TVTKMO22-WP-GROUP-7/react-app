@@ -1,6 +1,7 @@
 package com.climateapp.backend.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -90,6 +91,11 @@ public class DataController {
     @GetMapping("/v3carbon")
     public List<V3Carbon> getV3Carbon() {
         return dService.getV3Carbon();
+    }
+
+    @GetMapping("v4emissions")
+    public List<Map<String, Object>> getV4Emissions() {
+        return dService.getV4Emissions();
     }
 
     @GetMapping("/v5all")
