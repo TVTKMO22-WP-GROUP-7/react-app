@@ -11,23 +11,21 @@ import jakarta.persistence.Table;
 @Table (name ="v3_carbon")
 public class V3Carbon {
     @Id
-    @Column ( name= "time")
-    public String time;
+    @Column ( name= "yearC")
+    public String yearC;
 
     @Column(name = "carbondata")
     public double carbondata;
 
-    @Column(name = "carbondixioxe")
-    public double carbondixioxe;
 
     public V3Carbon () {
 
     }
 
-    public V3Carbon (String time, double carbondata, double carbondixioxe){
-        this.time = time;
+    public V3Carbon (String yearC, double carbondata){
+        this.yearC = yearC;
         this.carbondata = carbondata;
-        this.carbondixioxe = carbondixioxe;
+     
     }
 
     public List<V3Carbon> getAll() {

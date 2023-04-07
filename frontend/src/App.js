@@ -8,6 +8,7 @@ import DefaultView2 from './components/DefaultView2';
 import DeleteAccount from './components/DeleteAccount';
 import V1 from "./components/visualisations/V1";
 import V2 from "./components/visualisations/V2";
+import V3 from "./components/visualisations/V3";
 import V4 from "./components/visualisations/V4";
 import V5 from "./components/visualisations/V5";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -34,6 +35,7 @@ function App() {
         <Route path='*' element={<DefaultView />} />
         <Route path ="/V1" element={<V1 />} />
         <Route path= "/V2" element= {<V2 />} />
+        <Route path= "/V3" element= {<V3 />} />
         <Route path ="/V4" element={<V4 />} />
         <Route path ="/V5" element={<V5 />} />
       </Routes>
