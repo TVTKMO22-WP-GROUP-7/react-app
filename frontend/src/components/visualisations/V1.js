@@ -17,7 +17,9 @@ function V1() {
       setData(response.data);
     })
       .catch((error) => {
-        console.log(error);
+        if(error.response.status === 404 || error.response.status === 500)
+          alert("No data found");
+          console.log(error);
       });
   };
 
@@ -32,6 +34,8 @@ function V1() {
       setData2(response.data);
     })
       .catch((error) => {
+        if (error.response.status === 404 || error.response.status === 500)
+          alert("No data found");
         console.log(error);
       });
   };
@@ -47,6 +51,8 @@ function V1() {
       setData3(response.data);
     })
       .catch((error) => {
+        if (error.response.status === 404 || error.response.status === 500)
+          alert("No data found");
         console.log(error);
       });
   };
@@ -62,6 +68,8 @@ function V1() {
       setData4(response.data);
     })
       .catch((error) => {
+        if (error.response.status === 404 || error.response.status === 500)
+          alert("No data found");
         console.log(error);
       });
   };
@@ -77,6 +85,8 @@ function V1() {
       setData5(response.data);
     })
       .catch((error) => {
+        if (error.response.status === 404 || error.response.status === 500)
+          alert("No data found");
         console.log(error);
       });
   };
@@ -92,6 +102,8 @@ function V1() {
       setData6(response.data);
     })
       .catch((error) => {
+        if (error.response.status === 404 || error.response.status === 500)
+          alert("No data found");
         console.log(error);
       });
   };
@@ -107,6 +119,8 @@ function V1() {
       setData7(response.data);
     })
       .catch((error) => {
+        if (error.response.status === 404 || error.response.status === 500)
+          alert("No data found");
         console.log(error);
       });
   };
@@ -334,8 +348,8 @@ function V1() {
           <p> If you want to see the data press the show 'Temperature Reconstruction-button'</p>
         </div>
         <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
-        <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts </a></p>
-        <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">Moberg</a></p>
+        <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts5 Data </a></p>
+        <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 Year Northern Hemisphere Temperature Reconstruction</a></p>
       </div>
     </div>
   );

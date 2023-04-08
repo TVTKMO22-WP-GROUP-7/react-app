@@ -5,9 +5,8 @@ import Constants from './Constants.json';
 
 export default function ChangePassword() {
 
-  //puuttuu vielä tarkistus että käyttäjä on kirjautunut 
-
-  const [username, setUsername] = useState("");
+  //get the username from the local storage
+  const username = localStorage.getItem("username");
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
@@ -15,7 +14,7 @@ export default function ChangePassword() {
   const [changePasswordState, setChangePasswordState] = useState("idle");
 
 
-
+  //function to handle the change password submit
   const handleChangePasswordSubmit = async (event) => {
     if (newPassword !== confirmedPassword) {
       alert("New password does not match with each other, check passwords again")
@@ -30,24 +29,25 @@ export default function ChangePassword() {
 
       setChangePasswordState("processing");
 
+      //send the request to the backend
       await axios.put(Constants.API_ADDRESS + "/changepassword", {
         username: username,
         password: password,
         newPassword: newPassword
       }).then(response => {
-          console.log(response);
-          console.log(response.config.url);
-          setChangePasswordState("success");
-          setTimeout(() => {
-            setChangePasswordState("idle")
-            navigate("/", { replace: true });
-          }, 1500);
-        }).catch(error => {
-          setChangePasswordState("error");
-          setTimeout(() => setChangePasswordState("idle"), 1500);
-          alert("Check that you have entered correct username and password");
-          console.log(error);
-        })
+        console.log(response);
+        console.log(response.config.url);
+        setChangePasswordState("success");
+        setTimeout(() => {
+          setChangePasswordState("idle")
+          navigate("/", { replace: true });
+        }, 1500);
+      }).catch(error => {
+        setChangePasswordState("error");
+        setTimeout(() => setChangePasswordState("idle"), 1500);
+        alert("Check that you have entered correct username and password");
+        console.log(error);
+      })
     }
   }
 
@@ -79,7 +79,6 @@ export default function ChangePassword() {
         <div>
           <h4>Change password</h4>
           <form onSubmit={handleChangePasswordSubmit}>
-            <input type="text" name="username" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)}></input>
             <input type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
             <input type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
             <input type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
