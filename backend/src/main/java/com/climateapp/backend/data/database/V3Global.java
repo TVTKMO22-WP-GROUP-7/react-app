@@ -14,8 +14,8 @@ public class V3Global {
     
 
     @Id
-    @Column (name= "timeG")
-    public String timeG;
+    @Column (name= "yearG")
+    public String yearG;
 
     @Column (name = "global")
     public double global;
@@ -24,8 +24,8 @@ public class V3Global {
         
     }
 
-    public V3Global(String timeG, double global){
-        this.timeG = timeG;
+    public V3Global(String yearG, double global){
+        this.yearG = yearG;
         this.global = global;
     }
 

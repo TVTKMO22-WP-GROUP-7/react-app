@@ -17,14 +17,17 @@ public class V3Carbon {
     @Column(name = "carbondata")
     public double carbondata;
 
+    @Column(name= "carbondixioxe")
+    public double carbondixioxe;
 
     public V3Carbon () {
 
     }
 
-    public V3Carbon (String yearC, double carbondata){
+    public V3Carbon (String yearC, double carbondata, double carbondixioxe){
         this.yearC = yearC;
         this.carbondata = carbondata;
+        this.carbondixioxe = carbondixioxe;
      
     }
 
