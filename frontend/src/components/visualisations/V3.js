@@ -62,7 +62,7 @@ function V3() {
                 borderColor: "rgb(7, 0, 0)",
                 backgroundColor: "rgb(7, 0, 0)",
                 parsing: {
-                    xAxisKey: "timeG",
+                    xAxisKey: "yearG",
                     yAxisKey: "global",
                 },
                 pointRadius: false,
@@ -155,7 +155,7 @@ function V3() {
             <div>
             <h5 className="card-title">Description</h5>
           <p className="card-text">This chart shows Evolution of global temperature over the past two million years.</p>
-          <p> The chart shows also Human Evolution and Activities that are relevant to Co2 and temperature changes.</p>
+          <p> You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
             </div>
             <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
         <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
