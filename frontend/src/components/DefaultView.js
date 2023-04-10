@@ -6,13 +6,10 @@ import V3 from "./visualisations/V3";
 export default function DefaultView() {
   return (
     <div className="grid-container">
-      
-        <V1 />
-        <V2 />
-        <V3 /> 
+
+      <V1 />
+      <V2 />
+      <V3 />
     </div>
   );
 }
-
-
-
