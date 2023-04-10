@@ -10,8 +10,8 @@ import jakarta.persistence.Table;
 public class V3EventTime {
 
     @Id
-    @Column(name = "time")
-    public String time;
+    @Column(name = "yearE")
+    public String yearE;
 
     @Column (name = "event")
     public String event;
@@ -21,8 +21,8 @@ public class V3EventTime {
     }
 
 
-    public V3EventTime(String time, String event){
-    this.time = time;
+    public V3EventTime(String yearE, String event){
+    this.yearE = yearE;
     this.event = event;
     }
 

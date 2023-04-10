@@ -33,11 +33,11 @@ function App() {
         <Route path="/defaultview2" element={<DefaultView2 />} />
         <Route path="/deleteaccount" element={checkAuth ? <DeleteAccount /> : <DefaultView/>} />
         <Route path='*' element={<DefaultView />} />
-        <Route path ="/V1" element={<V1 />} />
-        <Route path= "/V2" element= {<V2 />} />
-        <Route path= "/V3" element= {<V3 />} />
-        <Route path ="/V4" element={<V4 />} />
-        <Route path ="/V5" element={<V5 />} />
+        <Route path= "/V1" element={<V1 />} />
+        <Route path= "/V2" element={<V2 />} />
+        <Route path= "/V3" element={<V3 />} />
+        <Route path= "/V4" element={<V4 />} />
+        <Route path= "/V5" element={<V5 />} />
       </Routes>
     </div>
     </BrowserRouter >
