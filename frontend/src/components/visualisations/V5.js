@@ -87,25 +87,21 @@ function V5() {
 
     const onClick = (event) => {
         if (selectedSector === null || selectedSector.label === "All sectors") {
-
-            let element = getElementAtEvent(chartRef.current, event)
-
+          let element = getElementAtEvent(chartRef.current, event);
+          if (element[0] !== undefined) { // Add this check to avoid the error
             if (element[0].index === 0) {
-                setSelectedSector({ data: energyData, label: "Energy" })
+              setSelectedSector({ data: energyData, label: "Energy" });
+            } else if (element[0].index === 1) {
+              setSelectedSector({ data: industrialData, label: "Industrial" });
+            } else if (element[0].index === 2) {
+              setSelectedSector({ data: wasteData, label: "Waste" });
+            } else if (element[0].index === 3) {
+              setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
             }
-            else if (element[0].index === 1) {
-                setSelectedSector({ data: industrialData, label: "Industrial" })
-            }
-            else if (element[0].index === 2) {
-                setSelectedSector({ data: wasteData, label: "Waste" })
-            }
-            else if (element[0].index === 3) {
-                setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" })
-            }
+          }
         }
         return null;
-    }
-
+      };
 
 
 
@@ -172,9 +168,11 @@ function V5() {
             <div className="containter-fluid">
                 <h2>{selectedSector ? selectedSector.label : "All sectors"}</h2>
             </div>
-            <div className="container-fluid">
+            <div> 
+            <button onClick={() => setSelectedSector({ data: data1, label: "All sectors" })} style={{ display: selectedSector && selectedSector.label !== "All sectors" ? 'block' : 'none' }}>Go back</button>
+            </div>
+            <div className="container-v5">
                 <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} />
-                <button onClick={() => setSelectedSector({ data: data1, label: "All sectors" })}>Go back</button>
             </div>
             <div className="card mt-4" style={{ width: "24rem" }}>
                 <div className="card-body">
