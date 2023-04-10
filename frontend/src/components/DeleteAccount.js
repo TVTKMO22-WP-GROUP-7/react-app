@@ -1,13 +1,15 @@
 
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 import axios from 'axios';
 import Constants from './Constants.json';
 import Navbar from './Navbar';
 
+
 export default function DeleteAccount() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [input, setInput] = useState({
     username: '',
@@ -81,6 +83,10 @@ export default function DeleteAccount() {
       }return stateObj;
     })
   }
+
+
+
+
   //Määritellään sivun rakenne
   return (
     <>

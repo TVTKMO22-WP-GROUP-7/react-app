@@ -20,6 +20,7 @@ public class V3Global {
     @Column (name = "global")
     public double global;
 
+
     public V3Global() {
         
     }
@@ -27,6 +28,7 @@ public class V3Global {
     public V3Global(String yearG, double global){
         this.yearG = yearG;
         this.global = global;
+
     }
 
     public List<V3Global> getAll() {

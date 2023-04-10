@@ -11,8 +11,8 @@ import jakarta.persistence.Table;
 @Table (name ="v3_carbon")
 public class V3Carbon {
     @Id
-    @Column ( name= "yearC")
-    public String yearC;
+    @Column ( name= "yearc")
+    public String yearc;
 
     @Column(name = "carbondata")
     public double carbondata;
@@ -24,8 +24,8 @@ public class V3Carbon {
 
     }
 
-    public V3Carbon (String yearC, double carbondata, double carbondixioxe){
-        this.yearC = yearC;
+    public V3Carbon (String yearc, double carbondata, double carbondixioxe){
+        this.yearc = yearc;
         this.carbondata = carbondata;
         this.carbondixioxe = carbondixioxe;
      
