@@ -9,18 +9,27 @@ function V3() {
 
 
 
-    const [globalData, setGlobalData] = useState({})
+    const [globalData, setGlobalData] = useState({});
+
     const getGlobalData = () => {
-        axios.get(Constants.API_ADDRESS + "/v3global").then((response) => {
-            console.log(response.data);
-            setGlobalData(response.data);
-        })
-            .catch((error) => {
-                console.log(error);
-            });
+      axios.get(Constants.API_ADDRESS + "/v3global").then((response) => {
+        console.log(response.data);
+
+        // Multiply yearG by 1000
+        const modifiedData = response.data.map((item) => ({
+          ...item,
+          yearG: item.yearG * 1000,
+        }));
+
+        setGlobalData(modifiedData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     };
+
     useEffect(() => {
-        getGlobalData();
+      getGlobalData();
     }, []);
 
 
@@ -38,6 +47,20 @@ function V3() {
         getCarbonData();
     }, []);
 
+ 
+    const[eventData, setEventData] = useState({})
+    const getEventData = () => {
+        axios.get(Constants.API_ADDRESS + "/v3event").then((response) => {
+            console.log(response.data);
+            setEventData(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+    useEffect(() => {
+        getEventData();
+    }, []);
     
     const data = {
         datasets: [
@@ -49,7 +72,7 @@ function V3() {
                 borderColor: "rgb(255, 0, 0)",
                 backgroundColor: "rgb(255, 0, 0)",
                 parsing: {
-                    xAxisKey: "yearC",
+                    xAxisKey: "yearc",
                     yAxisKey: "carbondata",
                 },
                 pointRadius: false,
@@ -67,10 +90,24 @@ function V3() {
                 },
                 pointRadius: false,
                 yAxisID: "y1",
-                xAxisID:"x2",
+                xAxisID:"x",
                 
 
             },
+            {
+                label: "Event",
+                showLine:false,
+                data: eventData,
+                borderColor: "rgb(255, 213, 0)",
+                backgroundColor: "rgb(255, 213, 0)",
+                parsing: {
+                xAxisKey: "yearE",
+                yAxisKey: "event",
+                },
+                pointRadius:6,
+                pointStyle: 'triangle',
+                xAxisID:"x1",
+              },
    
         ],
     };
@@ -133,9 +170,10 @@ function V3() {
 
                 reverse: true,
             },
-            x1: {
-                display: false,
-            },
+            x1:{
+            display:false,
+            }
+
 
         },
 
