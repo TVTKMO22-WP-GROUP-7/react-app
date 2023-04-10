@@ -1,4 +1,3 @@
-
 input {
   display:flex;
 }
@@ -42,6 +41,10 @@ input {
   align-items: center;
   height: 100vh;
   border: 1px solid black;
+}
+
+.double {
+  grid-column: span 4;
 }
 
 .custom {
@@ -90,8 +93,4 @@ button {
 button:hover {
   background-color: #0069d9;
 }
-
-
-
-
 

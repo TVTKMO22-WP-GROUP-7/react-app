@@ -5,6 +5,8 @@ import "chartjs-adapter-moment";
 import axios from "axios";
 import Constants from "../Constants.json";
 
+import './Visu.css';
+
 function V1() {
 
   const [isAnnual, setIsAnnual] = useState(true);
@@ -17,9 +19,9 @@ function V1() {
       setData(response.data);
     })
       .catch((error) => {
-        if(error.response.status === 404 || error.response.status === 500)
+        if (error.response.status === 404 || error.response.status === 500)
           alert("No data found");
-          console.log(error);
+        console.log(error);
       });
   };
 
@@ -214,8 +216,8 @@ function V1() {
       {
         label: "Reconstruction",
         data: data7,
-        borderColor: 	"rgb(0,139,139)",
-        backgroundColor: 	"rgb(0,139,139)",
+        borderColor: "rgb(0,139,139)",
+        backgroundColor: "rgb(0,139,139)",
         parsing: {
           xAxisKey: "year",
           yAxisKey: "t",
@@ -332,14 +334,15 @@ function V1() {
   }
 
   return (
-    <div className="child">
-      <div className="container-fluid">
-        <Line data={changeData()} options={changeDataOptions()} alt="Anomaly data chart" />
-      </div>
-      <div className="container-fluid">
+    <div >
+      <div>
         <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show data monthly" : "Show data yearly"}</button>
         <button onClick={() => setIsReconstruction(!isReconstruction)} className="btn btn-outline-primary-mt2">{isReconstruction ? "Hide temperature reconstruction" : "Show temperature reconstruction"}</button>
       </div>
+      <div className="container-v1">
+        <Line data={changeData()} options={changeDataOptions()} alt="Anomaly data chart" />
+      </div>
+
       <div className="card mt-4" style={{ width: "24rem" }}>
         <div className="card-body">
           <h5 className="card-title">Description</h5>
