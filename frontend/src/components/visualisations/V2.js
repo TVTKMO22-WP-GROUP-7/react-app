@@ -164,7 +164,7 @@ function V2() {
       },
       title: {
         display: true,
-        text: "Mauna Loa Co2 values from 1958 onwards " + (isAnnual ? "(yearly)" : "(monthly)"),
+        text: "Mauna Loa Co2 values from 1958 onwards " + (isAnnual ? "(yearly and monthly)" : "(icecore values)"),
         font: {
           size: 20
         }
@@ -254,8 +254,11 @@ function V2() {
           <h5 className="card-title">Description</h5>
           <p className="card-text">This chart shows the Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958. The chart shows Mauna Loa Co2 measurements yearly and monthly.</p>
           <p> The chart also shows the Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements.</p>
-          <p> If you want to switch between yearly and monthly records, press the ''Show data monthly / yearly'' button.</p>
+          <p> If you want to switch between "yearly & monthly" and "icecore", press the ''Show yearly and monthly data'' & "Show icecore" -button.</p>
         </div>
+        <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+        <p> <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noopener noreferrer" className="card-link">Global Monitoring Laboratory </a></p>
+        <p> <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat" target="_blank" rel="noopener noreferrer" className="card-link">Historical CO2 record from the Law Dome DE08, DE08-2, and DSS ice cores</a></p>
       </div>
     </div>
   );
