@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "v1_reconstruction")
-public class V1Reconstruction {
+public class V1Reco {
     
 
     @Id
@@ -17,10 +17,10 @@ public class V1Reconstruction {
     @Column(name = "t")
     public double t;
 
-    public V1Reconstruction() {
+    public V1Reco() {
     }
 
-    public V1Reconstruction(int year, double t) {
+    public V1Reco(int year, double t) {
         this.year = year;
         this.t = t;
     }
