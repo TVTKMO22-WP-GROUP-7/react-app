@@ -7,10 +7,10 @@ export default function DefaultView2() {
 
   return (
     <div className="grid-container">
-      <div className="grid-item">
+      <div className="v-box">
         <V4 />
       </div>
-      <div className="grid-item">
+      <div className="v-box">
         <V5 />
       </div>
     </div>

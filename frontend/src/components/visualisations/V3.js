@@ -7,29 +7,29 @@ import Constants from "../Constants.json";
 
 function V3() {
 
-
+    const [showDescription, setShowDescription] = useState(false);
 
     const [globalData, setGlobalData] = useState({});
 
     const getGlobalData = () => {
-      axios.get(Constants.API_ADDRESS + "/v3global").then((response) => {
-        console.log(response.data);
+        axios.get(Constants.API_ADDRESS + "/v3global").then((response) => {
+            console.log(response.data);
 
-        // Multiply yearG by 1000
-        const modifiedData = response.data.map((item) => ({
-          ...item,
-          yearG: item.yearG * 1000,
-        }));
+            // Multiply yearG by 1000
+            const modifiedData = response.data.map((item) => ({
+                ...item,
+                yearG: item.yearG * 1000,
+            }));
 
-        setGlobalData(modifiedData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+            setGlobalData(modifiedData);
+        })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     useEffect(() => {
-      getGlobalData();
+        getGlobalData();
     }, []);
 
 
@@ -47,21 +47,21 @@ function V3() {
         getCarbonData();
     }, []);
 
- 
-    const[eventData, setEventData] = useState({})
+
+    const [eventData, setEventData] = useState({})
     const getEventData = () => {
         axios.get(Constants.API_ADDRESS + "/v3event").then((response) => {
             console.log(response.data);
             setEventData(response.data);
         })
-        .catch((error) => {
-            console.log(error);
-        });
+            .catch((error) => {
+                console.log(error);
+            });
     };
     useEffect(() => {
         getEventData();
     }, []);
-    
+
     const data = {
         datasets: [
             {
@@ -76,7 +76,7 @@ function V3() {
                     yAxisKey: "carbondata",
                 },
                 pointRadius: false,
-               xAxisID:"x",
+                xAxisID: "x",
             },
             {
                 label: "Globaldata",
@@ -90,25 +90,25 @@ function V3() {
                 },
                 pointRadius: false,
                 yAxisID: "y1",
-                xAxisID:"x",
-                
+                xAxisID: "x",
+
 
             },
             {
                 label: "Event",
-                showLine:false,
+                showLine: false,
                 data: eventData,
                 borderColor: "rgb(255, 213, 0)",
                 backgroundColor: "rgb(255, 213, 0)",
                 parsing: {
-                xAxisKey: "yearE",
-                yAxisKey: "event",
+                    xAxisKey: "yearE",
+                    yAxisKey: "event",
                 },
-                pointRadius:6,
+                pointRadius: 6,
                 pointStyle: 'triangle',
-                xAxisID:"x1",
-              },
-   
+                xAxisID: "x1",
+            },
+
         ],
     };
 
@@ -120,7 +120,7 @@ function V3() {
             {
                 position: "top",
             },
-                    
+
             title: {
                 display: true,
                 text: "Evolution of global temperature over the past two million years",
@@ -130,7 +130,7 @@ function V3() {
             },
         },
 
-         scales: {
+        scales: {
             y:
             {
                 type: 'linear',
@@ -155,7 +155,7 @@ function V3() {
                 },
 
             },
-      
+
 
             x: {
                 type: "linear",
@@ -170,8 +170,8 @@ function V3() {
 
                 reverse: true,
             },
-            x1:{
-            display:false,
+            x1: {
+                display: false,
             }
 
 
@@ -180,29 +180,30 @@ function V3() {
     };
 
 
-
+    const toggleDescription = () => {
+        setShowDescription(!showDescription);
+    };
 
 
     return (
-        <>
-            <div className="V3">
-                <h2> Evolution of global temperature over the past two million years</h2>
-                <div><Line data={data} options={optionsV3} alt="chart"></Line></div>
+        <div>
+            <h1>Visualization 3</h1>
+            <div className="button-container">
+                <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>
-            <div style={{ width: "24rem" }}>
-            <div>
-            <h5 className="card-title">Description</h5>
-          <p className="card-text">This chart shows Evolution of global temperature over the past two million years.</p>
-          <p> You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
+            <div className="chart-container">
+                {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
+                    <div className="description">
+                        <h5 className="description-title">Description</h5>
+                        <p className="description-text">This chart shows Evolution of global temperature over the past two million years.</p>
+                        <p>You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
+                    </div>
+                    <h6 className="description-sources">Sources:</h6>
+                    <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
+                    <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
+                    <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
+                </div> : <Line data={data} options={optionsV3} alt="chart"></Line>}
             </div>
-            <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
-        <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
-        <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
-        <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
-            
-            </div>
-        </>
+        </div>
     );
-}
-
-export default V3;
+}export default V3;
