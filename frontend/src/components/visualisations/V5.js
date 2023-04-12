@@ -16,6 +16,7 @@ function V5() {
     const [wasteData, setWasteData] = useState([]);
     const [afoluData, setAfoluData] = useState([]);
     const [selectedSector, setSelectedSector] = useState();
+    const [showDescription, setShowDescription] = useState(false);
 
     const chartRef = useRef();
 
@@ -65,7 +66,7 @@ function V5() {
             .then(data => {
                 console.log(data);
                 setWasteData(data);
-                if(data.length === 0) {
+                if (data.length === 0) {
                     alert("Not data found");
                 }
             }
@@ -78,7 +79,7 @@ function V5() {
             .then(data => {
                 console.log(data);
                 setAfoluData(data);
-                if(data.length === 0) {
+                if (data.length === 0) {
                     alert("Not data found");
                 }
             }
@@ -87,21 +88,21 @@ function V5() {
 
     const onClick = (event) => {
         if (selectedSector === null || selectedSector.label === "All sectors") {
-          let element = getElementAtEvent(chartRef.current, event);
-          if (element[0] !== undefined) { // Add this check to avoid the error
-            if (element[0].index === 0) {
-              setSelectedSector({ data: energyData, label: "Energy" });
-            } else if (element[0].index === 1) {
-              setSelectedSector({ data: industrialData, label: "Industrial" });
-            } else if (element[0].index === 2) {
-              setSelectedSector({ data: wasteData, label: "Waste" });
-            } else if (element[0].index === 3) {
-              setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
+            let element = getElementAtEvent(chartRef.current, event);
+            if (element[0] !== undefined) { // Add this check to avoid the error
+                if (element[0].index === 0) {
+                    setSelectedSector({ data: energyData, label: "Energy" });
+                } else if (element[0].index === 1) {
+                    setSelectedSector({ data: industrialData, label: "Industrial" });
+                } else if (element[0].index === 2) {
+                    setSelectedSector({ data: wasteData, label: "Waste" });
+                } else if (element[0].index === 3) {
+                    setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
+                }
             }
-          }
         }
         return null;
-      };
+    };
 
 
 
@@ -163,28 +164,52 @@ function V5() {
         },
     }
 
-    return (
-        <div className="child">
-            <div className="containter-fluid">
-                <h2>{selectedSector ? selectedSector.label : "All sectors"}</h2>
-            </div>
-            <div> 
-            <button onClick={() => setSelectedSector({ data: data1, label: "All sectors" })} style={{ display: selectedSector && selectedSector.label !== "All sectors" ? 'block' : 'none' }}>Go back</button>
-            </div>
-            <div className="container-v5">
-                <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} />
-            </div>
-            <div className="card mt-4" style={{ width: "24rem" }}>
-                <div className="card-body">
-                    <h5 className="card-title>">Description</h5>
-                    <p ClassName="card-text"> This chart shows the CO2 emissions by sectors. The data is from 2018 and is based on the World Resources Institute (WRI) dataset. By clicking on a sector, you can see the CO2 emissions by country for that sector. </p>
-                    <p>To reset the chart, click on the "Go back" button.</p>
-                </div>
-                <h6 className="card-subtitle mb-2 text-muted">Sources: </h6>
-                <p> <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector" target="_blank" rel="noopener noreferrer" className="card-link">Description</a></p>
-                <p> <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx" target="_blank" rel="noopener noreferrer" className="card-link">Dataset</a></p>
-            </div>
+    const toggleDescription = () => {
+        setShowDescription(!showDescription);
+    }
 
+    return (
+        <div>
+            <h1>Visualization 5</h1>
+            <h2 className="selectedsector-container">{selectedSector ? selectedSector.label : "All sectors"}</h2>
+            <div className="button-container">
+                {showDescription ? null : (
+                    <button
+                        onClick={() => setSelectedSector({ data: data1, label: "All sectors" })}
+                        style={{ display: selectedSector && selectedSector.label !== "All sectors" ? "block" : "none" }}
+                    >
+                        Go back
+                    </button>
+                )}
+                <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">
+                    {showDescription ? "Hide description" : "Show description"}
+                </button>
+            </div>
+            <div className="chart-container">
+                {showDescription && (
+                    <div className="card mt-4" style={{ width: "24rem" }}>
+                        <div className="description">
+                            <h5 className="description-title">Description</h5>
+                            <p className="description-text">
+                                This chart shows the CO2 emissions by sectors. The data is from 2018 and is based on the World Resources Institute (WRI) dataset. By clicking on a sector, you can see the CO2 emissions by country for that sector.
+                            </p>
+                            <p>To reset the chart, click on the "Go back" button.</p>
+                        </div>
+                        <h6 className="card-subtitle mb-2 text-muted">Sources: </h6>
+                        <p>
+                            <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector" target="_blank" rel="noopener noreferrer" className="card-link">
+                                Description
+                            </a>
+                        </p>
+                        <p>
+                            <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx" target="_blank" rel="noopener noreferrer" className="card-link">
+                                Dataset
+                            </a>
+                        </p>
+                    </div>
+                )}
+                {!showDescription && <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} />}
+            </div>
         </div>
     );
 } export default V5;

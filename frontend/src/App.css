@@ -93,3 +93,16 @@ button {
 button:hover {
   background-color: #0069d9;
 }
+<<<<<<< HEAD
+=======
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.v-box{
+  margin-bottom: 50px;
+}
+
+>>>>>>> bbd802cb2614759f26c67198587e8bbe7bd5a948

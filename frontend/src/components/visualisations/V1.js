@@ -11,6 +11,7 @@ function V1() {
 
   const [isAnnual, setIsAnnual] = useState(true);
   const [isReconstruction, setIsReconstruction] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
 
   const [data1, setData] = useState([]);
   const getData = () => {
@@ -333,26 +334,43 @@ function V1() {
     }
   }
 
+  const toggleDescription = () => {
+    setShowDescription(!showDescription);
+  }
+
+
   return (
     <div >
-      <div>
-        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show data monthly" : "Show data yearly"}</button>
-        <button onClick={() => setIsReconstruction(!isReconstruction)} className="btn btn-outline-primary-mt2">{isReconstruction ? "Hide temperature reconstruction" : "Show temperature reconstruction"}</button>
+      <h1>Visualization 1</h1>
+      <div className="button-container">
+        {showDescription ? null :
+          (!isReconstruction &&
+            <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">
+              {isAnnual ? "Show data monthly" : "Show data yearly"}
+            </button>)
+        }
+        {showDescription ? null :
+          <button onClick={() => setIsReconstruction(!isReconstruction)} className="btn btn-outline-primary-mt2">
+            {isReconstruction ? "Hide temperature reconstruction" : "Show temperature reconstruction"}
+          </button>
+        }
+        <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">
+          {showDescription ? "Hide description" : "Show description"}
+        </button>
       </div>
-      <div className="container-v1">
-        <Line data={changeData()} options={changeDataOptions()} alt="Anomaly data chart" />
-      </div>
-
-      <div className="card mt-4" style={{ width: "24rem" }}>
-        <div className="card-body">
-          <h5 className="card-title">Description</h5>
-          <p className="card-text">This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
-          <p> The chart also shows the northern hemisphere 2,000-year temperature reconstruction (starting from year 1).</p>
-          <p> If you want to see the data press the show 'Temperature Reconstruction-button'</p>
+      <div className="chart-container">
+        {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
+          <div className="description">
+            <h5 className="description-title">Description</h5>
+            <p className="description-text">This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
+            <p> The chart also presents a temperature reconstruction of the Northern Hemisphere for the past 2,000 years.</p>
+            <p> If you want to see the temperature reconstruction data press the show 'Temperature Reconstruction-button'</p>
+          </div>
+          <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+          <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts5 Data </a></p>
+          <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 Year Northern Hemisphere Temperature Reconstruction</a></p>
         </div>
-        <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
-        <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts5 Data </a></p>
-        <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 Year Northern Hemisphere Temperature Reconstruction</a></p>
+          : <Line data={changeData()} options={changeDataOptions()} alt="Anomaly data chart" />}
       </div>
     </div>
   );

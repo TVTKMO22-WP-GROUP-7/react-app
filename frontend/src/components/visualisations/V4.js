@@ -11,17 +11,18 @@ function V4() {
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: [],
-      });
+    });
     const [loading, setLoading] = useState(true);
     const [countries, setCountries] = useState([]);
     const [selectedCountries, setSelectedCountries] = useState([]);
+    const [showDescription, setShowDescription] = useState(false);
 
     // Fetch data from the server
     const fetchData = async () => {
         try {
             const result = await axios.get(Constants.API_ADDRESS + "/v4emissions");
             const data = result.data;
-            
+
             // Check if data is returned from the server
             if (!data || data.length === 0) {
                 throw new Error('No data returned from the server');
@@ -39,32 +40,32 @@ function V4() {
                 .filter((key) => key !== "year")
                 .map((key) => {
                     return {
-                    label: key,
-                    data: data.map((item) => item[key] * 3.664),
-                    borderColor: getRandomColor(),
-                    fill: false,
-                    hidden: true,
+                        label: key,
+                        data: data.map((item) => item[key] * 3.664),
+                        borderColor: getRandomColor(),
+                        fill: false,
+                        hidden: true,
                     };
                 });
 
-                // Set chart data
-                setChartData({
-                    labels: years,
-                    datasets: datasets,
-                });
+            // Set chart data
+            setChartData({
+                labels: years,
+                datasets: datasets,
+            });
 
-                setLoading(false);
+            setLoading(false);
 
-                // Set country names
-                const countryNames = Object.keys(data[0] || {}).filter(key => key !== 'year');
-                setCountries(countryNames);
+            // Set country names
+            const countryNames = Object.keys(data[0] || {}).filter(key => key !== 'year');
+            setCountries(countryNames);
 
         } catch (error) {
             console.error(error);
             setChartData([]);
             setLoading(false);
         }
-    };  
+    };
 
     // Fetch data when the component is mounted
     useEffect(() => {
@@ -78,7 +79,7 @@ function V4() {
         try {
             const result = await axios.get(Constants.API_ADDRESS + "/v4emissions");
             const data = result.data;
-            
+
             // Check if data is returned from the server
             if (!data || data.length === 0) {
                 throw new Error('No data returned from the server');
@@ -96,38 +97,38 @@ function V4() {
                 .filter((key) => key !== "year")
                 .map((key) => {
                     return {
-                    label: key,
-                    data: data.map((item) => item[key] * 3.664),
-                    borderColor: getRandomColor(),
-                    fill: false,
-                    hidden: false,
+                        label: key,
+                        data: data.map((item) => item[key] * 3.664),
+                        borderColor: getRandomColor(),
+                        fill: false,
+                        hidden: false,
                     };
                 });
 
-                // Set chart data
-                setChartData({
-                    labels: years,
-                    datasets: datasets,
-                });
+            // Set chart data
+            setChartData({
+                labels: years,
+                datasets: datasets,
+            });
 
-                setLoading(false);
+            setLoading(false);
 
-                // Set country names
-                const countryNames = Object.keys(data[0] || {}).filter(key => key !== 'year');
-                setCountries(countryNames);
+            // Set country names
+            const countryNames = Object.keys(data[0] || {}).filter(key => key !== 'year');
+            setCountries(countryNames);
 
         } catch (error) {
             console.error(error);
             setChartData([]);
             setLoading(false);
         }
-    };     
+    };
 
     // Define the chart options
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
-        plugins:{
+        plugins: {
             legend: {
                 display: false,
             },
@@ -136,7 +137,7 @@ function V4() {
                 text: 'CO2 Emissions Over Time',
                 font: {
                     size: 20,
-                },                  
+                },
             }
         },
         scales: {
@@ -160,7 +161,7 @@ function V4() {
             },
         },
 
-    };  
+    };
 
     // Generate a random color for each dataset
     const getRandomColor = () => {
@@ -176,47 +177,47 @@ function V4() {
     const drawChartForSelectedCountries = () => {
         const selecteddatasets = chartData.datasets.map((dataPoint) => {
             if (selectedCountries.includes(dataPoint.label)) {
-              return {
-                ...dataPoint,
-                hidden: false,
-              };
+                return {
+                    ...dataPoint,
+                    hidden: false,
+                };
             } else {
-              return {
-                ...dataPoint,
-                hidden: true,
-              };
+                return {
+                    ...dataPoint,
+                    hidden: true,
+                };
             }
-            
+
         });
-   
+
         // Set chart data 
         //Saattaa olla ylimääräistä sekoilua tässäkin
         setChartData((prevChartData) => ({
             labels: prevChartData.labels,
             datasets: selecteddatasets,
-          }));
-            
-            // Set selected countries
-            setSelectedCountries(
-                selecteddatasets
+        }));
+
+        // Set selected countries
+        setSelectedCountries(
+            selecteddatasets
                 .filter((dataPoint) => !dataPoint.hidden)
                 .map((dataPoint) => dataPoint.label)
-                );
-                console.log(selectedCountries);
-                
+        );
+        console.log(selectedCountries);
+
     };
 
-      // Clear selected country from chart and dropdown
+    // Clear selected country from chart and dropdown
     const clearSelectedCountry = (country) => {
         setSelectedCountries(selectedCountries.filter(c => c !== country));
         const selectedCountriesData = {
             labels: chartData.labels,
             datasets: chartData.datasets.map(dataset => {
-            if (dataset.label === country) {
-                return {...dataset, hidden: true,};
-            } else {
-                return dataset;
-            }
+                if (dataset.label === country) {
+                    return { ...dataset, hidden: true, };
+                } else {
+                    return dataset;
+                }
             })
         };
         setChartData(selectedCountriesData);
@@ -234,42 +235,63 @@ function V4() {
         showAllData();
     };
 
+    const toggleDescription = () => {
+        setShowDescription(!showDescription);
+    };
+
+
     return (
-        <div className="child">
-            <h2>CO2 Emissions Over Time</h2>
-            <div>
-
-                <select onChange={(e) => setSelectedCountries(Array.from(e.target.selectedOptions).map((option) => option.value))}>
-                    <option value="">Select countries</option>
-                    {countries.map((country) => (
-                        <option key={country} value={country}>
-                            {country}
-                        </option>
-                    ))}
-                </select>
-
-                <button onClick={drawChartForSelectedCountries}>Draw Line Chart</button>
-                <button onClick={resetChart}>Reset Chart</button>
-                <button onClick={showAll}>Show all data</button>
-                {selectedCountries.length > 0 && (
-                    <div>
-                        Selected Countries: {selectedCountries.map((country) => (
-                            <button key={country} onClick={() => clearSelectedCountry(country)}>{country} x</button>
-                        ))}
-                    </div>
-                )}
-            </div>
-            <div className="container-v4">
-                {loading ? (
-                    <p>Loading chart data...</p>
-                ) : (
+        <div>
+            <h1>Visualization 4</h1>
+            <div className="button-container">
+                {showDescription ? null : (
                     <>
-                        <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} />
+                        <button onClick={drawChartForSelectedCountries}>Draw Line Chart</button>
+                        <button onClick={resetChart}>Reset Chart</button>
+                        <button onClick={showAll}>Show all data</button>
                     </>
                 )}
+                <button onClick={toggleDescription}>
+                    {showDescription ? 'Hide description' : 'Show description'}
+                </button>
+            </div>
+            <div>
+                {showDescription ? (
+                    <div className="card mt-4" style={{ width: "24rem" }}>
+                        <div className="description">
+                            <h5 className="description-title">Description</h5>
+                            <p className="description-text">Description here.</p>
+                        </div>
+                        <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+                    </div>
+                ) : (
+                    <div className="selectedcountry">
+                        <select onChange={(e) => setSelectedCountries(Array.from(e.target.selectedOptions).map((option) => option.value))}>
+                            <option value="">Select countries</option>
+                            {countries.map((country) => (
+                                <option key={country} value={country}>
+                                    {country}
+                                </option>
+                            ))}
+                        </select>
+                        {selectedCountries.length > 0 && (
+                            <div>
+                                Selected Countries: {selectedCountries.map((country) => (
+                                    <button key={country} onClick={() => clearSelectedCountry(country)}>
+                                        {country} x
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
+                <div className = "chart-container">
+                    {!showDescription && (
+                        <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} />
+                    )}
+                </div>
             </div>
         </div>
     );
-};
 
-export default V4;
+} export default V4;
