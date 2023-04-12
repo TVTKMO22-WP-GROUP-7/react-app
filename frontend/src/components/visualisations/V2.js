@@ -9,6 +9,7 @@ function V2() {
 
   const [isAnnual, setIsAnnual] = useState(true);
   const [isIcecore, setIsIcecore] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
 
   const [datav2_1, setData] = useState([]);
   const getData = () => {
@@ -222,9 +223,13 @@ function V2() {
     },
   };
 
+  const toggleDescription = () => {
+    setShowDescription(!showDescription);
+  };
+
   function changeDataOptions() {
     if (isAnnual && !isIcecore) {
-      return annual;
+      return options;
     }
     else {
       return iceCoreOptions;
@@ -242,23 +247,26 @@ function V2() {
   }
 
   return (
-    <div className="child">
-      <div className="container-fluid">
-        <Line data={changeData()} options={options} />
+    <div>
+      <h1>Visualization 2</h1>
+      <div className="button-container">
+        {showDescription ? null : (
+          <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show Icecore" : "Show Yearly and monthly data"}</button>
+        )}
+        <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
       </div>
-      <div className="container-fluid">
-        <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show Icecore": "Show Yearly and monthly data"}</button>
+      <div className="chart-container">
+      {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
+      <div className="description">
+        <h5 className="description-title">Description</h5>
+        <p className="description-text">This chart shows the Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958. The chart shows Mauna Loa Co2 measurements yearly and monthly.</p>
+        <p> The chart also shows the Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements.</p>
+        <p> If you want to switch between "yearly & monthly" and "icecore", press the ''Show yearly and monthly data'' & "Show icecore" -button.</p>
       </div>
-      <div className="card mt-4" style={{ width: "24rem" }}>
-        <div className="card-body">
-          <h5 className="card-title">Description</h5>
-          <p className="card-text">This chart shows the Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958. The chart shows Mauna Loa Co2 measurements yearly and monthly.</p>
-          <p> The chart also shows the Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements.</p>
-          <p> If you want to switch between "yearly & monthly" and "icecore", press the ''Show yearly and monthly data'' & "Show icecore" -button.</p>
-        </div>
-        <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
-        <p> <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noopener noreferrer" className="card-link">Global Monitoring Laboratory </a></p>
-        <p> <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat" target="_blank" rel="noopener noreferrer" className="card-link">Historical CO2 record from the Law Dome DE08, DE08-2, and DSS ice cores</a></p>
+      <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+      <p> <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noopener noreferrer" className="card-link">Global Monitoring Laboratory </a></p>
+      <p> <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat" target="_blank" rel="noopener noreferrer" className="card-link">Historical CO2 record from the Law Dome DE08, DE08-2, and DSS ice cores</a></p>
+    </div> : <Line data={changeData()} options={changeDataOptions()} />}
       </div>
     </div>
   );
