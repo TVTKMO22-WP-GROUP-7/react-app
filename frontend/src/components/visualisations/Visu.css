@@ -107,3 +107,31 @@
     align-items: center;
     flex-direction: column;
   }
+
+  .selected-countries-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .selected-country {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .remove-country {
+    margin-left: 5px;
+    padding: 3px 5px;
+    border: none;
+    background-color: #ff6666;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+  }

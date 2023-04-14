@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, plugins } from "chart.js/auto";
+import { Chart as ChartJS } from "chart.js/auto";
 import axios from "axios";
 import Constants from "../Constants.json";
 import "./Visu.css"
@@ -16,27 +16,28 @@ function V4() {
     const [countries, setCountries] = useState([]);
     const [selectedCountries, setSelectedCountries] = useState([]);
     const [showDescription, setShowDescription] = useState(false);
+    const [shouldRenderChart, setShouldRenderChart] = useState(false);
 
     // Fetch data from the server
-    
+
     const fetchData = async (hidden) => {
         try {
             const result = await axios.get(Constants.API_ADDRESS + "/v4emissions");
             const data = result.data;
-    
+
             // Check if data is returned from the server
             if (!data || data.length === 0) {
                 throw new Error('No data returned from the server');
             }
-    
+
             // Extract years from data
             const years = data?.map((item) => item.year) ?? [];
-    
+
             // Check if years are found in the data
             if (!years || years.length === 0) {
                 throw new Error('No years found in the data');
             }
-    
+
             // Extract countries from data and filter out the year column
             const datasets = Object.keys(data[0] || {})
                 .filter((key) => key !== "year")
@@ -49,34 +50,35 @@ function V4() {
                         hidden,
                     };
                 });
-    
+
             // Set chart data
             setChartData({
                 labels: years,
                 datasets: datasets,
             });
-    
+
             setLoading(false);
-    
+
             // Set country names
             const countryNames = Object.keys(data[0] || {}).filter(key => key !== 'year');
             setCountries(countryNames);
-    
+
         } catch (error) {
             console.error(error);
             setChartData([]);
             setLoading(false);
         }
     };
-    
+
     useEffect(() => {
         fetchData(true); // fetch data with hidden datasets
     }, []);
-    
+
     const showAllData = async () => {
         fetchData(false); // fetch data with visible datasets
+        setShouldRenderChart(true);
     };
-    
+
 
     // Define the chart options
     const chartOptions = {
@@ -84,37 +86,41 @@ function V4() {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: false,
-            },
-            title: {
-                display: true,
-                text: 'CO2 Emissions Over Time',
-                font: {
-                    size: 20,
+                position: 'top',
+                labels: {
+                    filter: function (item, chart) {
+                        return selectedCountries.includes(item.text);
+                    }
                 },
-            }
-        },
-        scales: {
-            y: {
                 title: {
                     display: true,
-                    text: 'CO2 Emissions (tonnes)',
+                    text: 'CO2 Emissions Over Time',
                     font: {
-                        size: 16,
+                        size: 20,
+                    },
+                }
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'CO2 Emissions (tonnes)',
+                        font: {
+                            size: 16,
+                        },
+                    },
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year',
+                        font: {
+                            size: 16,
+                        },
                     },
                 },
             },
-            x: {
-                title: {
-                    display: true,
-                    text: 'Year',
-                    font: {
-                        size: 16,
-                    },
-                },
-            },
         },
-
     };
 
     // Generate a random color for each dataset
@@ -155,8 +161,9 @@ function V4() {
             selecteddatasets
                 .filter((dataPoint) => !dataPoint.hidden)
                 .map((dataPoint) => dataPoint.label)
-                );
-                console.log(selectedCountries);
+        );
+        console.log(selectedCountries);
+        setShouldRenderChart(true);
 
     };
 
@@ -164,6 +171,7 @@ function V4() {
     const resetChart = () => {
         setLoading(true);
         fetchData(true);
+        setShouldRenderChart(false);
     };
 
 
@@ -175,19 +183,37 @@ function V4() {
     const handleCountryChange = (event) => {
         const country = event.target.value;
         if (selectedCountries.includes(country)) {
-          setSelectedCountries(selectedCountries.filter(c => c !== country));
+            setSelectedCountries(selectedCountries.filter(c => c !== country));
         } else {
-          setSelectedCountries([...selectedCountries, country]);
+            setSelectedCountries([...selectedCountries, country]);
         }
-      };
-      
-        // remove country
-      const handleRemoveCountry = (country) => {
-        setSelectedCountries(prevSelectedCountries =>
-          prevSelectedCountries.filter((c) => c !== country)
+    };
+
+    // remove country
+    const handleRemoveCountry = (country) => {
+        setSelectedCountries((prevSelectedCountries) =>
+            prevSelectedCountries.filter((c) => c !== country)
         );
-      };      
-      
+    };
+
+    const SelectedCountriesBox = ({ selectedCountries, handleRemoveCountry }) => {
+        return (
+            <div className="selected-countries-box">
+                {selectedCountries.map((country, index) => (
+                    <div key={index} className="selected-country">
+                        {country}
+                        <button
+                            onClick={() => handleRemoveCountry(country)}
+                            className="remove-country"
+                        >
+                            X
+                        </button>
+                    </div>
+                ))}
+            </div>
+        );
+    };
+
     return (
         <div>
             <h1>Visualization 4</h1>
@@ -221,21 +247,18 @@ function V4() {
                                     {country}
                                 </option>
                             ))}
-                        </select>    
-                        <ul style={{ display: 'flex', listStyle: 'none', padding: 0 }}>
-                            {selectedCountries.map((country) => (
-                                <li key={country} style={{ margin: '0.5rem',  padding: '0.5rem' }}>
-                                    {country}
-                                    <button onClick={() => handleRemoveCountry(country)}>Remove</button>
-                                </li>
-                            ))}
-                        </ul>
-                  
+                        </select>
                     </div>
                 )}
-                <div className = "chart-container">
-                    {!showDescription && (
-                        <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} />
+                <div className="chart-container">
+                    {!showDescription && shouldRenderChart && (
+                        <>
+                            <SelectedCountriesBox selectedCountries={selectedCountries}
+                                handleRemoveCountry={handleRemoveCountry} />
+                            <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} />
+
+                        </>
+
                     )}
                 </div>
             </div>
