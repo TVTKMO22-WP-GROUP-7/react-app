@@ -1,46 +1,137 @@
 .button-container {
-    display: block;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
-}
-
-.button-container button {
-    margin: 5px;
-    padding: 10px;
+  }
+  
+  .button-container button {
+    display: inline-block;
+    padding: 8px 16px;
     background-color: #29335c;
-    color: white;
+    color: #fff;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
-}
-
-.button-container button:hover {
-    background-color: #29335c;
-}
-
-.chart-title {
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-container button:hover {
+    background-color: #005ea8;
+  }
+  
+  .container-v4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+  
+  .chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    width: 60%;
+    margin: 0 auto;
+  }
+  
+  h1 {
     font-size: 20px;
-    text-align: center;
+    color: #29335c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.container-v4 {
+  }
+  
+  h2 {
+    font-size: 20px;
+    color: #29335c;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-}
-
-.container-v1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .description {
+    border: 1px solid #ddd;
+    padding: 1px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+  }
+  
+  .selectedcountry {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-}
-
-.container-v5 {
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: white;
+  }
+  
+  .btn-outline-primary-mt2 {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .card-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .card-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .card-link:active {
+    color: #0056b3;
+  }
+  
+  .card {
+    margin: 40px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-}
+    flex-direction: column;
+  }
+
+  .selected-countries-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .selected-country {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .remove-country {
+    margin-left: 5px;
+    padding: 3px 5px;
+    border: none;
+    background-color: #ff6666;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+  }

@@ -49,7 +49,7 @@ public class DataController {
     }
 
     @GetMapping("/v1reconstruction")
-    public List<V1reconstruction> getV1Reconstruction() {
+    public List<V1Reco> getV1Reconstruction() {
         return dService.getV1Reconstruction();
     }
 

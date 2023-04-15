@@ -101,7 +101,7 @@ public class DataService {
         return V1MonthlySouthRepo.getAll();
     }
 
-    public List<V1reconstruction> getV1Reconstruction() {
+    public List<V1Reco> getV1Reconstruction() {
         return V1RecoRepo.getAll();
     }
     
