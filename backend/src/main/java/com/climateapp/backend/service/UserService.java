@@ -68,16 +68,16 @@ public class UserService {
         return null;
     }
 
-    // Tarkistetaan syötetyn salasanan ja tietokannasta löytyvän salasanan
-    // vastaavuus.
+//delete
+
     public Users deleteAccount(String username, String password) {
-        Users checkPassword = userRepository.findPasswordByUsername(username);
-        if (checkPassword != null && enc.matches(password, checkPassword.getPassword())) {
-            Users deleteUserAccount = userRepository.findIdByUsername(username);
-            userRepository.delete(deleteUserAccount);
-            return deleteUserAccount;
+        Users u = userRepository.findByUsername(username);
+        if (u != null && enc.matches(password, u.password)) {
+            userRepository.delete(u);
+            return u;
         }
         return null;
     }
+
 
 }

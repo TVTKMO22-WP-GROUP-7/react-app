@@ -79,18 +79,24 @@ public class UserController {
         }
         return new ResponseEntity<>("Password changed", HttpStatus.OK);
     }
-    // Rekisteröidään metodi delete-mappaukseen, vaaditaan username ja password.
-    // Jos poisto epäonnistuu välitetään käyttäjälle viesti, jossa pyydetään
-    // tarkistamaan onko salasana kirjoitettu oikein
-    // pyynnön mennessä läpi ilmoitetaan konsoliin poiston onnistuminen.
+
+
+//Request for deleting account
     @DeleteMapping("/deleteaccount")
-    public ResponseEntity<String> deleteAccount(
-            @RequestParam String username,
-            @RequestParam String password) {
+    public ResponseEntity<String> deleteAccount(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String password = request.get("password");
+    
+        if (username == null  || password == null ) {
+            return new ResponseEntity<>("Username and password are required", HttpStatus.FORBIDDEN);
+        }
+    
         Users u = uService.deleteAccount(username, password);
         if (u == null) {
-            return new ResponseEntity<>("Check that you've written right password", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Check that you've written right username or password",
+                    HttpStatus.FORBIDDEN);
         }
+    
         return new ResponseEntity<>("Account deleted", HttpStatus.OK);
     }
   
