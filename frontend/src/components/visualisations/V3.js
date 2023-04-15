@@ -191,12 +191,6 @@ function V3() {
             <div className="button-container">
                 <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>
-            <div style={{ width: "24rem" }}>
-            <div>
-            <h5 className="card-title" >Description</h5>
-          <p className="card-text">This chart shows Evolution of global temperature over the past two million years.</p>
-          <p> You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
-            <div className="chart-container">
                 {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
                     <div className="description">
                         <h5 className="description-title">Description</h5>
@@ -207,8 +201,8 @@ function V3() {
                     <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
                     <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
                     <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
-                </div> : <Line data={data} options={optionsV3} alt="chart"></Line>}
-            </div>
-        </div>
+                </div> : <Line data={data} options={optionsV3} alt="chart"></Line>} 
+           </div>
+        
     );
 }export default V3;
