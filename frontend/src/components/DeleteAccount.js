@@ -1,115 +1,91 @@
-
-import React, { useState } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Constants from './Constants.json';
-import Navbar from './Navbar';
-
 
 export default function DeleteAccount() {
-  const navigate = useNavigate();
-  const location = useLocation();
 
-  const [input, setInput] = useState({
-    username: '',
-    password: '',
-
-
-  });
-
-  const [error, setError] = useState({
-    username: '',
-    password: '',
-  });
+  //get the username from the local storage
+  const username = localStorage.getItem("username");
+  const [password, setPassword] = useState("");
+  let navigate = useNavigate();
+  const [changeDeleteState, setChangeDeleteState] = useState("idle");
 
 
-  //käyttäjän deletointi
-  const handleDelete = async (remove) => {
-    remove.preventDefault();
+  //function to handle delete
+  const handleDelete = async (event) => {
+ 
+    if (password === "") {
+      alert("Password can't be empty")
+    }
+     else {
+      event.preventDefault();
 
-    //Tulostetaan konsoliin username ja password
-    console.log(remove.target.username.value);
-    console.log(remove.target.password.value);
-    console.log(
-      "/deleteaccount?username=" +
-      remove.target.username.value +
-      "&password=" +
-      remove.target.password.value
-    );
-    try {
-      const result = await axios.delete(Constants.API_ADDRESS + '/deleteaccount?username=' + remove.target.username.value + "&password=" + remove.target.password.value);
-      console.log(result);
-      alert("Account deleted"); //Poiston vahvistus käyttäjälle
-      navigate("/", { replace: true });
+      setChangeDeleteState("processing");
 
-    } catch (error) {
-      //Mahdolliset virheilmoitukset
-      console.log(error.response);
-      if (error.response && error.response.status === 403) {
-        setError({ password: error.response.data });
-      }
+      //send the delete request to the backend
+      await axios.delete(Constants.API_ADDRESS + "/deleteaccount", {
+        data :{
+        username: username,
+        password: password,
+        }
+      }).then(response => {
+        console.log(response);
+        console.log(response.config.url);
+        setChangeDeleteState("success");
+        setTimeout(() => {
+          setChangeDeleteState("idle")
+          navigate("/", { replace: true });
+        }, 1500);
+      }).catch(error => {
+        setChangeDeleteState("error");
+        setTimeout(() => setChangeDeleteState("idle"), 1500);
+        alert("Check that you have entered correct username and password");
+        console.log(error);
+
+      })
     }
   }
-  const onInputChange = e => {
-    const { name, value } = e.target;
-    setInput(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    validateInput(e);
+
+  let deleteControls = null;
+  switch (changeDeleteState) {
+    case "idle":
+      deleteControls = <button type="submit">Delete Account</button>
+      break;
+
+    case "processing":
+      deleteControls = <span style={{ color: 'blue' }}>Processing delete...</span>
+      break;
+
+    case "success":
+      deleteControls = <span style={{ color: 'green' }}>Account deleted</span>
+      break;
+
+    case "error":
+      deleteControls = <span style={{ color: 'red' }}>Error</span>
+      break;
+
+    default:
+      deleteControls = <button type="submit">Go back</button>
   }
 
-  const validateInput = e => {
-    let { name, value } = e.target;
-    setError(prev => {
-      const stateObj = { ...prev, [name]: '' };
-      //Ilmoitukset tyhjistä kentistä
-      switch (name) {
-        case "username":
-          if (!value) {
-            stateObj[name] = "Please enter username";
-          }
-          break;
-        case "password":
-          if (!value) {
-            stateObj[name] = "Please enter your password";
-          }
-          break;
-
-        default:
-          break;
-
-      }return stateObj;
-    })
-  }
-
-
-
-
-  //Määritellään sivun rakenne
   return (
     <>
-      <div className="deleteacc">
+      <div className="delete">
         <div>
-          <h2>Delete Account</h2>
+          <h4>Delete Account</h4>
           <form onSubmit={handleDelete}>
+            <input type="password" name="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
             <div>
-              Username <br />
-              <input type="text" name="username" placeholder='Enter your username' value={input.username} onChange={onInputChange} onBlur={validateInput} /> <br />
-              {error.username && <span className="err">{error.username} </span>}
+              {
+                deleteControls
+              }
             </div>
-            <div>
-              Password <br />
-              <input type="password" name="password" placeholder='Enter your password' value={input.password} onChange={onInputChange} onBlur={validateInput} /> <br />
-              {error.password && <span className="err">{error.password} </span>}
-            </div>
-            <button type="submit">Delete account</button> <br />
           </form>
-
+          <p> <Link to="/">Don't want to delete account?</Link></p>
         </div>
-        <p><Link to="/">Don't want to delete account, click here </Link></p>
       </div>
     </>
   );
 }
+

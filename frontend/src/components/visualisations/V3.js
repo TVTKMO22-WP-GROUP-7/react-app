@@ -191,7 +191,7 @@ function V3() {
             </div>
             <div style={{ width: "24rem" }}>
             <div>
-            <h5 className="card-title">Description</h5>
+            <h5 className="card-title" >Description</h5>
           <p className="card-text">This chart shows Evolution of global temperature over the past two million years.</p>
           <p> You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
             </div>
