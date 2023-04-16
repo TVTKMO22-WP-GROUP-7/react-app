@@ -77,6 +77,8 @@ public class DataService {
     @Autowired
     V5AfoluRepo V5AfoluRepo;
 
+
+
     public List<V1AnnualGlobal> getAnnualGlobal() {
         return V1AnnualGlobalRepo.getAll();
     }

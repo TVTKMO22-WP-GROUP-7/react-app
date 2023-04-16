@@ -12,6 +12,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.climateapp.backend.data.Users;
 
+
 @Service
 public class UserService {
     @Autowired
@@ -78,6 +79,4 @@ public class UserService {
         }
         return null;
     }
-
-
 }
