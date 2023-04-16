@@ -53,5 +53,11 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setVisualisations(String visualisations) {
+    }
+
+    public void setDescription(String description) {
+    }
     
 }

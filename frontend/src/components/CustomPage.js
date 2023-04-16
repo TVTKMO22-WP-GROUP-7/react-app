@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './visualisations/Visu.css';
+import axios from 'axios';
 import { Chart } from "chart.js";
 import { Form, Button } from 'react-bootstrap';
 import V1 from "./visualisations/V1";
@@ -7,6 +8,9 @@ import V2 from "./visualisations/V2";
 import V3 from "./visualisations/V3";
 import V4 from './visualisations/V4';
 import V5 from './visualisations/V5';
+import { useNavigate } from 'react-router-dom';
+import Constants from './Constants.json';
+
 
 export default function CustomPage() {
   const [createView, setCreateView] = useState(false)
@@ -15,8 +19,90 @@ export default function CustomPage() {
   const [createV3, setCreateV3] = useState(false)
   const [createV4, setCreateV4] = useState(false)
   const [createV5, setCreateV5] = useState(false)
+  const username = localStorage.getItem("username");
 
 
+  //
+  const [textv1, setTextv1] = useState("")
+  const [id, setId] = useState("");
+  const [userID, setUserId]= useState("")
+
+
+  const [visu1, setVisu1] = useState("")
+  const [visu2, setVisu2] = useState("")
+  const [visu3, setVisu3] = useState("")
+  const [visu4, setVisu4] = useState("")
+  const [visu5, setVisu5] = useState("")
+  //
+  const [v1text, setv1Text] = useState("")
+  const [v2text, setv2Text] = useState("")
+  const [v3text, setv3Text] = useState("")
+  const [v4text, setv4Text] = useState("")
+  const [v5text, setv5Text] = useState("")
+
+
+  
+
+  const navigate = useNavigate();
+  //const [changeSaveState,setChangeSaveState] = useState("idle");
+
+  function checkTextV1(t) {
+    if (createView) {
+      setCreateView(false)
+    }
+    setv1Text(t)
+  }
+
+  function checkTextV2(t) {
+    if (createView) {
+      setCreateView(false)
+    }
+    setv2Text(t)
+  }
+
+  function checkTextV3(t) {
+    if (createView) {
+      setCreateView(false)
+    }
+    setv3Text(t)
+  }
+
+  function checkTextV4(t) {
+    if (createView) {
+      setCreateView(false)
+    }
+    setv4Text(t)
+  }
+
+  function checkTextV5(t) {
+    if (createView) {
+      setCreateView(false)
+    }
+    setv5Text(t)
+  }
+
+
+  function saveView(e) {
+    e.preventDefault()
+    axios.post(Constants.API_ADDRESS + "/custompage", {},
+      {
+        params: {
+          id,
+          userID,
+          visu1,
+          textv1,
+
+        }
+      }
+    ).then(response => {
+      console.log(response)
+    }).catch(error => {
+      alert("erroria vitusti")
+      console.log(error)
+    })
+  }
+
+ 
   const handleChangeV1 = event => {
     if (event.target.checked) {
       setCreateV1(true)
@@ -107,7 +193,6 @@ export default function CustomPage() {
         <div>
           <V1 /> 
         </div>
-
       </div>
     </div>
   );
@@ -128,6 +213,7 @@ export default function CustomPage() {
       <div className="container-fluid py-5">
         <div>
           <V3 />
+          
         </div>
       </div>
     </div>
@@ -162,32 +248,61 @@ export default function CustomPage() {
 <div id='chart' style={{ display: 'flex', alignItems: 'center' }} className="p-5 mb-4 bg-light rounded-3">
         <div className="form-check form-switch container-fluid py-5">
           <table>
+          <tr>
               <td>
                 <h2>Valitse haluamasi kaaviot</h2>
               </td>
+              </tr>
+              <tr>
             <td>
                 <input type="checkbox" className="check" onChange={handleChangeV1} />
                 <label>V1 </label>
+                &nbsp;
+                <td><input type="text" id='inputs' placeholder='Kuvausteksti' value={v1text} onChange={e => checkTextV1(e.target.value)} />
                 </td>
+                </td>
+                </tr>
+                <tr>
             <td>
                 <input type="checkbox" className="check" onChange={handleChangeV2} />
                 <label>V2 </label>
+                &nbsp;
+                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v2text} onChange={e => checkTextV2(e.target.value)} />
                 </td>
+                </tr>
+                <tr>
               <td>
                 <input type="checkbox" className="check" onChange={handleChangeV3} />
-              <label> V3 </label></td>
+              <label> V3 </label>
+              &nbsp;
+                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v3text} onChange={e => checkTextV3(e.target.value)} />
+              </td>
+              </tr>
+              <tr>
               <td>
                 <input type="checkbox" className="check" onChange={handleChangeV4} />
                 <label>V4 </label>
+                &nbsp;
+                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v4text} onChange={e => checkTextV4(e.target.value)} />
               </td>
+              </tr>
+              <tr>
               <td>
                 <input type="checkbox" className="check" onChange={handleChangeV5} />
                 <label>V5 </label>
+                &nbsp;
+                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v5text} onChange={e => checkTextV5(e.target.value)} />
               </td>
+              </tr>
         </table>
         <Form id='button-container' onSubmit={handleClick}>
           <Button block="true" type="submit"  >
             Luo näkymä
+          </Button>
+        </Form>
+        <Form id= 'button-container' onSubmit={saveView}>
+          <Button block="true" type="submit">
+            Tallenna
           </Button>
         </Form>
       </div>
