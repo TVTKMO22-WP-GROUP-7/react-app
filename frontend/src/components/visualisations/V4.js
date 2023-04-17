@@ -16,7 +16,6 @@ function V4() {
     const [countries, setCountries] = useState([]);
     const [selectedCountries, setSelectedCountries] = useState([]);
     const [showDescription, setShowDescription] = useState(false);
-    const [shouldRenderChart, setShouldRenderChart] = useState(false);
 
     // Fetch data from the server
 
@@ -57,12 +56,12 @@ function V4() {
                 datasets: datasets,
             });
 
-            setLoading(false);
-
             // Set country names
             const countryNames = Object.keys(data[0] || {}).filter(key => key !== 'year');
             setCountries(countryNames);
 
+            setLoading(false);
+            
         } catch (error) {
             console.error(error);
             setChartData([]);
@@ -72,23 +71,25 @@ function V4() {
 
     useEffect(() => {
         fetchData(true); // fetch data with hidden datasets
+        //drawChartForSelectedCountries();
     }, []);
 
-    const showAllData = async () => {
-        fetchData(false); // fetch data with visible datasets
-        setShouldRenderChart(true);
-    };
+    //testausmielessä. Voi poistaa
+    // const showAllData = async () => {
+    //     fetchData(false); // fetch data with visible datasets
+    // };
 
 
     // Define the chart options
     const chartOptions = {
         responsive: true,
+        sacked: false,
         maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'top',
                 labels: {
-                    filter: function (item, chart) {
+                    filter: function (item) {
                         return selectedCountries.includes(item.text);
                     }
                 },
@@ -102,12 +103,11 @@ function V4() {
             },
             scales: {
                 y: {
+                    type: "linear",
                     title: {
                         display: true,
                         text: 'CO2 Emissions (tonnes)',
-                        font: {
-                            size: 16,
-                        },
+                        
                     },
                 },
                 x: {
@@ -163,18 +163,17 @@ function V4() {
                 .map((dataPoint) => dataPoint.label)
         );
         console.log(selectedCountries);
-        setShouldRenderChart(true);
 
     };
 
     // Reset chart and hide all data
     const resetChart = () => {
+        setSelectedCountries([]);
         setLoading(true);
         fetchData(true);
-        setShouldRenderChart(false);
     };
 
-
+    // Toggle description
     const toggleDescription = () => {
         setShowDescription(!showDescription);
     };
@@ -187,6 +186,7 @@ function V4() {
         } else {
             setSelectedCountries([...selectedCountries, country]);
         }
+        event.target.value = "";
     };
 
     // remove country
@@ -196,6 +196,7 @@ function V4() {
         );
     };
 
+    // Box for selected countries
     const SelectedCountriesBox = ({ selectedCountries, handleRemoveCountry }) => {
         return (
             <div className="selected-countries-box">
@@ -222,7 +223,6 @@ function V4() {
                     <>
                         <button onClick={drawChartForSelectedCountries}>Draw Line Chart</button>
                         <button onClick={resetChart}>Reset Chart</button>
-                        <button onClick={showAllData}>Show all data</button>
                     </>
                 )}
                 <button onClick={toggleDescription}>
@@ -234,9 +234,21 @@ function V4() {
                     <div className="card mt-4" style={{ width: "24rem" }}>
                         <div className="description">
                             <h5 className="description-title">Description</h5>
-                            <p className="description-text">Description here.</p>
+                            <p>This chart shows the anthropogenic fossil carbon dioxide (CO2) emissions by country (territorial) starting from 1959. All values in million tonnes</p>
+                            <p>Select countries you want to observe and press "Draw Line Chart" button</p>
+                            <p>If you want to clear chart. Press "Reset Chart" button</p>
                         </div>
                         <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+                        <p>
+                            <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021" target="_blank" rel="noopener noreferrer" className="card-link">
+                                Description
+                            </a>
+                        </p>
+                        <p>
+                            <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noopener noreferrer" className="card-link">
+                                Download dataset
+                            </a>
+                        </p>
                     </div>
                 ) : (
                     <div className="selectedcountry">
@@ -251,11 +263,11 @@ function V4() {
                     </div>
                 )}
                 <div className="chart-container">
-                    {!showDescription && shouldRenderChart && (
+                    {!showDescription &&  (
                         <>
                             <SelectedCountriesBox selectedCountries={selectedCountries}
-                                handleRemoveCountry={handleRemoveCountry} />
-                            <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} />
+                            handleRemoveCountry={handleRemoveCountry} />
+                            <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions}  alt="CO2 emissions chart data" />
 
                         </>
 

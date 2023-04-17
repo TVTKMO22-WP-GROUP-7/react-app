@@ -68,6 +68,108 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.btn-outline-primary-mt2 {
+  position: relative;
+  z-index: 1;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.card-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.card-link:active {
+  color: #0056b3;
+}
+
+.card {
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.button-container button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #29335c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #005ea8;
+}
+
+.container-v4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  width: 60%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 20px;
+  color: #29335c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  color: #29335c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.description {
+  border: 1px solid #ddd;
+  padding: 1px;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.selectedcountry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   z-index: 10;
