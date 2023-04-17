@@ -16,12 +16,9 @@ export default function Login() {
 
         setLoginState("processing")
 
-        await axios.post(Constants.API_ADDRESS + "/login", {},
-            {
-                params: {
-                    username,
-                    password
-                }
+        await axios.post(Constants.API_ADDRESS + "/login", {
+                    username: username,
+                    password: password,
             }).then(response => {
                 const token = response.data
                 localStorage.setItem("token", token)

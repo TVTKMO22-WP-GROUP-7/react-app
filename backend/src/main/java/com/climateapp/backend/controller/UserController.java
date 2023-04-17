@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.climateapp.backend.data.Users;
@@ -30,9 +29,10 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(
-            @RequestParam String username,
-            @RequestParam String password) {
+    public ResponseEntity<String> register(@RequestBody Map<String, String> request) {
+
+        String username = request.get("username");
+        String password = request.get("password");
         Users u = uService.register(username, password);
         if (u == null) {
             String e = "Username " + username + " already exists!";
@@ -42,7 +42,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<String> login(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        String password = request.get("password");
         String token = uService.login(username, password);
         if (token == null) {
             return new ResponseEntity<>("Wrong username or password", HttpStatus.UNAUTHORIZED);

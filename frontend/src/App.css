@@ -56,7 +56,7 @@ input {
   border: 1px solid black;
 }
 
-.deleteacc {
+.delete {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,5 +101,14 @@ button:hover {
 
 .v-box{
   margin-bottom: 50px;
+}
+
+.custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 1px solid black;
 }
 
