@@ -12,20 +12,21 @@ public class CustomViewService {
     CustomViewRepository customViewRepository;
 
     public testicustom saveView(
-            String userID,
-            Integer id,
+            String username,
+            String v1text,
+            String v2text,
+            String v3text,
+            String v4text,
+            String v5text,
             Boolean visu1,
             Boolean visu2,
             Boolean visu3,
             Boolean visu4,
             Boolean visu5,
-            String v1text,
-            String v2text,
-            String v3text,
-            String v4text,
-            String v5text) {
-        testicustom c = new testicustom(id, userID, v1text, v2text, v3text, v4text, v5text, false, false, false, false,
-                false);
+            String url,
+            Boolean parallel) {
+        testicustom c = new testicustom(username, v1text, v2text, v3text, v4text, v5text, visu1, visu2, visu3, visu4, visu5,
+                url, parallel);
         customViewRepository.save(c);
         return c;
     }
