@@ -7,5 +7,5 @@ import com.climateapp.backend.data.database.testicustom;
 
 @Repository
 public interface CustomViewRepository extends JpaRepository<testicustom, String> {
-    
+
 }

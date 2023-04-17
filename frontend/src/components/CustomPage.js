@@ -10,16 +10,17 @@ import V4 from './visualisations/V4';
 import V5 from './visualisations/V5';
 import { useNavigate } from 'react-router-dom';
 import Constants from './Constants.json';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export default function CustomPage() {
+  const username = localStorage.getItem("username");
   const [createView, setCreateView] = useState(false)
   const [createV1, setCreateV1] = useState(false)
   const [createV2, setCreateV2] = useState(false)
   const [createV3, setCreateV3] = useState(false)
   const [createV4, setCreateV4] = useState(false)
   const [createV5, setCreateV5] = useState(false)
-  const username = localStorage.getItem("username");
 
 
   //
@@ -40,8 +41,7 @@ export default function CustomPage() {
   const [v4text, setv4Text] = useState("")
   const [v5text, setv5Text] = useState("")
 
-
-  
+  const url = uuidv4();
 
   const navigate = useNavigate();
   //const [changeSaveState,setChangeSaveState] = useState("idle");
@@ -84,18 +84,23 @@ export default function CustomPage() {
 
   function saveView(e) {
     e.preventDefault()
-    axios.post(Constants.API_ADDRESS + "/custompage", {},
-      {
-        params: {
-          id,
-          userID,
-          visu1,
-          textv1,
-
-        }
-      }
-    ).then(response => {
+    axios.post(Constants.API_ADDRESS + "/custompage", {
+          username: username,
+          v1text: v1text,
+          v2text: v2text,
+          v3text: v3text,
+          v4text: v4text,
+          v5text: v5text,
+          visu1: visu1,
+          visu2: visu2,
+          visu3: visu3,
+          visu4: visu4,
+          visu5: visu5,
+          url: url,
+          paraller: false,
+    }).then(response => {
       console.log(response)
+      console.log("onnistui")
     }).catch(error => {
       alert("erroria vitusti")
       console.log(error)
@@ -245,7 +250,7 @@ export default function CustomPage() {
   return (
     <>
 
-<div id='chart' style={{ display: 'flex', alignItems: 'center' }} className="p-5 mb-4 bg-light rounded-3">
+<div id='chart' className="custom">
         <div className="form-check form-switch container-fluid py-5">
           <table>
           <tr>

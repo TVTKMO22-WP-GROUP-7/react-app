@@ -20,12 +20,9 @@ export default function Register() {
     } else {
       event.preventDefault();
       setChangeRegisterState("processing");
-      axios.post(Constants.API_ADDRESS + "/register", {},
-        {
-          params: {
-            username,
-            password
-          }
+      axios.post(Constants.API_ADDRESS + "/register",{
+            username: username,
+            password: password,
         }).then(response => {
           console.log(response)
           setChangeRegisterState("success");
