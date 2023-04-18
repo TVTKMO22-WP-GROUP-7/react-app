@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './visualisations/Visu.css';
 import axios from 'axios';
 import { Chart } from "chart.js";
@@ -21,13 +21,7 @@ export default function CustomPage() {
   const [createV3, setCreateV3] = useState(false)
   const [createV4, setCreateV4] = useState(false)
   const [createV5, setCreateV5] = useState(false)
-
-
-  //
-  const [textv1, setTextv1] = useState("")
-  const [id, setId] = useState("");
-  const [userID, setUserId]= useState("")
-
+  const [parallel, setParallel] = useState(false)
 
   const [visu1, setVisu1] = useState("")
   const [visu2, setVisu2] = useState("")
@@ -46,59 +40,29 @@ export default function CustomPage() {
   const navigate = useNavigate();
   //const [changeSaveState,setChangeSaveState] = useState("idle");
 
-  function checkTextV1(t) {
-    if (createView) {
-      setCreateView(false)
-    }
-    setv1Text(t)
-  }
-
-  function checkTextV2(t) {
-    if (createView) {
-      setCreateView(false)
-    }
-    setv2Text(t)
-  }
-
-  function checkTextV3(t) {
-    if (createView) {
-      setCreateView(false)
-    }
-    setv3Text(t)
-  }
-
-  function checkTextV4(t) {
-    if (createView) {
-      setCreateView(false)
-    }
-    setv4Text(t)
-  }
-
-  function checkTextV5(t) {
-    if (createView) {
-      setCreateView(false)
-    }
-    setv5Text(t)
-  }
-
-
-  function saveView(e) {
+  const saveView = async (e) =>  {
     e.preventDefault()
-    axios.post(Constants.API_ADDRESS + "/custompage", {
-          username: username,
-          v1text: v1text,
-          v2text: v2text,
-          v3text: v3text,
-          v4text: v4text,
-          v5text: v5text,
-          visu1: visu1,
-          visu2: visu2,
-          visu3: visu3,
-          visu4: visu4,
-          visu5: visu5,
-          url: url,
-          paraller: false,
+
+    await axios.post(Constants.API_ADDRESS + "/custompage", {
+      username: username,
+      v1text: v1text,
+      v2text: v2text,
+      v3text: v3text,
+      v4text: v4text,
+      v5text: v5text,
+      visu1: visu1,
+      visu2: visu2,
+      visu3: visu3,
+      visu4: visu4,
+      visu5: visu5,
+      url: url,
+      parallel: parallel
     }).then(response => {
+      console.log(v1text)
+      console.log(v2text)
+      console.log(v3text)
+      console.log(v4text)
+      console.log(v5text)
       console.log(response)
       console.log("onnistui")
     }).catch(error => {
@@ -107,72 +71,82 @@ export default function CustomPage() {
     })
   }
 
- 
+
   const handleChangeV1 = event => {
-    if (event.target.checked) {
+    if (event.target.checked && saveView) {
       setCreateV1(true)
+      setVisu1(true)
     } else {
       setCreateV1(false)
+      setVisu1(false)
     }
     if (event.target.checked && createView) {
       setCreateView(false)
       setCreateV1(true)
     }
-    if ((createV1 && createView) || (createV2 && createView)||(createV3 && createView) || (createV4 && createView)||(createV5 && createView))  {
+    if ((createV1 && createView) || (createV2 && createView) || (createV3 && createView) || (createV4 && createView) || (createV5 && createView)) {
       setCreateView(false)
     }
   }
 
   const handleChangeV2 = event => {
-    if (event.target.checked) {
+    if (event.target.checked && saveView) {
       setCreateV2(true)
+      setVisu2(true)
     } else {
       setCreateV2(false)
+      setVisu2(false)
     }
     if (event.target.checked && createView) {
       setCreateView(false)
       setCreateV2(true)
     }
-    if ((createV1 && createView) || (createV2 && createView)||(createV3 && createView) || (createV4 && createView)||(createV5 && createView)) {
+    if ((createV1 && createView) || (createV2 && createView) || (createV3 && createView) || (createV4 && createView) || (createV5 && createView)) {
       setCreateView(false)
     }
   }
 
   const handleChangeV3 = event => {
-    if (event.target.checked) {
+    if (event.target.checked && saveView) {
       setCreateV3(true)
+      setVisu3(true)
     } else {
       setCreateV3(false)
+      setVisu3(false)
     }
     if (event.target.checked && createView) {
       setCreateView(false)
       setCreateV3(true)
     }
-    if ((createV1 && createView) || (createV2 && createView)||(createV3 && createView) || (createV4 && createView)||(createV5 && createView)) {
+    if ((createV1 && createView) || (createV2 && createView) || (createV3 && createView) || (createV4 && createView) || (createV5 && createView)) {
       setCreateView(false)
     }
   }
 
   const handleChangeV4 = event => {
-    if (event.target.checked) {
+    if (event.target.checked && saveView) {
       setCreateV4(true)
+      setVisu4(true)
     } else {
       setCreateV4(false)
+      setVisu4(false)
     }
     if (event.target.checked && createView) {
       setCreateView(false)
       setCreateV4(true)
     }
-    if ((createV1 && createView) || (createV2 && createView)||(createV3 && createView) || (createV4 && createView)||(createV5 && createView)) {
+    if ((createV1 && createView) || (createV2 && createView) || (createV3 && createView) || (createV4 && createView) || (createV5 && createView)) {
       setCreateView(false)
     }
   }
 
   const handleChangeV5 = event => {
-    if (event.target.checked) {
+    if (event.target.checked && saveView) {
       setCreateV5(true)
+      setVisu5(true)
     } else {
       setCreateV5(false)
+      setVisu5(false)
     }
     if (event.target.checked && createView) {
       setCreateView(false)
@@ -183,66 +157,55 @@ export default function CustomPage() {
     }
   }
 
+  const handleParallel = event => {
+    if (event.target.checked) {
+      setParallel(true)
+    } else {
+      setParallel(false)
+    }
+  }
+
   function handleClick(e) {
     e.preventDefault()
-    if (createV1 || createV2 || createV3  || createV4 || createV5) {
+    if (createV1 || createV2 || createV3 || createV4 || createV5) {
       setCreateView(true)
     }
   }
-  
+
 
   const DrawChartV1 = () => (
-    <div id='chart' className="p-5 mb-4 bg-light rounded-3">
-      <h1>Global historical surface temperature anomalies from January 1850 onwards (v1)</h1>
-      <div className="container-fluid py-5">
-        <div>
-          <V1 /> 
-        </div>
-      </div>
+    <div className="container-fluid py-5">
+      <V1 />
+      {v1text}
     </div>
   );
   const DrawChartV2 = () => (
-    <div id='chart' className="p-5 mb-4 bg-light rounded-3">
-      <h1>Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958 (v2)</h1>
-      <div className="container-fluid py-5">
-        <div>
-          <V2 /> 
-        </div>
-      </div>
+    <div className="container-fluid py-5">
+      <V2 />
+      {v2text}
     </div>
   );
 
   const DrawChartV3 = () => (
-    <div id='chart' className="p-5 mb-4 bg-light rounded-3">
-      <h1>Evolution of global temperature over the past two million years (v3) </h1>
-      <div className="container-fluid py-5">
-        <div>
-          <V3 />
-          
-        </div>
-      </div>
+    <div className="container-fluid py-5">
+      <V3 />
+      {v3text}
+
     </div>
+
   );
 
   const DrawChartV4 = () => (
-    <div id='chart' className="p-5 mb-4 bg-light rounded-3">
-      <h1>CO2 emissions by country (v4) </h1>
-      <div className="container-fluid py-5">
-        <div>
-          <V4 />
-        </div>
-      </div>
+    <div className="container-fluid py-5">
+      <V4 />
+      {v4text}
     </div>
   );
 
   const DrawChartV5 = () => (
-    <div id='chart' className="p-5 mb-4 bg-light rounded-3">
-      <h1>CO2 emissions by sectors(v5) </h1>
-      <div className="container-fluid py-5">
-        <div>
-          <V5 />
-        </div>
-      </div>
+    <div className="container-fluid py-5">
+      <V5 />
+      {v5text}
     </div>
   );
 
@@ -250,77 +213,83 @@ export default function CustomPage() {
   return (
     <>
 
-<div id='chart' className="custom">
+      <div id='chart' className="custom">
         <div className="form-check form-switch container-fluid py-5">
           <table>
-          <tr>
+            <tr>
               <td>
-                <h2>Valitse haluamasi kaaviot</h2>
+                <h2>Choose the charts you want to have in your custom view</h2>
               </td>
-              </tr>
-              <tr>
-            <td>
+            </tr>
+            <tr>
+              <td>
                 <input type="checkbox" className="check" onChange={handleChangeV1} />
-                <label>V1 </label>
+                <label>V1 (Global historical surgace temperature anomalies from January 1850 onwards) </label>
                 &nbsp;
-                <td><input type="text" id='inputs' placeholder='Kuvausteksti' value={v1text} onChange={e => checkTextV1(e.target.value)} />
+                <td><input type="text" id='inputs' placeholder='Description text (optional)' value={v1text} onChange={(e) => setv1Text(e.target.value)} />
                 </td>
-                </td>
-                </tr>
-                <tr>
-            <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <input type="checkbox" className="check" onChange={handleChangeV2} />
-                <label>V2 </label>
+                <label>V2 (Mauna Loa Co2 values from 1958 onwards) </label>
                 &nbsp;
-                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v2text} onChange={e => checkTextV2(e.target.value)} />
-                </td>
-                </tr>
-                <tr>
+                <input type="text" id='inputs' placeholder='Description text (optional)' value={v2text} onChange={(e) => setv2Text(e.target.value)} />
+              </td>
+            </tr>
+            <tr>
               <td>
                 <input type="checkbox" className="check" onChange={handleChangeV3} />
-              <label> V3 </label>
-              &nbsp;
-                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v3text} onChange={e => checkTextV3(e.target.value)} />
+                <label> V3 (Evolution of gloval temperature over the past two million years)</label>
+                &nbsp;
+                <input type="text" id='inputs' placeholder='Description text (optional)' value={v3text} onChange={(e) => setv3Text(e.target.value)} />
               </td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
               <td>
                 <input type="checkbox" className="check" onChange={handleChangeV4} />
-                <label>V4 </label>
+                <label>V4 (CO2 emissions over time) </label>
                 &nbsp;
-                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v4text} onChange={e => checkTextV4(e.target.value)} />
+                <input type="text" id='inputs' placeholder='Description text (optional)' value={v4text} onChange={(e) => setv4Text(e.target.value)} />
               </td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
               <td>
                 <input type="checkbox" className="check" onChange={handleChangeV5} />
-                <label>V5 </label>
+                <label>V5 (CO2 emissions all sectors) </label>
                 &nbsp;
-                <input type="text" id='inputs' placeholder='Kuvausteksti' value={v5text} onChange={e => checkTextV5(e.target.value)} />
+                <input type="text" id='inputs' placeholder='Description text (optional)' value={v5text} onChange={(e) => setv5Text(e.target.value)} />
               </td>
-              </tr>
-        </table>
-        <Form id='button-container' onSubmit={handleClick}>
-          <Button block="true" type="submit"  >
-            Luo näkymä
-          </Button>
-        </Form>
-        <Form id= 'button-container' onSubmit={saveView}>
-          <Button block="true" type="submit">
-            Tallenna
-          </Button>
-        </Form>
+            </tr>
+            <tr>
+              <td>
+                <input type="checkbox" className="check" onChange={handleParallel} />
+                <label>Do you want to have visualisations pararrel to each other (default is stacked) </label>
+              </td>
+            </tr>
+          </table>
+          <Form className='button-container' onSubmit={handleClick}>
+            <Button block="true" type="submit"  >
+              Show view
+            </Button>
+          </Form>
+          <Form className='button-container' onSubmit={saveView}>
+            <Button block="true" type="submit">
+              Save
+            </Button>
+          </Form>
+        </div>
       </div>
-    </div>
-    <div className="container-fluid py-5" >
-    {(createV1 && createView) ? <DrawChartV1 /> : null}
-    {(createV2 && createView) ? <DrawChartV2 /> : null}
-    {(createV3 && createView) ? <DrawChartV3 /> : null}
-    {(createV4 && createView) ? <DrawChartV4 /> : null}
-    {(createV5 && createView) ? <DrawChartV5 /> : null}
+      <div className="container-fluid py-5" >
+        {(createV1 && createView) ? <DrawChartV1 /> : null}
+        {(createV2 && createView) ? <DrawChartV2 /> : null}
+        {(createV3 && createView) ? <DrawChartV3 /> : null}
+        {(createV4 && createView) ? <DrawChartV4 /> : null}
+        {(createV5 && createView) ? <DrawChartV5 /> : null}
 
-    </div>
-  
-</>
+      </div>
+
+    </>
   );
 }
