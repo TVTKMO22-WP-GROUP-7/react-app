@@ -2,6 +2,7 @@ package com.climateapp.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.climateapp.backend.data.database.testicustom;
 import com.climateapp.backend.repository.CustomViewRepository;
@@ -31,4 +32,7 @@ public class CustomViewService {
         return c;
     }
 
+    public List<testicustom> getCustomView(String url) {
+        return customViewRepository.findByUrl(url);
+    }
 }
