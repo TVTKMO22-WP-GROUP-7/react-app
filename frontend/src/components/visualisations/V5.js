@@ -24,7 +24,7 @@ function V5() {
         fetch(Constants.API_ADDRESS + "/v5all")
             .then(response => response.json())
             .then(data => {
-                setSelectedSector({ data: data, label: "All sectors" })
+                setSelectedSector({ data: data, label: "CO2 emissions all sectors" })
                 console.log(data);
                 setData(data);
                 if (data.length === 0) {
@@ -87,7 +87,7 @@ function V5() {
     }, []);
 
     const onClick = (event) => {
-        if (selectedSector === null || selectedSector.label === "All sectors") {
+        if (selectedSector === null || selectedSector.label === "CO2 emissions all sectors") {
             let element = getElementAtEvent(chartRef.current, event);
             if (element[0] !== undefined) { // Add this check to avoid the error
                 if (element[0].index === 0) {
