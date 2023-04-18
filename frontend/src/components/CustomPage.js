@@ -241,7 +241,7 @@ export default function CustomPage() {
             <tr>
               <td>
                 <input type="checkbox" className="check" onChange={handleChangeV3} />
-                <label> V3 (Evolution of gloval temperature over the past two million years)</label>
+                <label> V3 (Evolution of global temperature over the past two million years)</label>
                 &nbsp;
                 <input type="text" id='inputs' placeholder='Description text (optional)' value={v3text} onChange={(e) => setv3Text(e.target.value)} />
               </td>

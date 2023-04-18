@@ -36,6 +36,14 @@ function Navbar() {
 		}
 	}
 
+	function customViews() {
+		if (location.pathname === "/customviews") {
+			return "/";
+		} else {
+			return "/";
+		}
+	}
+
 	return (
 		<header>
 			<h3>Current User: {name}</h3>
@@ -45,6 +53,7 @@ function Navbar() {
 					{location.pathname === "/custompage" ? "Default Page" : "Custom Page"}
 				</a>
 				<a href="/changepassword">Change Password</a>
+				<a href="/customviews">Custom views</a>
 				<a href="/" onClick={logout}>Logout</a>
 				<a href="/deleteaccount">Delete account</a>
 				<button className="nav-btn nav-close-btn" onClick={showNavbar}>

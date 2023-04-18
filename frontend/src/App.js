@@ -6,6 +6,7 @@ import CustomPage from './components/CustomPage';
 import DefaultView from './components/DefaultView';
 import DefaultView2 from './components/DefaultView2';
 import DeleteAccount from './components/DeleteAccount';
+import CustomViews from './components/CustomViews';
 import V1 from "./components/visualisations/V1";
 import V2 from "./components/visualisations/V2";
 import V3 from "./components/visualisations/V3";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={<DefaultView />} />
         <Route path="/defaultview2" element={<DefaultView2 />} />
         <Route path="/deleteaccount" element={checkAuth ? <DeleteAccount /> : <DefaultView/>} />
+        <Route path="/customviews" element={checkAuth ? <CustomViews /> : <DefaultView/>} />
         <Route path='*' element={<DefaultView />} />
         <Route path= "/V1" element={<V1 />} />
         <Route path= "/V2" element={<V2 />} />
