@@ -36,13 +36,7 @@ function Navbar() {
 		}
 	}
 
-	function customViews() {
-		if (location.pathname === "/customviews") {
-			return "/";
-		} else {
-			return "/";
-		}
-	}
+
 
 	return (
 		<header>

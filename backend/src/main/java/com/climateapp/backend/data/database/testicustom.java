@@ -94,5 +94,6 @@ public class testicustom {
       this.url = url;
       this.paraller = paraller;
    }
+   
 
 }
