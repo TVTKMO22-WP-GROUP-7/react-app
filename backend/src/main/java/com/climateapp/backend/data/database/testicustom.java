@@ -52,15 +52,15 @@ public class testicustom {
    @Column(name = "url")
    public String url;
 
-   @Column(name = "paraller")
-   public boolean paraller;
+   @Column(name = "parallel")
+   public boolean parallel;
 
    public testicustom() {
    }
 
    public testicustom(String username, String textv1, String textv2, String textv3, String textv4,
          String textv5, boolean visu1, boolean visu2, boolean visu3, boolean visu4, boolean visu5, String url,
-         boolean paraller) {
+         boolean parallel) {
       this.username = username;
       this.textv1 = textv1;
       this.textv2 = textv2;
@@ -73,12 +73,12 @@ public class testicustom {
       this.visu4 = visu4;
       this.visu5 = visu5;
       this.url = url;
-      this.paraller = paraller;
+      this.parallel = parallel;
    }
 
    public testicustom(long id, String username, String textv1, String textv2, String textv3, String textv4,
          String textv5, boolean visu1, boolean visu2, boolean visu3, boolean visu4, boolean visu5, String url,
-         boolean paraller) {
+         boolean parallel) {
       this.id = id;
       this.username = username;
       this.textv1 = textv1;
@@ -92,7 +92,7 @@ public class testicustom {
       this.visu4 = visu4;
       this.visu5 = visu5;
       this.url = url;
-      this.paraller = paraller;
+      this.parallel = parallel;
    }
    
 

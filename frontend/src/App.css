@@ -143,3 +143,20 @@ h2 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+ 
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+.grid-container.parallel {
+  grid-template-columns: 1fr 1fr;
+}
