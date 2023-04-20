@@ -12,4 +12,7 @@ public interface CustomViewRepository extends JpaRepository<testicustom, String>
     @Query(value = "SELECT * FROM testicustom WHERE url = ?1", nativeQuery = true)
     List<testicustom> findByUrl(String url);
 
+    @Query(value = "SELECT * FROM testicustom WHERE username = ?1", nativeQuery = true)
+    List<testicustom> findByUsername(String username);
+
 }

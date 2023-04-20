@@ -35,4 +35,9 @@ public class CustomViewService {
     public List<testicustom> getCustomView(String url) {
         return customViewRepository.findByUrl(url);
     }
+
+    public List<testicustom> getCustom(String username){
+        return customViewRepository.findByUsername(username);
+    }
+  
 }
