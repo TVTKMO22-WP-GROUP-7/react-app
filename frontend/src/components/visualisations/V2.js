@@ -266,7 +266,7 @@ function V2() {
       <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
       <p> <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noopener noreferrer" className="card-link">Global Monitoring Laboratory </a></p>
       <p> <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat" target="_blank" rel="noopener noreferrer" className="card-link">Historical CO2 record from the Law Dome DE08, DE08-2, and DSS ice cores</a></p>
-    </div> : <Line data={changeData()} options={changeDataOptions()} />}
+    </div> : <Line data={changeData()} options={changeDataOptions()} style={{ width: "100%" }}/>}
       </div>
     </div>
   );

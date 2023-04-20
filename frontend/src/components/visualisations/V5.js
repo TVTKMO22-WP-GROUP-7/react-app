@@ -208,7 +208,7 @@ function V5() {
                         </p>
                     </div>
                 )}
-                {!showDescription && <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} />}
+                {!showDescription && <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} style={{ width: "100%" }}/>}
             </div>
         </div>
     );

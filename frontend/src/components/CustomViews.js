@@ -90,6 +90,10 @@ export default function CustomViews() {
 
       return (
         <div className="grid-container" key={`view-${index}`}>
+          <div className = "link">
+            <p >URL of this custom view is: </p>
+            <a href="http://localhost:3000/custom{view.url}" target="_blank" rel="noreferrer">http://localhost:3000/custom{view.url}</a>
+          </div>
           {views}
           {index === data.length - 1 ? (
             <h2>End of custom views</h2>) : <h1>Custom view changes here to another one</h1>}
@@ -100,12 +104,14 @@ export default function CustomViews() {
 
   const getLayout = () => {
     const containerClass = parallel ? "grid-container parallel" : "grid-container";
+    const containerStyle = parallel ? { display: "grid" } : { width: "100%" };
     return (
-      <div className={containerClass}>
+      <div className={containerClass} style={containerStyle}>
         {getCustomViews()}
       </div>
     );
-  }
+  };
+
   return (
     <div>
       <h3>Custom views of user: {username}</h3>

@@ -199,7 +199,7 @@ function V3() {
                     <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
                     <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
                     <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
-                </div> : <Line data={data} options={optionsV3} alt="chart"></Line>}
+                </div> : <Line data={data} options={optionsV3} alt="chart" style={{ width: "100%" }}></Line>}
             </div>
         </div>
 
