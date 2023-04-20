@@ -16,6 +16,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useCheckAuth from './components/useCheckAuth';
 import Navbar from './components/Navbar';
 import NotLoggedNavbar from './components/NotLoggedNavbar';
+import CustomURL from './components/CustomUrl';
 
 function App() {
   const checkAuth = useCheckAuth()
@@ -40,6 +41,7 @@ function App() {
         <Route path= "/V3" element={<V3 />} />
         <Route path= "/V4" element={<V4 />} />
         <Route path= "/V5" element={<V5 />} />
+        <Route path= "/custom/:url" element={<CustomURL/>} />
       </Routes>
     </div>
     </BrowserRouter >

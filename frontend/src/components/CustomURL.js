@@ -11,21 +11,28 @@ import V3 from "./visualisations/V3";
 import V4 from './visualisations/V4';
 import V5 from './visualisations/V5';
 
-
+import { useParams } from 'react-router-dom';
 
 export default function CustomURL() {
+  const { url } = useParams();
 
   const [data, setData] = useState([]);
   const [username, setUsername] = useState("");
   const [parallel, setParallel] = useState(true);
-  const [urlParam, setUrlParam] = useState("");
+  const [urlParam, setUrlParam] = useState(url);
 
   const getData = () => {
-    axios.get(Constants.API_ADDRESS + "/custom/" + urlParam, {
+    const result = axios.get(`${Constants.API_ADDRESS}/custom/${urlParam}`, {
     }).then(response => {
+      console.log(result)
+      console.log("täällä ollaan")
       console.log(response.data);
       setData(response.data);
       setParallel(response.data.parallel);
+      if (response.data.username) {
+        setUsername(response.data.username);
+        console.log(username)
+      }
       console.log(parallel);
       if (response.data.length === 0) {
         alert("No custom views found");
@@ -37,7 +44,6 @@ export default function CustomURL() {
       }
     });
   };
-
   useEffect(() => {
     getData();
   }
@@ -94,8 +100,6 @@ const getCustomViews = () => {
     return (
       <div className="grid-container" key={`view-${index}`}>
         {views}
-        {index === data.length - 1 ? (
-          <h2>End of custom views</h2>) : <h1>Custom view changes here to another one</h1>}
       </div>
     );
   });
@@ -105,7 +109,7 @@ const getLayout = () => {
   const containerClass = parallel ? "grid-container parallel" : "grid-container";
   return (
     <div className={containerClass}>
-      <p>View was made by {username}</p>
+      <h3>View was made by: {username}</h3>
       {getCustomViews()}
     </div>
   );
