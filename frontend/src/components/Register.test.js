@@ -1,12 +1,21 @@
 import Register from "./Register";
 import { BrowserRouter } from "react-router-dom";
 import '@testing-library/jest-dom/extend-expect';
-import { render, cleanup, fireEvent, screen } from "@testing-library/react";
+import { render, cleanup, fireEvent, screen, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import axios from 'axios';
 
+jest.mock('axios');
 
 describe('Register component', () => {
-  afterEach(cleanup);
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+    cleanup();
+  });
 
   it("Should render Register component correctly", () => {
     render(
@@ -30,33 +39,30 @@ describe('Register component', () => {
     expect(loginLink).toBeInTheDocument();
   })
 
-  // it("Should register new user", async () => {
+  // it('successful registration', async () => {
   //   render(
-  //     <BrowserRouter>
-  //       <Register />
-  //     </BrowserRouter>
+  //   <BrowserRouter>
+  //     <Register />
+  //   </BrowserRouter>
   //   );
-
+  
+  //   // Act
   //   const usernameInput = screen.getByPlaceholderText("Enter username");
   //   const passwordInput = screen.getByPlaceholderText("Enter password");
   //   const confirmPasswordInput = screen.getByPlaceholderText("Enter confirm password");
-  //   const submitButton = screen.getByRole("button", { name: "Register" });
-    
-  //   fireEvent.change(usernameInput, "user");
-  //   fireEvent.change(passwordInput, "password");
-  //   fireEvent.change(confirmPasswordInput, "password");
-
-  //   await act(async () => {
-  //     fireEvent.click(submitButton);
-  //   }
-  //   );
-
-  //   expect(usernameInput).toHaveValue("user");
-  //   expect(passwordInput).toHaveValue("password");
-  //   expect(confirmPasswordInput).toHaveValue("password");
-  // })
-
-
+  //   const submitButton = screen.getByText("Register");
+  
+  //   fireEvent.change(usernameInput, { target: { value: 'testuser' } });
+  //   fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
+  //   fireEvent.change(confirmPasswordInput, { target: { value: 'testpassword' } });
+  //   fireEvent.click(submitButton);
+  
+  //   // Assert 
+  //   const element = screen.getByText("Registration successful!", { exact: false });
+  //   await waitFor(() => {
+  //     expect(element).toBeDefined();
+  //   });    
+  // });
 });
 
 

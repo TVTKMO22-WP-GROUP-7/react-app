@@ -38,7 +38,7 @@ export default function Login() {
                     setLoginState("idle")
                     navigate('/', { replace: true });
                     window.location.reload(false);
-                }, 1500);
+                }, 5500);
             }).catch(error => {
                 setLoginState("error");
                 setTimeout(() => setLoginState("idle"), 1500);
@@ -103,7 +103,7 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}>
                         </input>
                         <br></br>
-                        <div>
+                        <div >
                             <span style={{ color: 'red' }}>{errorMessage}</span>
                         </div>
                         <div>
