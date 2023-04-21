@@ -8,6 +8,7 @@ import Constants from "../Constants.json";
 function V3() {
 
     const [showDescription, setShowDescription] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [globalData, setGlobalData] = useState({});
 
@@ -23,9 +24,13 @@ function V3() {
 
             setGlobalData(modifiedData);
         })
-            .catch((error) => {
-                console.log(error);
-            });
+        .catch((error) => {
+            if (error.message === "Network Error")
+              setErrorMessage("No connection to the server.");
+            if (error.response && (error.response.status === 404 || error.response.status === 500))
+              setErrorMessage("No data found");
+            console.log(error);
+          });
     };
 
     useEffect(() => {
@@ -39,9 +44,13 @@ function V3() {
             console.log(response.data);
             setCarbonData(response.data);
         })
-            .catch((error) => {
-                console.log(error);
-            });
+        .catch((error) => {
+            if (error.message === "Network Error")
+              setErrorMessage("No connection to the server.");
+            if (error.response && (error.response.status === 404 || error.response.status === 500))
+              setErrorMessage("No data found");
+            console.log(error);
+          });
     };
     useEffect(() => {
         getCarbonData();
@@ -54,9 +63,13 @@ function V3() {
             console.log(response.data);
             setEventData(response.data);
         })
-            .catch((error) => {
-                console.log(error);
-            });
+        .catch((error) => {
+            if (error.message === "Network Error")
+              setErrorMessage("No connection to the server.");
+            if (error.response && (error.response.status === 404 || error.response.status === 500))
+              setErrorMessage("No data found");
+            console.log(error);
+          });
     };
     useEffect(() => {
         getEventData();
@@ -185,6 +198,9 @@ function V3() {
     return (
         <div>
             <h1>Visualization 3</h1>
+            <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
             <div className="button-container">
                 <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>
@@ -199,7 +215,7 @@ function V3() {
                     <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
                     <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
                     <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
-                </div> : <Line data={data} options={optionsV3} alt="chart"></Line>}
+                </div> : <Line data={data} options={optionsV3} alt="chart" style={{ width: "100%" }}></Line>}
             </div>
         </div>
 

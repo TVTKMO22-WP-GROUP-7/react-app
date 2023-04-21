@@ -11,25 +11,30 @@ import V3 from "./visualisations/V3";
 import V4 from './visualisations/V4';
 import V5 from './visualisations/V5';
 
+import { useParams } from 'react-router-dom';
 
+export default function CustomUrl() {
+  const { url } = useParams();
 
-export default function CustomViews() {
-  const username = localStorage.getItem('username');
   const [data, setData] = useState([]);
-  const [parallel, setParallel] = useState(false);
+  const [username, setUsername] = useState("");
+  const [parallel, setParallel] = useState(true);
+  const [urlParam, setUrlParam] = useState(url);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    axios.get(Constants.API_ADDRESS + '/customviews', {
-      params: {
-        username: username
-      }
+  const getData = () => {
+    const result = axios.get(`${Constants.API_ADDRESS}/custom/${urlParam}`, {
     }).then(response => {
+      console.log(result)
       console.log(response.data);
       setData(response.data);
-      console.log(response.data[0].parallel);
+      setParallel(response.data.parallel);
+      console.log(parallel);
       if (response.data.length === 0) {
         setErrorMessage("No custom views found");
+      }
+      else {
+        setUsername(response.data[0].username);
       }
     }).catch(error => {
       if (error.response.status === 404 || error.response.status === 500) {
@@ -37,7 +42,16 @@ export default function CustomViews() {
         console.log(error);
       }
     });
+  };
+  useEffect(() => {
+    getData();
   }, []);
+
+  useEffect(() => {
+    console.log(username);
+  }, [username]);
+
+
 
   const getCustomViews = () => {
     return data.map((view, index) => {
@@ -89,12 +103,7 @@ export default function CustomViews() {
 
       return (
         <div className="grid-container" key={`view-${index}`}>
-          <div className="link">
-            <a href={`http://localhost:3000/custom/${view.url}`} target="_blank" rel="noreferrer">This custom view can also be found here</a>
-          </div>
           {views}
-          {index === data.length - 1 ? (
-            <h2>End of custom views</h2>) : <h1>Custom view changes here to another one</h1>}
         </div>
       );
     });
@@ -102,13 +111,14 @@ export default function CustomViews() {
 
   const getLayout = () => {
     const containerClass = parallel ? "grid-container parallel" : "grid-container";
-    const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };
     return (
-      <div className={containerClass} style={containerStyle}>
+      <div className={containerClass}>
+        <h3>View was made by: {username}</h3>
         {getCustomViews()}
       </div>
     );
-  };
+  }
+
 
   return (
     <>
@@ -116,13 +126,10 @@ export default function CustomViews() {
         <span style={{ color: 'red' }}>{errorMessage}</span>
       </div>
       <div>
-        <h3>Custom views of user: {username}</h3>
-        <div>
-          {getLayout()}
-        </div>
+        {getLayout()}
       </div>
     </>
-  );
 
+  );
 }
 

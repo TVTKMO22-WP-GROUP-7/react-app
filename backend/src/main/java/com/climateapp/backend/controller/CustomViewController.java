@@ -14,9 +14,10 @@ import java.util.Map;
 import java.util.List;
 
 import com.climateapp.backend.repository.CustomViewRepository;
+import com.climateapp.backend.repository.UserRepository;
 import com.climateapp.backend.service.CustomViewService;
-import com.climateapp.backend.data.database.testicustom;
-
+import com.climateapp.backend.data.database.CustomView;
+import com.climateapp.backend.data.Users;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,6 +27,10 @@ public class CustomViewController {
 
     @Autowired
     CustomViewRepository customViewRepository;
+
+    @Autowired
+    UserRepository UserRepository;
+
 
     @PostMapping("/custompage")
     public ResponseEntity<String> saveView(@RequestBody Map<String, String> request) {
@@ -43,25 +48,32 @@ public class CustomViewController {
         String url = request.get("url");
         Boolean parallel = Boolean.parseBoolean(request.get("parallel"));
 
-        customViewService.saveView(username, textv1, textv2, textv3, textv4, textv5, visu1, visu2, visu3, visu4, visu5,
-                url, parallel);
-        return new ResponseEntity<>("OK", HttpStatus.OK);
+        Users userExists = UserRepository.findByUsername(username);
+        if (userExists == null) {
+            return new ResponseEntity<>("The username does not exist", HttpStatus.NOT_FOUND);
+        } else {
+            customViewService.saveView(username, textv1, textv2, textv3, textv4, textv5, visu1, visu2, visu3, visu4,
+                    visu5,
+                    url, parallel);
+            return new ResponseEntity<>("OK", HttpStatus.OK);
+        }
+
     }
 
     @GetMapping("/custom/{url}")
-    public ResponseEntity<List<testicustom>> getCustomView(@PathVariable String url) {
-        List<testicustom> customView = customViewService.getCustomView(url);
+    public ResponseEntity<List<CustomView>> getCustomView(@PathVariable String url) {
+        List<CustomView> customView = customViewService.getCustomView(url);
         if (customView == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(customView, HttpStatus.OK);
     }
 
     @GetMapping("/customviews")
-    public ResponseEntity<List<testicustom>> getCustomViews(@RequestParam String username) {
-        List<testicustom> customViews = customViewService.getCustom(username);
+    public ResponseEntity<List<CustomView>> getCustomViews(@RequestParam String username) {
+        List<CustomView> customViews = customViewService.getCustom(username);
         if (customViews == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            
+
         return new ResponseEntity<>(customViews, HttpStatus.OK);
     }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Constants from './Constants.json';
@@ -12,18 +12,20 @@ export default function ChangePassword() {
   const [confirmedPassword, setConfirmedPassword] = useState("");
   let navigate = useNavigate();
   const [changePasswordState, setChangePasswordState] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   //function to handle the change password submit
   const handleChangePasswordSubmit = async (event) => {
+    setErrorMessage("");
     if (newPassword !== confirmedPassword) {
-      alert("New password does not match with each other, check passwords again")
+      setErrorMessage("New password does not match with each other, check passwords again")
     }
     else if (password === "") {
-      alert("Password can't be empty")
+      setErrorMessage("Password can't be empty")
     }
     else if (password === newPassword) {
-      alert("New password can't be the same as your old password")
+      setErrorMessage("New password can't be the same as your old password")
     } else {
       event.preventDefault();
 
@@ -45,11 +47,20 @@ export default function ChangePassword() {
       }).catch(error => {
         setChangePasswordState("error");
         setTimeout(() => setChangePasswordState("idle"), 1500);
-        alert("Check that you have entered correct username and password");
+        setErrorMessage("Check that you have entered correct username and password");
         console.log(error);
       })
     }
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setErrorMessage("");
+    }, 1500);
+  
+    return () => clearTimeout(timeout);
+  }, [errorMessage]);
+
 
   let passwordControls = null;
   switch (changePasswordState) {
@@ -82,6 +93,9 @@ export default function ChangePassword() {
             <input type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
             <input type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
             <input type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
+            <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
             <div>
               {
                 passwordControls
