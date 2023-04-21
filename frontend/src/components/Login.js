@@ -92,13 +92,13 @@ export default function Login() {
                         <input type="text"
                             autoFocus
                             name="username"
-                            placeholder="Enter Username"
+                            placeholder="Enter username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}>
                         </input>
                         <input type="password"
                             name="password"
-                            placeholder="Enter Password"
+                            placeholder="Enter password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}>
                         </input>
