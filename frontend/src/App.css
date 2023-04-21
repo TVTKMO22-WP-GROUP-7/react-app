@@ -151,4 +151,24 @@ h2 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+<<<<<<< HEAD
 >>>>>>> 9a667aed662cfe23410dddd68a47be744d6cce2b
+=======
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+ 
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+.grid-container.parallel {
+  grid-template-columns: 1fr 1fr;
+}
+>>>>>>> b698c87f4e64ac34ed290a8d655e0940b853c38c

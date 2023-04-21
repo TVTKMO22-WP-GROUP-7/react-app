@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Map;
@@ -40,17 +41,28 @@ public class CustomViewController {
         Boolean visu4 = Boolean.parseBoolean(request.get("visu4"));
         Boolean visu5 = Boolean.parseBoolean(request.get("visu5"));
         String url = request.get("url");
-        Boolean paraller = Boolean.parseBoolean(request.get("paraller"));
+        Boolean parallel = Boolean.parseBoolean(request.get("parallel"));
 
         customViewService.saveView(username, textv1, textv2, textv3, textv4, textv5, visu1, visu2, visu3, visu4, visu5,
-                url, paraller);
+                url, parallel);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
-    @GetMapping("/{url}")
-    public List<testicustom> getCustomView(@PathVariable String url) {
-        return customViewService.getCustomView(url);
+    @GetMapping("/custom/{url}")
+    public ResponseEntity<List<testicustom>> getCustomView(@PathVariable String url) {
+        List<testicustom> customView = customViewService.getCustomView(url);
+        if (customView == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(customView, HttpStatus.OK);
     }
 
+    @GetMapping("/customviews")
+    public ResponseEntity<List<testicustom>> getCustomViews(@RequestParam String username) {
+        List<testicustom> customViews = customViewService.getCustom(username);
+        if (customViews == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            
+        return new ResponseEntity<>(customViews, HttpStatus.OK);
+    }
 
 }
