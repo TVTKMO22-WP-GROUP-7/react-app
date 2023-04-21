@@ -5,14 +5,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
-import com.climateapp.backend.data.database.testicustom;
+import com.climateapp.backend.data.database.CustomView;
 
 @Repository
-public interface CustomViewRepository extends JpaRepository<testicustom, String> {
-    @Query(value = "SELECT * FROM testicustom WHERE url = ?1", nativeQuery = true)
-    List<testicustom> findByUrl(String url);
+public interface CustomViewRepository extends JpaRepository<CustomView, String> {
+    @Query(value = "SELECT * FROM custom WHERE url = ?1", nativeQuery = true)
+    List<CustomView> findByUrl(String url);
 
-    @Query(value = "SELECT * FROM testicustom WHERE username = ?1", nativeQuery = true)
-    List<testicustom> findByUsername(String username);
+    @Query(value = "SELECT * FROM custom WHERE username = ?1", nativeQuery = true)
+    List<CustomView> findByUsername(String username);
 
 }

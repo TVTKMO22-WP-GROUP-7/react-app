@@ -12,6 +12,7 @@ function V1() {
   const [isAnnual, setIsAnnual] = useState(true);
   const [isReconstruction, setIsReconstruction] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [data1, setData] = useState([]);
   const getData = () => {
@@ -19,11 +20,13 @@ function V1() {
       console.log(response.data);
       setData(response.data);
     })
-      .catch((error) => {
-        if (error.response.status === 404 || error.response.status === 500)
-          alert("No data found");
-        console.log(error);
-      });
+        .catch((error) => {
+          if (error.message === "Network Error")
+            setErrorMessage("No connection to the server.");
+          if (error.response && (error.response.status === 404 || error.response.status === 500))
+            setErrorMessage("No data found");
+          console.log(error);
+        });
   };
 
   useEffect(() => {
@@ -36,12 +39,14 @@ function V1() {
       console.log(response.data);
       setData2(response.data);
     })
-      .catch((error) => {
-        if (error.response.status === 404 || error.response.status === 500)
-          alert("No data found");
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
 
   useEffect(() => {
     getData2();
@@ -53,12 +58,14 @@ function V1() {
       console.log(response.data);
       setData3(response.data);
     })
-      .catch((error) => {
-        if (error.response.status === 404 || error.response.status === 500)
-          alert("No data found");
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
 
   useEffect(() => {
     getData3();
@@ -70,12 +77,14 @@ function V1() {
       console.log(response.data);
       setData4(response.data);
     })
-      .catch((error) => {
-        if (error.response.status === 404 || error.response.status === 500)
-          alert("No data found");
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
 
   useEffect(() => {
     getData4();
@@ -87,12 +96,14 @@ function V1() {
       console.log(response.data);
       setData5(response.data);
     })
-      .catch((error) => {
-        if (error.response.status === 404 || error.response.status === 500)
-          alert("No data found");
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
 
   useEffect(() => {
     getData5();
@@ -104,13 +115,14 @@ function V1() {
       console.log(response.data);
       setData6(response.data);
     })
-      .catch((error) => {
-        if (error.response.status === 404 || error.response.status === 500)
-          alert("No data found");
-        console.log(error);
-      });
-  };
-
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
   useEffect(() => {
     getData6();
   }, []);
@@ -121,12 +133,14 @@ function V1() {
       console.log(response.data);
       setData7(response.data);
     })
-      .catch((error) => {
-        if (error.response.status === 404 || error.response.status === 500)
-          alert("No data found");
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
 
   useEffect(() => {
     getData7();
@@ -266,6 +280,7 @@ function V1() {
   const ReconstructionOptions = {
     responsive: true,
     sacked: false,
+    maintainAspectRatio: false,
     plugins: {
       legend:
       {
@@ -340,8 +355,11 @@ function V1() {
 
 
   return (
-    <div >
+    <div>
       <h1>Visualization 1</h1>
+      <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
       <div className="button-container">
         {showDescription ? null :
           (!isReconstruction &&
@@ -359,18 +377,23 @@ function V1() {
         </button>
       </div>
       <div className="chart-container">
-        {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
-          <div className="description">
-            <h5 className="description-title">Description</h5>
-            <p className="description-text">This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
-            <p> The chart also presents a temperature reconstruction of the Northern Hemisphere for the past 2,000 years.</p>
-            <p> If you want to see the temperature reconstruction data press the show 'Temperature Reconstruction-button'</p>
+        {showDescription ? (
+          <div className="card mt-4" style={{ width: "24rem" }}>
+            <div className="description">
+              <h5 className="description-title">Description</h5>
+              <p className="description-text">This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
+              <p> The chart also presents a temperature reconstruction of the Northern Hemisphere for the past 2,000 years.</p>
+              <p> If you want to see the temperature reconstruction data press the show 'Temperature Reconstruction-button'</p>
+            </div>
+            <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+            <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts5 Data </a></p>
+            <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 Year Northern Hemisphere Temperature Reconstruction</a></p>
           </div>
-          <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
-          <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts5 Data </a></p>
-          <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 Year Northern Hemisphere Temperature Reconstruction</a></p>
-        </div>
-          : <Line data={changeData()} options={changeDataOptions()} alt="Anomaly data chart" />}
+        ) : (
+          <>
+            <Line data={changeData()} options={changeDataOptions()} style={{ width: "100%" }} alt="Anomaly data chart" />
+          </>
+        )}
       </div>
     </div>
   );

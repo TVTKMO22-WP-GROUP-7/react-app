@@ -16,6 +16,8 @@ function V4() {
     const [countries, setCountries] = useState([]);
     const [selectedCountries, setSelectedCountries] = useState([]);
     const [showDescription, setShowDescription] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     // Fetch data from the server
 
@@ -61,9 +63,13 @@ function V4() {
             setCountries(countryNames);
 
             setLoading(false);
-            
+
         } catch (error) {
-            console.error(error);
+            if (error.message === "Network Error")
+                setErrorMessage("No connection to the server.");
+            if (error.response && (error.response.status === 404 || error.response.status === 500))
+                setErrorMessage("No data found");
+            console.log(error);
             setChartData([]);
             setLoading(false);
         }
@@ -107,7 +113,7 @@ function V4() {
                     title: {
                         display: true,
                         text: 'CO2 Emissions (tonnes)',
-                        
+
                     },
                 },
                 x: {
@@ -218,6 +224,9 @@ function V4() {
     return (
         <div>
             <h1>Visualization 4</h1>
+            <div>
+                <span style={{ color: 'red' }}>{errorMessage}</span>
+            </div>
             <div className="button-container">
                 {showDescription ? null : (
                     <>
@@ -262,15 +271,14 @@ function V4() {
                         </select>
                     </div>
                 )}
+                <div className="selectedcountry">
+                    <SelectedCountriesBox selectedCountries={selectedCountries}
+                        handleRemoveCountry={handleRemoveCountry} /> </div>
                 <div className="chart-container">
-                    {!showDescription &&  (
+                    {!showDescription && (
                         <>
-                            <SelectedCountriesBox selectedCountries={selectedCountries}
-                            handleRemoveCountry={handleRemoveCountry} />
-                            <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions}  alt="CO2 emissions chart data" />
-
+                            <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} alt="CO2 emissions chart data" style={{ width: "100%" }} />
                         </>
-
                     )}
                 </div>
             </div>
