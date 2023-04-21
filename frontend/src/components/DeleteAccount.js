@@ -60,7 +60,7 @@ export default function DeleteAccount() {
   let deleteControls = null;
   switch (changeDeleteState) {
     case "idle":
-      deleteControls = <button type="submit">Delete Account</button>
+      deleteControls = <button type="submit">Delete account</button>
       break;
 
     case "processing":

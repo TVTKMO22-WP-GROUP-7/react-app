@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "react-icons": "^4.8.0"
+  },
+  "devDependencies": {
+    "junit": "^1.4.9",
+    "ts-mockito": "^2.6.1"
   }
 }

@@ -33,12 +33,16 @@ public class UserController {
 
         String username = request.get("username");
         String password = request.get("password");
-        Users u = uService.register(username, password);
-        if (u == null) {
-            String e = "Username " + username + " already exists!";
-            return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+
+        if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
+            Users u = uService.register(username, password);
+            if (u == null) {
+                String e = "Username " + username + " already exists!";
+                return new ResponseEntity<>(e, HttpStatus.FORBIDDEN);
+            }
+            return new ResponseEntity<>(u.username, HttpStatus.OK);
         }
-        return new ResponseEntity<>(u.username, HttpStatus.OK);
+        return new ResponseEntity<>("Username and password are required", HttpStatus.FORBIDDEN);
     }
 
     @PostMapping("/login")
@@ -74,12 +78,15 @@ public class UserController {
         String username = request.get("username");
         String password = request.get("password");
         String newPassword = request.get("newPassword");
-        Users u = uService.changePassword(username, password, newPassword);
-        if (u == null) {
-            return new ResponseEntity<>("Check that you've written right username and current password",
-                    HttpStatus.FORBIDDEN);
+        if (newPassword != null && !newPassword.isEmpty()) {
+            Users u = uService.changePassword(username, password, newPassword);
+            if (u == null) {
+                return new ResponseEntity<>("Check that you've written right username and current password",
+                        HttpStatus.FORBIDDEN);
+            }
+            return new ResponseEntity<>("Password changed", HttpStatus.OK);
         }
-        return new ResponseEntity<>("Password changed", HttpStatus.OK);
+        return new ResponseEntity<>("New password can not be empty", HttpStatus.FORBIDDEN);
     }
 
 

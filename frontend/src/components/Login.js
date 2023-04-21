@@ -38,7 +38,7 @@ export default function Login() {
                     setLoginState("idle")
                     navigate('/', { replace: true });
                     window.location.reload(false);
-                }, 1500);
+                }, 5500);
             }).catch(error => {
                 setLoginState("error");
                 setTimeout(() => setLoginState("idle"), 1500);
@@ -92,18 +92,18 @@ export default function Login() {
                         <input type="text"
                             autoFocus
                             name="username"
-                            placeholder="Enter Username"
+                            placeholder="Enter username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}>
                         </input>
                         <input type="password"
                             name="password"
-                            placeholder="Enter Password"
+                            placeholder="Enter password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}>
                         </input>
                         <br></br>
-                        <div>
+                        <div >
                             <span style={{ color: 'red' }}>{errorMessage}</span>
                         </div>
                         <div>
