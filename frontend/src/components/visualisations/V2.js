@@ -10,6 +10,7 @@ function V2() {
   const [isAnnual, setIsAnnual] = useState(true);
   const [isIcecore, setIsIcecore] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [datav2_1, setData] = useState([]);
   const getData = () => {
@@ -17,10 +18,15 @@ function V2() {
       console.log(response.data);
       setData(response.data);
     })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
+
 
   useEffect(() => {
     getData();
@@ -32,10 +38,15 @@ function V2() {
       console.log(response.data);
       setData2(response.data);
     })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
+
 
   useEffect(() => {
     getData2();
@@ -47,10 +58,14 @@ function V2() {
       console.log(response.data);
       setData3(response.data);
     })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
 
   useEffect(() => {
     getData3();
@@ -62,10 +77,15 @@ function V2() {
       console.log(response.data);
       setData4(response.data);
     })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
+
 
   useEffect(() => {
     getData4();
@@ -77,10 +97,15 @@ function V2() {
       console.log(response.data);
       setData5(response.data);
     })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    .catch((error) => {
+      if (error.message === "Network Error")
+        setErrorMessage("No connection to the server.");
+      if (error.response && (error.response.status === 404 || error.response.status === 500))
+        setErrorMessage("No data found");
+      console.log(error);
+    });
+};
+
 
   useEffect(() => {
     getData5();
@@ -249,6 +274,9 @@ function V2() {
   return (
     <div>
       <h1>Visualization 2</h1>
+      <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
       <div className="button-container">
         {showDescription ? null : (
           <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show Icecore" : "Show Yearly and monthly data"}</button>

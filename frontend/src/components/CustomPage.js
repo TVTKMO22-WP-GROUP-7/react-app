@@ -21,6 +21,7 @@ export default function CustomPage() {
   const [createV4, setCreateV4] = useState(false)
   const [createV5, setCreateV5] = useState(false)
   const [parallel, setParallel] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [customState, setCustomState] = useState("idle");
 
@@ -61,13 +62,15 @@ export default function CustomPage() {
     }).then(response => {
       setCustomState("success")
       setTimeout(() => {
-        setCustomState("idle")}, 3000);
+        setCustomState("idle")
+      }, 3000);
     }).catch(error => {
       setCustomState("error");
       if (error.response.status === 404 || error.response.status === 500) {
-        alert("Something went wrong, please try again later")
+        setErrorMessage("Something went wrong, please try again later")
         console.log(error)
-      }})
+      }
+    })
   }
 
 
@@ -233,11 +236,10 @@ export default function CustomPage() {
       customControls = <button type="submit">Go back</button>;
   }
 
-  
+
 
   return (
     <>
-
       <div id='chart' className="custom">
         <div className="form-check form-switch container-fluid py-5">
           <table>
@@ -306,6 +308,9 @@ export default function CustomPage() {
               }
             </div>
           </Form>
+          <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
         </div>
       </div>
       <div className="grid-container" >

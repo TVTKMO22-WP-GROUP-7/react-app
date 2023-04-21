@@ -17,6 +17,7 @@ export default function CustomViews() {
   const username = localStorage.getItem('username');
   const [data, setData] = useState([]);
   const [parallel, setParallel] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     axios.get(Constants.API_ADDRESS + '/customviews', {
@@ -28,11 +29,11 @@ export default function CustomViews() {
       setData(response.data);
       console.log(response.data[0].parallel);
       if (response.data.length === 0) {
-        alert("No custom views found");
+        setErrorMessage("No custom views found");
       }
     }).catch(error => {
       if (error.response.status === 404 || error.response.status === 500) {
-        alert("Something went wrong, return later")
+        setErrorMessage("Something went wrong, return later")
         console.log(error);
       }
     });
@@ -88,7 +89,7 @@ export default function CustomViews() {
 
       return (
         <div className="grid-container" key={`view-${index}`}>
-          <div className = "link">
+          <div className="link">
             <a href={`http://localhost:3000/custom/${view.url}`} target="_blank" rel="noreferrer">This custom view can also be found here</a>
           </div>
           {views}
@@ -108,15 +109,20 @@ export default function CustomViews() {
       </div>
     );
   };
-  
+
   return (
-    <div>
-      <h3>Custom views of user: {username}</h3>
+    <>
+      <div>
+        <span style={{ color: 'red' }}>{errorMessage}</span>
+      </div>
+      <div>
+        <h3>Custom views of user: {username}</h3>
         <div>
           {getLayout()}
         </div>
-    </div>
+      </div>
+    </>
   );
-  
+
 }
 

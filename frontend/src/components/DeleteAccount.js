@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Constants from './Constants.json';
@@ -10,24 +10,26 @@ export default function DeleteAccount() {
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
   const [changeDeleteState, setChangeDeleteState] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   //function to handle delete
   const handleDelete = async (event) => {
- 
+    setErrorMessage("");
+
     if (password === "") {
-      alert("Password can't be empty")
+      setErrorMessage("Password can't be empty")
     }
-     else {
+    else {
       event.preventDefault();
 
       setChangeDeleteState("processing");
 
       //send the delete request to the backend
       await axios.delete(Constants.API_ADDRESS + "/deleteaccount", {
-        data :{
-        username: username,
-        password: password,
+        data: {
+          username: username,
+          password: password,
         }
       }).then(response => {
         console.log(response);
@@ -40,12 +42,20 @@ export default function DeleteAccount() {
       }).catch(error => {
         setChangeDeleteState("error");
         setTimeout(() => setChangeDeleteState("idle"), 1500);
-        alert("Check that you have entered correct username and password");
+        setErrorMessage("Check that you have entered correct username and password");
         console.log(error);
 
       })
     }
   }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setErrorMessage("");
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, [errorMessage]);
 
   let deleteControls = null;
   switch (changeDeleteState) {
@@ -76,6 +86,9 @@ export default function DeleteAccount() {
           <h4>Delete Account</h4>
           <form onSubmit={handleDelete}>
             <input type="password" name="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <div>
+              <span style={{ color: 'red' }}>{errorMessage}</span>
+            </div>
             <div>
               {
                 deleteControls

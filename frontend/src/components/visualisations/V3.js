@@ -8,6 +8,7 @@ import Constants from "../Constants.json";
 function V3() {
 
     const [showDescription, setShowDescription] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const [globalData, setGlobalData] = useState({});
 
@@ -23,9 +24,13 @@ function V3() {
 
             setGlobalData(modifiedData);
         })
-            .catch((error) => {
-                console.log(error);
-            });
+        .catch((error) => {
+            if (error.message === "Network Error")
+              setErrorMessage("No connection to the server.");
+            if (error.response && (error.response.status === 404 || error.response.status === 500))
+              setErrorMessage("No data found");
+            console.log(error);
+          });
     };
 
     useEffect(() => {
@@ -39,9 +44,13 @@ function V3() {
             console.log(response.data);
             setCarbonData(response.data);
         })
-            .catch((error) => {
-                console.log(error);
-            });
+        .catch((error) => {
+            if (error.message === "Network Error")
+              setErrorMessage("No connection to the server.");
+            if (error.response && (error.response.status === 404 || error.response.status === 500))
+              setErrorMessage("No data found");
+            console.log(error);
+          });
     };
     useEffect(() => {
         getCarbonData();
@@ -54,9 +63,13 @@ function V3() {
             console.log(response.data);
             setEventData(response.data);
         })
-            .catch((error) => {
-                console.log(error);
-            });
+        .catch((error) => {
+            if (error.message === "Network Error")
+              setErrorMessage("No connection to the server.");
+            if (error.response && (error.response.status === 404 || error.response.status === 500))
+              setErrorMessage("No data found");
+            console.log(error);
+          });
     };
     useEffect(() => {
         getEventData();
@@ -185,6 +198,9 @@ function V3() {
     return (
         <div>
             <h1>Visualization 3</h1>
+            <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
             <div className="button-container">
                 <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>

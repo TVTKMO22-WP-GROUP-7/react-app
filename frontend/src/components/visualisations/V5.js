@@ -17,6 +17,8 @@ function V5() {
     const [afoluData, setAfoluData] = useState([]);
     const [selectedSector, setSelectedSector] = useState();
     const [showDescription, setShowDescription] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+
 
     const chartRef = useRef();
 
@@ -27,11 +29,14 @@ function V5() {
                 setSelectedSector({ data: data, label: "CO2 emissions all sectors" })
                 console.log(data);
                 setData(data);
-                if (data.length === 0) {
-                    alert("Not data found");
-                }
-            }
-            );
+            })
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     }, []);
 
     useEffect(() => {
@@ -40,11 +45,14 @@ function V5() {
             .then(data => {
                 console.log(data);
                 setEnergyData(data);
-                if (data.length === 0) {
-                    alert("Not data found");
-                }
-            }
-            );
+            })
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     }, []);
 
     useEffect(() => {
@@ -53,11 +61,14 @@ function V5() {
             .then(data => {
                 console.log(data);
                 setIndustrialData(data);
-                if (data.length === 0) {
-                    alert("Not data found");
-                }
-            }
-            );
+            })
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     }, []);
 
     useEffect(() => {
@@ -66,11 +77,14 @@ function V5() {
             .then(data => {
                 console.log(data);
                 setWasteData(data);
-                if (data.length === 0) {
-                    alert("Not data found");
-                }
-            }
-            );
+            })
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     }, []);
 
     useEffect(() => {
@@ -79,11 +93,14 @@ function V5() {
             .then(data => {
                 console.log(data);
                 setAfoluData(data);
-                if (data.length === 0) {
-                    alert("Not data found");
-                }
-            }
-            );
+            })
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     }, []);
 
     const onClick = (event) => {
@@ -171,6 +188,9 @@ function V5() {
     return (
         <div>
             <h1>Visualization 5</h1>
+            <div>
+                <span style={{ color: 'red' }}>{errorMessage}</span>
+            </div>
             <h2 className="selectedsector-container">{selectedSector ? selectedSector.label : "All sectors"}</h2>
             <div className="button-container">
                 {showDescription ? null : (
@@ -208,7 +228,7 @@ function V5() {
                         </p>
                     </div>
                 )}
-                {!showDescription && <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} style={{ width: "100%" }}/>}
+                {!showDescription && <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} style={{ width: "100%" }} />}
             </div>
         </div>
     );

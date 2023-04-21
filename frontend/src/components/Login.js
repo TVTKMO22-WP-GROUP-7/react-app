@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from 'react-router-dom'
 import axios from 'axios';
 import Constants from './Constants.json';
@@ -10,22 +10,30 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
     const [loginState, setLoginState] = useState("idle");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleLoginSubmit = async (e) => {
-        e.preventDefault()
+        setErrorMessage("")
+        if (username === "" || password === "") {
+            setErrorMessage("Username and password can't be empty")
+            setTimeout(() => setLoginState("idle"), 4000);
+        }
+        else {
+            setErrorMessage("");
+            e.preventDefault()
 
-        setLoginState("processing")
+            setLoginState("processing")
 
-        await axios.post(Constants.API_ADDRESS + "/login", {
-                    username: username,
-                    password: password,
+            await axios.post(Constants.API_ADDRESS + "/login", {
+                username: username,
+                password: password,
             }).then(response => {
                 const token = response.data
                 localStorage.setItem("token", token)
                 localStorage.setItem("username", username)
                 setAuthToken(token)
-                console.log(token)
                 setLoginState("success");
+                setErrorMessage("");
                 setTimeout(() => {
                     setLoginState("idle")
                     navigate('/', { replace: true });
@@ -34,12 +42,23 @@ export default function Login() {
             }).catch(error => {
                 setLoginState("error");
                 setTimeout(() => setLoginState("idle"), 1500);
-                alert("Wrong username or password")
+                setErrorMessage("Wrong username or password");
                 console.log(error)
             })
 
+        }
+
     }
 
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+          setErrorMessage("");
+        }, 1500);
+      
+        return () => clearTimeout(timeout);
+      }, [errorMessage]);
+
+      
     let loginControls = null;
     switch (loginState) {
         case "idle":
@@ -84,6 +103,9 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}>
                         </input>
                         <br></br>
+                        <div>
+                            <span style={{ color: 'red' }}>{errorMessage}</span>
+                        </div>
                         <div>
                             {loginControls}
                         </div>
