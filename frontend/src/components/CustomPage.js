@@ -8,7 +8,6 @@ import V2 from "./visualisations/V2";
 import V3 from "./visualisations/V3";
 import V4 from './visualisations/V4';
 import V5 from './visualisations/V5';
-import { useNavigate } from 'react-router-dom';
 import Constants from './Constants.json';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,12 +22,14 @@ export default function CustomPage() {
   const [createV5, setCreateV5] = useState(false)
   const [parallel, setParallel] = useState(false)
 
+  const [customState, setCustomState] = useState("idle");
+
   const [visu1, setVisu1] = useState("")
   const [visu2, setVisu2] = useState("")
   const [visu3, setVisu3] = useState("")
   const [visu4, setVisu4] = useState("")
   const [visu5, setVisu5] = useState("")
-  //
+
   const [v1text, setv1Text] = useState("")
   const [v2text, setv2Text] = useState("")
   const [v3text, setv3Text] = useState("")
@@ -37,10 +38,10 @@ export default function CustomPage() {
 
   const url = uuidv4();
 
-  const navigate = useNavigate();
-  //const [changeSaveState,setChangeSaveState] = useState("idle");
 
-  const saveView = async (e) =>  {
+  const saveView = async (e) => {
+    console.log("Setting custom state to processing");
+    setCustomState("processing");
     e.preventDefault()
 
     await axios.post(Constants.API_ADDRESS + "/custompage", {
@@ -58,17 +59,15 @@ export default function CustomPage() {
       url: url,
       parallel: parallel
     }).then(response => {
-      console.log(v1text)
-      console.log(v2text)
-      console.log(v3text)
-      console.log(v4text)
-      console.log(v5text)
-      console.log(response)
-      console.log("onnistui")
+      setCustomState("success")
+      setTimeout(() => {
+        setCustomState("idle")}, 3000);
     }).catch(error => {
-      alert("erroria vitusti")
-      console.log(error)
-    })
+      setCustomState("error");
+      if (error.response.status === 404 || error.response.status === 500) {
+        alert("Something went wrong, please try again later")
+        console.log(error)
+      }})
   }
 
 
@@ -174,41 +173,67 @@ export default function CustomPage() {
 
 
   const DrawChartV1 = () => (
-    <div className="container-fluid py-5">
+    <div className="grid-container">
       <V1 />
-      {v1text}
+      <p className="text">{v1text}</p>
     </div>
   );
   const DrawChartV2 = () => (
-    <div className="container-fluid py-5">
+    <div className="grid-container">
       <V2 />
-      {v2text}
+      <p className="text">{v2text}</p>
     </div>
   );
 
   const DrawChartV3 = () => (
-    <div className="container-fluid py-5">
+    <div className="grid-container">
       <V3 />
-      {v3text}
-
+      <p className="text">{v3text}</p>
     </div>
 
   );
 
   const DrawChartV4 = () => (
-    <div className="container-fluid py-5">
+    <div className="grid-container">
       <V4 />
-      {v4text}
+      <p className="text">{v4text}</p>
     </div>
   );
 
   const DrawChartV5 = () => (
-    <div className="container-fluid py-5">
+    <div className="grid-container">
       <V5 />
-      {v5text}
+      <p className="text">{v5text}</p>
     </div>
   );
 
+  let customControls = null;
+  switch (customState) {
+    case "idle":
+      customControls = <button type="submit">Save custom view</button>;
+      console.log("idle")
+      break;
+
+    case "processing":
+      customControls = <span style={{ color: 'blue' }}>Searching for custom views</span>;
+      console.log("processing")
+      break;
+
+    case "success":
+      customControls = <span style={{ color: 'green' }}>Success. You can see your own custom views by clicking custom views on a top bar</span>;
+      console.log("success")
+      break;
+
+    case "error":
+      customControls = <span style={{ color: 'red' }}>Error</span>;
+      console.log("error")
+      break;
+
+    default:
+      customControls = <button type="submit">Go back</button>;
+  }
+
+  
 
   return (
     <>
@@ -271,17 +296,19 @@ export default function CustomPage() {
           </table>
           <Form className='button-container' onSubmit={handleClick}>
             <Button block="true" type="submit"  >
-              Show view
+              Preview the view
             </Button>
           </Form>
           <Form className='button-container' onSubmit={saveView}>
-            <Button block="true" type="submit">
-              Save
-            </Button>
+            <div>
+              {
+                customControls
+              }
+            </div>
           </Form>
         </div>
       </div>
-      <div className="container-fluid py-5" >
+      <div className="grid-container" >
         {(createV1 && createView) ? <DrawChartV1 /> : null}
         {(createV2 && createView) ? <DrawChartV2 /> : null}
         {(createV3 && createView) ? <DrawChartV3 /> : null}

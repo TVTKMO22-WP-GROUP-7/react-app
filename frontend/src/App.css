@@ -197,8 +197,10 @@
     grid-gap: 20px;
   }
 
-  .grid-container.parallel {
-    grid-template-columns: 1fr 1fr;
+  .parallel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 
   .link {
@@ -206,6 +208,15 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+
+  .link:active {
+    color: #0056b3;
   }
 
   p {

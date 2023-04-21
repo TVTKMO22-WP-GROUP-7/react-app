@@ -16,8 +16,7 @@ import V5 from './visualisations/V5';
 export default function CustomViews() {
   const username = localStorage.getItem('username');
   const [data, setData] = useState([]);
-  const [buttonClicked, setButtonClicked] = useState(false);
-  const [parallel, setParallel] = useState(true);
+  const [parallel, setParallel] = useState(false);
 
   useEffect(() => {
     axios.get(Constants.API_ADDRESS + '/customviews', {
@@ -27,8 +26,7 @@ export default function CustomViews() {
     }).then(response => {
       console.log(response.data);
       setData(response.data);
-      setParallel(response.data.parallel);
-      console.log(parallel);
+      console.log(response.data[0].parallel);
       if (response.data.length === 0) {
         alert("No custom views found");
       }
@@ -91,8 +89,7 @@ export default function CustomViews() {
       return (
         <div className="grid-container" key={`view-${index}`}>
           <div className = "link">
-            <p >URL of this custom view is: </p>
-            <a href="http://localhost:3000/custom{view.url}" target="_blank" rel="noreferrer">http://localhost:3000/custom{view.url}</a>
+            <a href={`http://localhost:3000/custom/${view.url}`} target="_blank" rel="noreferrer">This custom view can also be found here</a>
           </div>
           {views}
           {index === data.length - 1 ? (
@@ -104,30 +101,22 @@ export default function CustomViews() {
 
   const getLayout = () => {
     const containerClass = parallel ? "grid-container parallel" : "grid-container";
-    const containerStyle = parallel ? { display: "grid" } : { width: "100%" };
+    const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };
     return (
       <div className={containerClass} style={containerStyle}>
         {getCustomViews()}
       </div>
     );
   };
-
+  
   return (
     <div>
       <h3>Custom views of user: {username}</h3>
-      <div>
-        <Form className="button-container">
-          <Button block={true} type="button" onClick={() => setButtonClicked(true)}>
-            Show
-          </Button>
-        </Form>
-      </div>
-      {buttonClicked ? (
         <div>
           {getLayout()}
         </div>
-      ) : null}
     </div>
   );
+  
 }
 
