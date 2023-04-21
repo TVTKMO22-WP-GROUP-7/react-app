@@ -301,6 +301,7 @@ export default function CustomPage() {
               Preview the view
             </Button>
           </Form>
+          
           <Form className='button-container' onSubmit={saveView}>
             <div>
               {
@@ -308,6 +309,11 @@ export default function CustomPage() {
               }
             </div>
           </Form>
+
+          <Form.Group className="mb-3" controlId="parallel">
+           <Form.Check type="checkbox" label="Set parallel" checked={parallel} onChange={(e) => setParallel(e.target.checked)} />
+          </Form.Group>
+
           <div>
             <span style={{ color: 'red' }}>{errorMessage}</span>
           </div>
@@ -321,7 +327,7 @@ export default function CustomPage() {
         {(createV5 && createView) ? <DrawChartV5 /> : null}
 
       </div>
-
+              
     </>
   );
 }

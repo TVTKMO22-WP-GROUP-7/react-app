@@ -224,7 +224,7 @@ function V2() {
       },
       title: {
         display: true,
-        text: "icecore",
+        text: "Antarctic Ice Core records of atmospheric CO2 ratios",
         font: {
           size: 20
         }
@@ -279,7 +279,7 @@ function V2() {
           </div>
       <div className="button-container">
         {showDescription ? null : (
-          <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show Icecore" : "Show Yearly and monthly data"}</button>
+          <button onClick={() => setIsAnnual(!isAnnual)} className="btn btn-outline-primary-mt2">{isAnnual ? "Show antarctic ice core records" : "Show yearly and monthly data"}</button>
         )}
         <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
       </div>
