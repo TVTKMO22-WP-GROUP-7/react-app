@@ -1,9 +1,12 @@
 package com.climateapp.backend.service;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.climateapp.backend.repository.CustomViewRepository;
 import com.climateapp.backend.repository.UserRepository;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -13,10 +16,14 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.climateapp.backend.data.Users;
 
 
+
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    CustomViewRepository customViewRepository;
 
     @Autowired
     PasswordEncoder enc;
@@ -71,12 +78,16 @@ public class UserService {
 
 //delete
 
-    public Users deleteAccount(String username, String password) {
-        Users u = userRepository.findByUsername(username);
-        if (u != null && enc.matches(password, u.password)) {
-            userRepository.delete(u);
-            return u;
-        }
-        return null;
+public Users deleteAccount(String username, String password) {
+    Users u = userRepository.findByUsername(username);
+    if (u != null && enc.matches(password, u.password)) {
+        userRepository.delete(u);
+        return u;
     }
+    return null;
 }
+
+
+}
+
+
