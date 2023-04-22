@@ -68,22 +68,33 @@ export default function CustomViews() {
         );
       }
 
-  const getLayout = () => {
-    const containerClass = "grid-container";
-    let containerStyle = { display: "flex", flexWrap: "wrap", gap: "20px" };
-    let visuContainerStyle = { width: "100%" };
+      if (view.visu2) {
+        views.push(
+          <div key={`v${index}-2`}>
+            <V2 textv2={view.textv2} />
+            <p className="text">{view.textv2}</p>
+          </div>
+        );
+      }
 
-    const isParallel = index => Array.isArray(parallel) && parallel[index];
+      if (view.visu3) {
+        views.push(
+          <div key={`v${index}-3`}>
+            <V3 textv3={view.textv3} />
+            <p className="text">{view.textv3}</p>
+          </div>
+        );
+      }
 
-    if (Array.isArray(parallel) && parallel.every(value => !value)) {
-      containerStyle = { display: "block", gap: "20px" };
-      visuContainerStyle = { width: "calc(50% - 10px)", display: "inline-block", verticalAlign: "top" };
-    } else if (Array.isArray(parallel) && parallel.some(value => value)) {
-      containerStyle = { display: "block", gap: "20px" };
-      visuContainerStyle = { width: "calc(50% - 10px)", display: "inline-block", verticalAlign: "top" };
-    }
+      if (view.visu4) {
+        views.push(
+          <div key={`v${index}-4`}>
+            <V4 textv4={view.textv4} />
+            <p className="text">{view.textv4}</p>
+          </div>
+        );
+      }
 
-    const visuStyle = { width: "100%" };
       if (view.visu5) {
         views.push(
           <div key={`v${index}-5`}>
