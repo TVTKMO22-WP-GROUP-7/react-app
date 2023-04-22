@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './visualisations/Visu.css';
 import axios from 'axios';
 import { Chart } from "chart.js";
@@ -22,7 +22,6 @@ export default function CustomPage() {
   const [createV5, setCreateV5] = useState(false)
   const [parallel, setParallel] = useState(false)
   const [errorMessage, setErrorMessage] = useState("");
-
   const [customState, setCustomState] = useState("idle");
 
   const [visu1, setVisu1] = useState("")
@@ -236,7 +235,24 @@ export default function CustomPage() {
       customControls = <button type="submit">Go back</button>;
   }
 
+  useEffect(() => {
+    getLayout();
+  }, [parallel]);
 
+    const getLayout = () => {
+      const containerClass = parallel ? "grid-container parallel" : "grid-container";
+      const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };
+      return (
+        <div className={containerClass} style={containerStyle}>
+          {(createV1 && createView) ? <DrawChartV1 /> : null}
+          {(createV2 && createView) ? <DrawChartV2 /> : null}
+          {(createV3 && createView) ? <DrawChartV3 /> : null}
+          {(createV4 && createView) ? <DrawChartV4 /> : null}
+          {(createV5 && createView) ? <DrawChartV5 /> : null}
+          
+        </div>
+      );
+    };
 
   return (
     <>
@@ -310,23 +326,12 @@ export default function CustomPage() {
             </div>
           </Form>
 
-          <Form.Group className="mb-3" controlId="parallel">
-           <Form.Check type="checkbox" label="Set parallel" checked={parallel} onChange={(e) => setParallel(e.target.checked)} />
-          </Form.Group>
-
           <div>
             <span style={{ color: 'red' }}>{errorMessage}</span>
           </div>
         </div>
       </div>
-      <div className="grid-container" >
-        {(createV1 && createView) ? <DrawChartV1 /> : null}
-        {(createV2 && createView) ? <DrawChartV2 /> : null}
-        {(createV3 && createView) ? <DrawChartV3 /> : null}
-        {(createV4 && createView) ? <DrawChartV4 /> : null}
-        {(createV5 && createView) ? <DrawChartV5 /> : null}
-
-      </div>
+      {getLayout()}
               
     </>
   );
