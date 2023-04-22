@@ -28,13 +28,13 @@ export default function CustomUrl() {
       console.log(result)
       console.log(response.data);
       setData(response.data);
-      setParallel(response.data.parallel);
       console.log(parallel);
       if (response.data.length === 0) {
         setErrorMessage("No custom views found");
       }
       else {
         setUsername(response.data[0].username);
+        setParallel(response.data[0].parallel);
       }
     }).catch(error => {
       if (error.response.status === 404 || error.response.status === 500) {
@@ -53,72 +53,102 @@ export default function CustomUrl() {
 
 
 
-  const getCustomViews = () => {
-    return data.map((view, index) => {
-      const views = [];
-      if (view.visu1) {
-        views.push(
-          <div key={`v${index}-1`}>
-            <V1 textv1={view.textv1} />
-            <p className="text">{view.textv1}</p>
-          </div>
-        );
-      }
-
-      if (view.visu2) {
-        views.push(
-          <div key={`v${index}-2`}>
-            <V2 textv2={view.textv2} />
-            <p className="text">{view.textv2}</p>
-          </div>
-        );
-      }
-
-      if (view.visu3) {
-        views.push(
-          <div key={`v${index}-3`}>
-            <V3 textv3={view.textv3} />
-            <p className="text">{view.textv3}</p>
-          </div>
-        );
-      }
-
-      if (view.visu4) {
-        views.push(
-          <div key={`v${index}-4`}>
-            <V4 textv4={view.textv4} />
-            <p className="text">{view.textv4}</p>
-          </div>
-        );
-      }
-
-      if (view.visu5) {
-        views.push(
-          <div key={`v${index}-5`}>
-            <V5 textv5={view.textv5} />
-            <p className="text">{view.textv5}</p>
-          </div>
-        );
-      }
-
-      return (
-        <div className="grid-container" key={`view-${index}`}>
-          {views}
-        </div>
-      );
-    });
-  };
-
   const getLayout = () => {
-    const containerClass = parallel ? "grid-container parallel" : "grid-container";
+    const containerClass = "grid-container";
+    let containerStyle = { display: "flex", flexWrap: "wrap", gap: "20px" };
+    let visuContainerStyle = { width: "100%" };
+    
+    if (parallel) {
+      containerStyle = { display: "block", gap: "20px" };
+      visuContainerStyle = { width: "calc(50% - 10px)", display: "inline-block", verticalAlign: "top" };
+    }
+    
+    const visuStyle = { width: "100%" };
+  
     return (
-      <div className={containerClass}>
-        <h3>View was made by: {username}</h3>
-        {getCustomViews()}
+      <div className={containerClass} style={containerStyle}>
+        {data.map((view, index) => (
+          <div key={`v${index}`} style={{ marginBottom: "20px" }}>
+            <div className="link">
+              <a href={`http://localhost:3000/custom/${view.url}`} target="_blank" rel="noreferrer">This custom view can also be found here</a>
+            </div>
+            {parallel ? (
+              <div>
+                {view.visu1 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V1 textv1={view.textv1} style={visuStyle} />
+                    <p className="text">{view.textv1}</p>
+                    <p>{parallel}</p>
+                  </div>
+                )}
+                {view.visu2 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V2 textv2={view.textv2} style={visuStyle} />
+                    <p className="text">{view.textv2}</p>
+                  </div>
+                )}
+                {view.visu3 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V3 textv3={view.textv3} style={visuStyle} />
+                    <p className="text">{view.textv3}</p>
+                  </div>
+                )}
+                {view.visu4 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V4 textv4={view.textv4} style={visuStyle} />
+                    <p className="text">{view.textv4}</p>
+                  </div>
+                )}
+                {view.visu5 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V5 textv5={view.textv5} style={visuStyle} />
+                    <p className="text">{view.textv5}</p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                {view.visu1 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V1 textv1={view.textv1} style={visuStyle} />
+                    <p className="text">{view.textv1}</p>
+                  </div>
+                )}
+                {view.visu2 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V2 textv2={view.textv2} style={visuStyle} />
+                    <p className="text">{view.textv2}</p>
+                  </div>
+                )}
+                {view.visu3 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V3 textv3={view.textv3} style={visuStyle} />
+                    <p className="text">{view.textv3}</p>
+          </div>
+                )}
+                {view.visu4 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V4 textv4={view.textv4} style={visuStyle} />
+                    <p className="text">{view.textv4}</p>
+                  </div>
+                )}
+                {view.visu5 && (
+                  <div className="vis-container" style={visuContainerStyle}>
+                    <V5 textv5={view.textv5} style={visuStyle} />
+                    <p className="text">{view.textv5}</p>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        ))}
       </div>
     );
-  }
+  };
 
+  useEffect(() => {
+    getLayout();
+  }, []);
 
   return (
     <>
