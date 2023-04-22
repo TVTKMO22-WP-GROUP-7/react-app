@@ -4,6 +4,7 @@ import { Chart } from "chart.js";
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Constants from './Constants.json';
+import './visualisations/Visu.css';
 
 import V1 from "./visualisations/V1";
 import V2 from "./visualisations/V2";
@@ -18,6 +19,7 @@ export default function CustomViews() {
   const [data, setData] = useState([]);
   const [parallel, setParallel] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     axios.get(Constants.API_ADDRESS + '/customviews', {
@@ -38,6 +40,21 @@ export default function CustomViews() {
       }
     });
   }, []);
+
+  const deleteCustomView = (id) => {
+    axios.delete(Constants.API_ADDRESS + '/customviews/delete', { data: { id: id } })
+      .then(response => {
+        console.log("OK");
+        window.location.reload();
+        setSuccessMessage("Custom view deleted");
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 1500); 
+      })
+      .catch(error => {
+        console.log(error.response.data);
+      });
+  };
 
   const getCustomViews = () => {
     return data.map((view, index) => {
@@ -93,6 +110,17 @@ export default function CustomViews() {
             <a href={`http://localhost:3000/custom/${view.url}`} target="_blank" rel="noreferrer">This custom view can also be found here</a>
           </div>
           {views}
+  
+          <form className='button-container' >
+          <div className="delete-button">
+          <Button onClick={() => deleteCustomView(view.id)}>Delete</Button>
+    </div>
+    {successMessage && (
+        <div className="success-message">
+          {successMessage}
+        </div>
+      )}
+    </form>
           {index === data.length - 1 ? (
             <h2>End of custom views</h2>) : <h1>Custom view changes here to another one</h1>}
         </div>

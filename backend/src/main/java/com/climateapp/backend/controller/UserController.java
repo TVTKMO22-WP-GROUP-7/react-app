@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.climateapp.backend.data.Users;
+import com.climateapp.backend.repository.CustomViewRepository;
 import com.climateapp.backend.repository.UserRepository;
+import com.climateapp.backend.service.CustomViewService;
 import com.climateapp.backend.service.UserService;
 import java.util.Map;
 
@@ -27,6 +29,14 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    CustomViewService customViewService;
+
+    @Autowired
+    CustomViewRepository customViewRepository;
+
+   
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody Map<String, String> request) {
