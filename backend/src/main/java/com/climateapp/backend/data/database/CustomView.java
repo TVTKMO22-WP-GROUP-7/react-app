@@ -94,6 +94,9 @@ public class CustomView {
       this.url = url;
       this.parallel = parallel;
    }
+
+public static void deleteById(Long id) {
+}
    
 
 }

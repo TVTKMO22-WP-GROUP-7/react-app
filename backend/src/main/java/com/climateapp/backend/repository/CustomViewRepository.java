@@ -15,4 +15,8 @@ public interface CustomViewRepository extends JpaRepository<CustomView, String> 
     @Query(value = "SELECT * FROM custom WHERE username = ?1", nativeQuery = true)
     List<CustomView> findByUsername(String username);
 
+    List<CustomView> deleteById(Long Id);
+
+
+   
 }

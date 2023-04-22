@@ -7,6 +7,10 @@ import java.util.List;
 import com.climateapp.backend.data.database.CustomView;
 import com.climateapp.backend.repository.CustomViewRepository;
 
+import jakarta.transaction.Transactional;
+
+
+
 @Service
 public class CustomViewService {
     @Autowired
@@ -39,5 +43,21 @@ public class CustomViewService {
     public List<CustomView> getCustom(String username){
         return customViewRepository.findByUsername(username);
     }
-  
+
+    @Transactional
+    public void deleteView(Long id) {
+        customViewRepository.deleteById(id);
+    }
+
+    public List<CustomView> getViewsByUsername(String username){
+        return customViewRepository.findByUsername(username);
+    }
+
+
+
+
+
+   
+
+
 }
