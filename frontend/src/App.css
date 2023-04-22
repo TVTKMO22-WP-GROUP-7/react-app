@@ -60,12 +60,16 @@
     border: 1px solid black;
   }
 
-  .login-container {
+button:hover {
+  background-color: #0069d9;
+}
+
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
+}
 
   .login {
     display: flex;
@@ -84,6 +88,22 @@
     border: 1px solid black;
   }
 
+.custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+#inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
   .double {
     grid-column: span 4;
   }
@@ -96,6 +116,7 @@
     height: 100vh;
     border: 1px solid black;
   }
+
 
   .delete {
     display: flex;
@@ -114,6 +135,17 @@
     height: 100vh;
   }
 
+
+h2 {
+  font-size: 20px;
+  color: #29335c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
   button {
     padding: 0.5rem 1rem;
     margin: 0 0.5rem;
@@ -122,14 +154,18 @@
     color: #fff;
     border: none;
     cursor: pointer;
+}
 
-  }
 
-  .buttons-container {
+.grid-container.parallel {
+  grid-template-columns: 1fr 1fr;
+}
+
+.buttons-container {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
   button:hover {
     background-color: #0069d9;
