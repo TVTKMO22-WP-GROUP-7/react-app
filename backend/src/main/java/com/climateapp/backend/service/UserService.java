@@ -14,6 +14,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.climateapp.backend.data.Users;
+import com.climateapp.backend.data.database.CustomView;
+import java.util.List;
 
 
 
@@ -81,13 +83,13 @@ public class UserService {
 public Users deleteAccount(String username, String password) {
     Users u = userRepository.findByUsername(username);
     if (u != null && enc.matches(password, u.password)) {
+        List<CustomView> customViews = customViewRepository.findByUsername(username);
+        customViewRepository.deleteAll(customViews);
         userRepository.delete(u);
         return u;
     }
     return null;
 }
-
-
 }
 
 

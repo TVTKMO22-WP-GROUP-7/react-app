@@ -35,6 +35,8 @@ export default function DeleteAccount() {
         console.log(response);
         console.log(response.config.url);
         setChangeDeleteState("success");
+        localStorage.removeItem("username");
+        localStorage.removeItem("token");
         setTimeout(() => {
           setChangeDeleteState("idle")
           navigate("/", { replace: true });
