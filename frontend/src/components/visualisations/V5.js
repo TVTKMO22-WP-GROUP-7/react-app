@@ -22,6 +22,7 @@ function V5() {
 
     const chartRef = useRef();
 
+    //methods to get the data from the API
     useEffect(() => {
         fetch(Constants.API_ADDRESS + "/v5all")
             .then(response => response.json())
@@ -120,7 +121,6 @@ function V5() {
         }
         return null;
     };
-
 
 
     const data = {

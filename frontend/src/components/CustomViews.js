@@ -21,6 +21,7 @@ export default function CustomViews() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  //method to get data from backend
   useEffect(() => {
     axios.get(Constants.API_ADDRESS + '/customviews', {
       params: {
@@ -41,6 +42,7 @@ export default function CustomViews() {
     });
   }, []);
 
+  //method to delete custom view
   const deleteCustomView = (id) => {
     axios.delete(Constants.API_ADDRESS + '/customviews/delete', { data: { id: id } })
       .then(response => {
@@ -56,6 +58,7 @@ export default function CustomViews() {
       });
   };
 
+  //handles the data, what to show
   const getCustomViews = () => {
     return data.map((view, index) => {
       const views = [];
@@ -128,6 +131,7 @@ export default function CustomViews() {
     });
   };
 
+  //method to get layout
   const getLayout = () => {
     const containerClass = parallel ? "grid-container parallel" : "grid-container";
     const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };

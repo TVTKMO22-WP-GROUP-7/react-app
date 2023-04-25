@@ -22,6 +22,7 @@ export default function CustomUrl() {
   const [urlParam, setUrlParam] = useState(url);
   const [errorMessage, setErrorMessage] = useState("");
 
+  //method to get data from backend
   const getData = () => {
     const result = axios.get(`${Constants.API_ADDRESS}/custom/${urlParam}`, {
     }).then(response => {
@@ -52,7 +53,7 @@ export default function CustomUrl() {
   }, [username]);
 
 
-
+//handles the data, what to show and what layout
   const getLayout = () => {
     const containerClass = "grid-container";
     let containerStyle = { display: "flex", flexWrap: "wrap", gap: "20px" };
