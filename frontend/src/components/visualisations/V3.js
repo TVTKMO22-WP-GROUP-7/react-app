@@ -3,10 +3,16 @@ import { Line } from "react-chartjs-2";
 import axios from "axios";
 import { Chart as ChartJS } from "chart.js/auto";
 import Constants from "../Constants.json";
-import './Visu.css';
 
 
 function V3() {
+
+    function giveValue(dataObj) {
+        return { ...dataObj, value: 1 }
+      }
+      function giveValueHigh(dataObj) {
+        return { ...dataObj, value: 350 }
+      }
 
     const [showDescription, setShowDescription] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -39,11 +45,18 @@ function V3() {
     }, []);
 
 
-    const [carbonData, setCarbonData] = useState({})
+    const [carbonData, setCarbonData] = useState({});
     const getCarbonData = () => {
         axios.get(Constants.API_ADDRESS + "/v3carbon").then((response) => {
             console.log(response.data);
-            setCarbonData(response.data);
+
+            // yearC by 1000
+            const modifiedData3 = response.data.map((item) => ({
+                ...item,
+                yearC: item.yearC / 1000,
+            }));
+
+            setCarbonData(modifiedData3);
         })
         .catch((error) => {
             if (error.message === "Network Error")
@@ -53,16 +66,24 @@ function V3() {
             console.log(error);
           });
     };
+
     useEffect(() => {
         getCarbonData();
     }, []);
 
 
-    const [eventData, setEventData] = useState({})
+    const [EventData, setEventData] = useState({});
     const getEventData = () => {
         axios.get(Constants.API_ADDRESS + "/v3event").then((response) => {
             console.log(response.data);
-            setEventData(response.data);
+
+    // Multiply yearG by 1000
+    const modifiedData2 = response.data.map((item) => ({
+        ...item,
+        years_ago: item.years_ago * 100,
+    }));
+
+            setEventData(modifiedData2);
         })
         .catch((error) => {
             if (error.message === "Network Error")
@@ -72,9 +93,11 @@ function V3() {
             console.log(error);
           });
     };
+
     useEffect(() => {
         getEventData();
     }, []);
+
 
     const data = {
         datasets: [
@@ -111,16 +134,18 @@ function V3() {
             {
                 label: "Event",
                 showLine: false,
-                data: eventData,
+                data: EventData,
                 borderColor: "rgb(255, 213, 0)",
                 backgroundColor: "rgb(255, 213, 0)",
                 parsing: {
-                    xAxisKey: "yearE",
-                    yAxisKey: "event",
+                    xAxisKey: "years_ago",
+                    yAxisKey: "yearE",
                 },
                 pointRadius: 6,
                 pointStyle: 'triangle',
-                xAxisID: "x1",
+                xAxisID: "x",
+                yAxisID:"y2"
+                
             },
 
         ],
@@ -128,11 +153,34 @@ function V3() {
 
     const optionsV3 = {
         responsive: true,
-        sacked: false,
+       
+        stacked: false,
         plugins: {
             legend:
             {
                 position: "top",
+            },
+            tooltips: {
+                label: function (context) {
+          
+                    if (context.dataset.label === "event") {
+                      return context.raw.event;
+                    } else {
+                      return context.formattedValue;
+                    }
+                  },
+                  title: function (context) {
+                    if (context?.[0]?.raw.years_ago === undefined && context?.[0]?.raw.yearC != null && context?.[0]?.raw.yearG === null) {
+                      return "Year " + context[0].label;
+                    }
+                    if (context?.[0]?.raw.years_ago === undefined && context?.[0]?.raw.yearG != null && context?.[0]?.raw.yearC != null) {
+                      return "Year " + context[0].label;
+                    }
+                    else if (context.length > 0) {
+                      return context[0].raw.years_ago + " years ago";
+                    }
+          
+                  }
             },
 
             title: {
@@ -142,6 +190,8 @@ function V3() {
                     size: 20
                 },
             },
+            fullSize: true,
+           
         },
 
         scales: {
@@ -184,9 +234,10 @@ function V3() {
 
                 reverse: true,
             },
-            x1: {
+            y2: {
                 display: false,
-            }
+            },
+        
         },
     };
 
@@ -205,11 +256,11 @@ function V3() {
             <div className="button-container">
                 <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>
-            <div className="chart-container">
-                {showDescription ? <div className="card" style={{ width: "24rem" }}>
+            <div className="container-v4">
+                {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
                     <div className="description">
-                        <h5>Description</h5>
-                        <p>This chart shows Evolution of global temperature over the past two million years.</p>
+                        <h5 className="description-title">Description</h5>
+                        <p className="description-text">This chart shows Evolution of global temperature over the past two million years.</p>
                         <p>You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
                     </div>
                     <h6 className="description-sources">Sources:</h6>
