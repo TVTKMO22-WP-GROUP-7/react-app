@@ -14,6 +14,8 @@ function V1() {
   const [showDescription, setShowDescription] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+
+  //methods to get all necessary data from the backend
   const [data1, setData] = useState([]);
   const getData = () => {
     axios.get(Constants.API_ADDRESS + "/v1annualglobal").then((response) => {
@@ -146,6 +148,7 @@ function V1() {
     getData7();
   }, []);
 
+  
   const data = {
     datasets: [
       {
@@ -319,6 +322,8 @@ function V1() {
     },
   };
 
+
+//function to change data
   function changeData() {
     if (isAnnual && !isReconstruction) {
       return data;
@@ -334,6 +339,7 @@ function V1() {
     }
   }
 
+  //function to change options
   function changeDataOptions() {
     if (isAnnual && !isReconstruction) {
       return options;

@@ -32,7 +32,7 @@ public class CustomViewController {
     @Autowired
     UserRepository UserRepository;
 
-
+    // method to save a custom view
     @PostMapping("/custompage")
     public ResponseEntity<String> saveView(@RequestBody Map<String, String> request) {
         String username = request.get("username");
@@ -61,6 +61,7 @@ public class CustomViewController {
 
     }
 
+    //method to get a custom view by url
     @GetMapping("/custom/{url}")
     public ResponseEntity<List<CustomView>> getCustomView(@PathVariable String url) {
         List<CustomView> customView = customViewService.getCustomView(url);
@@ -69,6 +70,7 @@ public class CustomViewController {
         return new ResponseEntity<>(customView, HttpStatus.OK);
     }
 
+    //method to get all custom views by username
     @GetMapping("/customviews")
     public ResponseEntity<List<CustomView>> getCustomViews(@RequestParam String username) {
         List<CustomView> customViews = customViewService.getCustom(username);
@@ -78,14 +80,12 @@ public class CustomViewController {
         return new ResponseEntity<>(customViews, HttpStatus.OK);
     }
 
-  
+    //method to delete a custom view
     @DeleteMapping("customviews/delete")
-    public ResponseEntity<String> deleteCustomView(@RequestBody Map<String, Long> requestBody){
+    public ResponseEntity<String> deleteCustomView(@RequestBody Map<String, Long> requestBody) {
         Long id = requestBody.get("id");
         customViewService.deleteView(id);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
-    
-
 
 }

@@ -83,6 +83,8 @@ public class UserController {
         return new ResponseEntity<>("No authorization header", HttpStatus.UNAUTHORIZED);
     }
 
+
+    //Request for changing password
     @PutMapping("/changepassword")
     public ResponseEntity<String> changePassword(@RequestBody Map<String, String> request) {
         String username = request.get("username");

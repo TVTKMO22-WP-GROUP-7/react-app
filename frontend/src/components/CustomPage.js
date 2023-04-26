@@ -38,7 +38,7 @@ export default function CustomPage() {
 
   const url = uuidv4();
 
-
+  //methods to save the custom view
   const saveView = async (e) => {
     console.log("Setting custom state to processing");
     setCustomState("processing");
@@ -72,7 +72,7 @@ export default function CustomPage() {
     })
   }
 
-
+//methods to create the custom view
   const handleChangeV1 = event => {
     if (event.target.checked && saveView) {
       setCreateV1(true)
@@ -158,6 +158,7 @@ export default function CustomPage() {
     }
   }
 
+  //check if the user wants to see the charts in parallel
   const handleParallel = event => {
     if (event.target.checked) {
       setParallel(true)
@@ -174,6 +175,7 @@ export default function CustomPage() {
   }
 
 
+  //methods to create charts and text if user wants to see the preview
   const DrawChartV1 = () => (
     <div className="grid-container">
       <V1 />
@@ -239,20 +241,21 @@ export default function CustomPage() {
     getLayout();
   }, [parallel]);
 
-    const getLayout = () => {
-      const containerClass = parallel ? "grid-container parallel" : "grid-container";
-      const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };
-      return (
-        <div className={containerClass} style={containerStyle}>
-          {(createV1 && createView) ? <DrawChartV1 /> : null}
-          {(createV2 && createView) ? <DrawChartV2 /> : null}
-          {(createV3 && createView) ? <DrawChartV3 /> : null}
-          {(createV4 && createView) ? <DrawChartV4 /> : null}
-          {(createV5 && createView) ? <DrawChartV5 /> : null}
-          
-        </div>
-      );
-    };
+  //method to create the layout of the custom view
+  const getLayout = () => {
+    const containerClass = parallel ? "grid-container parallel" : "grid-container";
+    const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };
+    return (
+      <div className={containerClass} style={containerStyle}>
+        {(createV1 && createView) ? <DrawChartV1 /> : null}
+        {(createV2 && createView) ? <DrawChartV2 /> : null}
+        {(createV3 && createView) ? <DrawChartV3 /> : null}
+        {(createV4 && createView) ? <DrawChartV4 /> : null}
+        {(createV5 && createView) ? <DrawChartV5 /> : null}
+
+      </div>
+    );
+  };
 
   return (
     <>
@@ -317,7 +320,7 @@ export default function CustomPage() {
               Preview the view
             </Button>
           </Form>
-          
+
           <Form className='button-container' onSubmit={saveView}>
             <div>
               {
@@ -332,7 +335,7 @@ export default function CustomPage() {
         </div>
       </div>
       {getLayout()}
-              
+
     </>
   );
 }
