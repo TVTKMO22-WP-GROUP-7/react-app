@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import axios from "axios";
 import { Chart as ChartJS } from "chart.js/auto";
 import Constants from "../Constants.json";
+import './Visu.css';
 
 
 function V3() {
@@ -205,10 +206,10 @@ function V3() {
                 <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>
             <div className="chart-container">
-                {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
+                {showDescription ? <div className="card" style={{ width: "24rem" }}>
                     <div className="description">
-                        <h5 className="description-title">Description</h5>
-                        <p className="description-text">This chart shows Evolution of global temperature over the past two million years.</p>
+                        <h5>Description</h5>
+                        <p>This chart shows Evolution of global temperature over the past two million years.</p>
                         <p>You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
                     </div>
                     <h6 className="description-sources">Sources:</h6>

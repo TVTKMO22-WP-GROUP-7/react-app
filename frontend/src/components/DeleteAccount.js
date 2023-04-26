@@ -44,7 +44,7 @@ export default function DeleteAccount() {
       }).catch(error => {
         setChangeDeleteState("error");
         setTimeout(() => setChangeDeleteState("idle"), 1500);
-        setErrorMessage("Check that you have entered correct username and password");
+        setErrorMessage("Check that you have entered correct password");
         console.log(error);
 
       })

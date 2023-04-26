@@ -23,6 +23,7 @@ function V4() {
 
     const fetchData = async (hidden) => {
         try {
+            setLoading(true);
             const result = await axios.get(Constants.API_ADDRESS + "/v4emissions");
             const data = result.data;
 
@@ -80,12 +81,6 @@ function V4() {
         //drawChartForSelectedCountries();
     }, []);
 
-    //testausmielessä. Voi poistaa
-    // const showAllData = async () => {
-    //     fetchData(false); // fetch data with visible datasets
-    // };
-
-
     // Define the chart options
     const chartOptions = {
         responsive: true,
@@ -113,8 +108,8 @@ function V4() {
                     title: {
                         display: true,
                         text: 'CO2 Emissions (tonnes)',
-
                     },
+                    position: "left",
                 },
                 x: {
                     title: {
@@ -172,10 +167,9 @@ function V4() {
 
     };
 
-    // Reset chart and hide all data
-    const resetChart = () => {
+    // Clear chart and hide all data
+    const clearChart = () => {
         setSelectedCountries([]);
-        setLoading(true);
         fetchData(true);
     };
 
@@ -222,7 +216,7 @@ function V4() {
     };
 
     return (
-        <div>
+        <div className="content-container">
             <h1>Visualization 4</h1>
             <div>
                 <span style={{ color: 'red' }}>{errorMessage}</span>
@@ -231,7 +225,7 @@ function V4() {
                 {showDescription ? null : (
                     <>
                         <button onClick={drawChartForSelectedCountries}>Draw Line Chart</button>
-                        <button onClick={resetChart}>Reset Chart</button>
+                        <button onClick={clearChart}>Clear Chart</button>
                     </>
                 )}
                 <button onClick={toggleDescription}>
@@ -240,24 +234,16 @@ function V4() {
             </div>
             <div>
                 {showDescription ? (
-                    <div className="card mt-4" style={{ width: "24rem" }}>
+                    <div className="card" style={{ width: "24rem" }}>
                         <div className="description">
-                            <h5 className="description-title">Description</h5>
+                            <h5>Description</h5>
                             <p>This chart shows the anthropogenic fossil carbon dioxide (CO2) emissions by country (territorial) starting from 1959. All values in million tonnes</p>
                             <p>Select countries you want to observe and press "Draw Line Chart" button</p>
-                            <p>If you want to clear chart. Press "Reset Chart" button</p>
+                            <p>If you want to clear chart. Press "Clear Chart" button</p>
                         </div>
-                        <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
-                        <p>
-                            <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021" target="_blank" rel="noopener noreferrer" className="card-link">
-                                Description
-                            </a>
-                        </p>
-                        <p>
-                            <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noopener noreferrer" className="card-link">
-                                Download dataset
-                            </a>
-                        </p>
+                        <h6 className="card-subtitle">Sources:</h6>
+                        <p> <a href="https://www.icos-cp.eu/science-and-impact/global-carbon-budget/2021" target="_blank" rel="noopener noreferrer" className="card-link">Description</a> </p>
+                        <p> <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noopener noreferrer" className="card-link">Download dataset </a> </p>
                     </div>
                 ) : (
                     <div className="selectedcountry">
@@ -270,11 +256,12 @@ function V4() {
                             ))}
                         </select>
                     </div>
-                )}
+                    )}
                 <div className="selectedcountry">
                     <SelectedCountriesBox selectedCountries={selectedCountries}
-                        handleRemoveCountry={handleRemoveCountry} /> </div>
-                <div className="chart-container">
+                        handleRemoveCountry={handleRemoveCountry} /> 
+                </div>
+                <div className="chart-container">  
                     {!showDescription && (
                         <>
                             <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} alt="CO2 emissions chart data" style={{ width: "100%" }} />

@@ -207,15 +207,15 @@ function V5() {
             </div>
             <div className="chart-container">
                 {showDescription && (
-                    <div className="card mt-4" style={{ width: "24rem" }}>
+                    <div className="card" style={{ width: "24rem" }}>
                         <div className="description">
-                            <h5 className="description-title">Description</h5>
-                            <p className="description-text">
+                            <h5>Description</h5>
+                            <p>
                                 This chart shows the CO2 emissions by sectors. The data is from 2018 and is based on the World Resources Institute (WRI) dataset. By clicking on a sector, you can see the CO2 emissions by country for that sector.
                             </p>
                             <p>To reset the chart, click on the "Go back" button.</p>
                         </div>
-                        <h6 className="card-subtitle mb-2 text-muted">Sources: </h6>
+                        <h6 className="card-subtitle">Sources: </h6>
                         <p>
                             <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector" target="_blank" rel="noopener noreferrer" className="card-link">
                                 Description

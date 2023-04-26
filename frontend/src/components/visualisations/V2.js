@@ -4,6 +4,7 @@ import { Chart as ChartJS } from "chart.js/auto";
 import "chartjs-adapter-moment";
 import axios from "axios";
 import Constants from "../Constants.json";
+import "./Visu.css"
 
 function V2() {
 
@@ -284,14 +285,14 @@ function V2() {
         <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
       </div>
       <div className="chart-container">
-      {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
+      {showDescription ? <div className="card" style={{ width: "24rem" }}>
       <div className="description">
-        <h5 className="description-title">Description</h5>
-        <p className="description-text">This chart shows the Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958. The chart shows Mauna Loa Co2 measurements yearly and monthly.</p>
+        <h5>Description</h5>
+        <p>This chart shows the Atmospheric CO2 concentrations from Mauna Loa measurements starting 1958. The chart shows Mauna Loa Co2 measurements yearly and monthly.</p>
         <p> The chart also shows the Antarctic Ice Core records of atmospheric CO2 ratios combined with Mauna Loa measurements.</p>
         <p> If you want to switch between "yearly & monthly" and "icecore", press the ''Show yearly and monthly data'' & "Show icecore" -button.</p>
       </div>
-      <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+      <h6 className="card-subtitle">Sources:</h6>
       <p> <a href="https://gml.noaa.gov/ccgg/trends/data.html" target="_blank" rel="noopener noreferrer" className="card-link">Global Monitoring Laboratory </a></p>
       <p> <a href="https://cdiac.ess-dive.lbl.gov/ftp/trends/co2/lawdome.combined.dat" target="_blank" rel="noopener noreferrer" className="card-link">Historical CO2 record from the Law Dome DE08, DE08-2, and DSS ice cores</a></p>
     </div> : <Line data={changeData()} options={changeDataOptions()} style={{ width: "100%" }}/>}
