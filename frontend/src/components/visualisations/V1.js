@@ -384,14 +384,14 @@ function V1() {
       </div>
       <div className="chart-container">
         {showDescription ? (
-          <div className="card mt-4" style={{ width: "24rem" }}>
+          <div className="card" style={{ width: "24rem" }}>
             <div className="description">
-              <h5 className="description-title">Description</h5>
-              <p className="description-text">This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
+              <h5>Description</h5>
+              <p>This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
               <p> The chart also presents a temperature reconstruction of the Northern Hemisphere for the past 2,000 years.</p>
               <p> If you want to see the temperature reconstruction data press the show 'Temperature Reconstruction-button'</p>
             </div>
-            <h6 className="card-subtitle mb-2 text-muted">Sources:</h6>
+            <h6 className="card-subtitle">Sources:</h6>
             <p> <a href="https://www.metoffice.gov.uk/hadobs/hadcrut5/" target="_blank" rel="noopener noreferrer" className="card-link">HardCruts5 Data </a></p>
             <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 Year Northern Hemisphere Temperature Reconstruction</a></p>
           </div>

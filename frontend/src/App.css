@@ -1,67 +1,63 @@
-  @media screen and (min-width: 600px) and (max-width: 1023px) {
+@media screen and (min-width: 600px) and (max-width: 1023px) {
 
-    .register,
-    .login {
-      width: 60%;
-    }
-
-    .grid-container {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .parallel {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 20px;
-    }
-
-    h1,
-    p,
-    h2,
-    h3 {
-      font-size: 30px;
-    }
+  .register,
+  .login {
+    width: 60%;
   }
 
-  @media screen and (min-width: 1024px) and (max-width: 1366px) {
-
-    .register,
-    .login {
-      width: 50%;
-    }
-
-    .grid-container {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-
-    .parallel {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-gap: 20px;
-    }
+  .grid-container {
+    grid-template-columns: 1fr 1fr;
   }
 
-  input {
-    display: flex;
+  .parallel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
   }
 
-  .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  h1,
+  p,
+  h2,
+  h3 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+
+  .register,
+  .login {
+    width: 50%;
   }
 
-  .register {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid black;
+  .grid-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-button:hover {
-  background-color: #0069d9;
+  .parallel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+  }
+}
+
+input {
+  display: flex;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid black;
 }
 
 .login-container {
@@ -71,29 +67,99 @@ button:hover {
     height: 100vh;
 }
 
-  .login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid black;
-  }
-
-  .default {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    border: 1px solid black;
-  }
-
-.custom {
+.login {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.default {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   border: 1px solid black;
+}
+
+.double {
+  grid-column: span 4;
+}
+
+.delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+.changepassword {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #29335c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: #005ea8;
+}
+
+.grid-container.parallel {
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+.v-box {
+  margin-bottom: 50px;
 }
 
 #inputs {
@@ -103,38 +169,6 @@ button:hover {
   width: 300px;
   margin-bottom: 20px;
 }
-
-  .double {
-    grid-column: span 4;
-  }
-
-  .custom {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    border: 1px solid black;
-  }
-
-
-  .delete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    border: 1px solid black;
-  }
-
-  .changepassword {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
 
 h2 {
   font-size: 20px;
@@ -146,115 +180,35 @@ h2 {
   margin-bottom: 20px;
 }
 
-  button {
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    border-radius: 0.25rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-
-.grid-container.parallel {
-  grid-template-columns: 1fr 1fr;
+.parallel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-.buttons-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-  button:hover {
-    background-color: #0069d9;
-  }
+.link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
 
-  .grid-container {
-    display: flex;
-    flex-direction: column;
-  }
+.link:active {
+  color: #0056b3;
+}
 
-  .v-box {
-    margin-bottom: 50px;
-  }
-
-  .custom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    border: 1px solid black;
-  }
-
-  #inputs {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    margin-bottom: 20px;
-  }
-
-  .button-container button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #29335c;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .button-container button:hover {
-    background-color: #005ea8;
-  }
-
-  h2 {
-    color: #29335c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  .text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-  }
-
-  .parallel {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .link:hover {
-    text-decoration: underline;
-    color: #0056b3;
-  }
-
-  .link:active {
-    color: #0056b3;
-  }
-
-  p {
-    display: flex;
-  }
+p {
+  display: flex;
+}

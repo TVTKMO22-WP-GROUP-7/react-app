@@ -21,6 +21,9 @@ import Constants from './Constants.json';
       } else if (password === "") {
         setErrorMessage("Password can't be empty")
         return;
+      }  else if (username === "") {
+        setErrorMessage("username can't be empty")
+        return;
       }
     
       setChangeRegisterState("processing");

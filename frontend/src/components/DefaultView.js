@@ -4,6 +4,7 @@ import V2 from "./visualisations/V2";
 import V3 from "./visualisations/V3";
 
 export default function DefaultView() {
+  
   return (
     <div className="grid-container">
       <div className = "v-box">
