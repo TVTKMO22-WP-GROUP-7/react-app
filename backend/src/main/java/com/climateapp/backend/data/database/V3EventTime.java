@@ -18,14 +18,22 @@ public class V3EventTime {
     @Column (name = "event")
     public String event;
 
+    @Column (name = "years_ago")
+    public String years_ago;
+
+    @Column (name = "id")
+    public String id;
+
     public V3EventTime() {
 
     }
 
 
-    public V3EventTime(String yearE, String event){
+    public V3EventTime(String yearE, String event, String years_ago, String id){
     this.yearE = yearE;
     this.event = event;
+    this.years_ago = years_ago;
+    this.id = id;
     }
 
 
