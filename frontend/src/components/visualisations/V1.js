@@ -4,7 +4,6 @@ import { Chart as ChartJS } from "chart.js/auto";
 import "chartjs-adapter-moment";
 import axios from "axios";
 import Constants from "../Constants.json";
-
 import './Visu.css';
 
 function V1() {
@@ -249,6 +248,7 @@ function V1() {
   const options = {
     responsive: true,
     sacked: false,
+    maintainAspectRatio: false,
     plugins: {
       legend:
       {
@@ -282,7 +282,7 @@ function V1() {
 
   const ReconstructionOptions = {
     responsive: true,
-    sacked: false,
+    stacked: false,
     maintainAspectRatio: false,
     plugins: {
       legend:
@@ -361,7 +361,7 @@ function V1() {
 
 
   return (
-    <div>
+    <div className="content-container">
       <h1>Visualization 1</h1>
       <div>
             <span style={{ color: 'red' }}>{errorMessage}</span>
@@ -382,9 +382,9 @@ function V1() {
           {showDescription ? "Hide description" : "Show description"}
         </button>
       </div>
-      <div className="chart-container">
+      <div>
         {showDescription ? (
-          <div className="card" style={{ width: "24rem" }}>
+          <div className="card">
             <div className="description">
               <h5>Description</h5>
               <p>This chart shows the global surface temperature anomalies from January 1850 onwards. The chart shows the global, northern and southern hemisphere anomalies.</p>
@@ -396,9 +396,9 @@ function V1() {
             <p> <a href="https://bolin.su.se/data/moberg-2012-nh-1?n=moberg-2005" target="_blank" rel="noopener noreferrer" className="card-link">2000 Year Northern Hemisphere Temperature Reconstruction</a></p>
           </div>
         ) : (
-          <>
-            <Line data={changeData()} options={changeDataOptions()} style={{ width: "100%" }} alt="Anomaly data chart" />
-          </>
+          <div className="chart-container">
+            <Line data={changeData()} options={changeDataOptions()} alt="Anomaly data chart" />
+          </div>
         )}
       </div>
     </div>

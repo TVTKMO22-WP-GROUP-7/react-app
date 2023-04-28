@@ -11,7 +11,7 @@ describe('DeleteAccount component', () => {
         jest.mock('axios');
         axios.get = jest.fn().mockResolvedValue({ data: '' });
         axios.post = jest.fn().mockResolvedValue('');
-        //axios.delete = jest.fn(() => Promise.resolve());
+        axios.delete = jest.fn(() => Promise.resolve());
     });
 
     afterEach(() => {
@@ -37,6 +37,7 @@ describe('DeleteAccount component', () => {
             expect(loginLink).toBeInTheDocument();
     })
 
+    //Ei toimi oikein
     it("Should be a successful deletion", async () => {
         const loginResponse = {
             data: 'testpassword',

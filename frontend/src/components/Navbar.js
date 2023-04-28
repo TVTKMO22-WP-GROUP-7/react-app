@@ -43,16 +43,16 @@ function Navbar() {
       <header>
         <h3>Current User: {name}</h3>
         <nav ref={navRef}>
-          <a href={changeDefaultView()}>Change View</a>
+          {location.pathname === "/custompage" ? (null) : (
+            <a href={changeDefaultView()}>Change View</a>
+          )}
           <a href={changeCustomDefaultView()}>
             {location.pathname === "/custompage" ? "Default Page" : "Custom Page"}
           </a>
-          <a href="/changepassword">Change Password</a>
           <a href="/customviews">Custom views</a>
-          <a href="/" onClick={logout}>
-            Logout
-          </a>
+          <a href="/changepassword">Change Password</a>
           <a href="/deleteaccount">Delete account</a>
+          <a href="/" onClick={logout}>Logout</a>
           <button className="nav-btn nav-close-btn" onClick={showNavbar}>
             <FaTimes />
           </button>

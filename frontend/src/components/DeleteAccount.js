@@ -82,25 +82,28 @@ export default function DeleteAccount() {
   }
 
   return (
-    <>
-      <div className="delete">
-        <div>
-          <h4>Delete Account</h4>
-          <form onSubmit={handleDelete}>
-            <input type="password" name="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-            <div>
-              <span style={{ color: 'red' }}>{errorMessage}</span>
-            </div>
-            <div>
-              {
-                deleteControls
-              }
-            </div>
-          </form>
-          <p> <Link to="/">Don't want to delete account?</Link></p>
-        </div>
+    <div className="form-container-box">
+      <div className="form-box">
+        <h4>Delete Account</h4>
+        <form onSubmit={handleDelete}>
+          <input type="password" 
+          name="password" 
+          placeholder="Enter your password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)}>             
+          </input>
+          <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
+          <div style={{ marginTop: '20px' }}>
+            {
+              deleteControls
+            }
+          </div>
+        </form>
+        <p> <Link to="/">Don't want to delete account?</Link></p>
       </div>
-    </>
+    </div>
   );
 }
 

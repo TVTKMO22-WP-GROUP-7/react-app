@@ -105,8 +105,7 @@ function V5() {
     }, []);
 
     const onClick = (event) => {
-        if (selectedSector === null || selectedSector.label === "CO2 emissions all sectors") {
-            let element = getElementAtEvent(chartRef.current, event);
+        let element = getElementAtEvent(chartRef.current, event);
             if (element[0] !== undefined) { // Add this check to avoid the error
                 if (element[0].index === 0) {
                     setSelectedSector({ data: energyData, label: "Energy" });
@@ -118,7 +117,6 @@ function V5() {
                     setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
                 }
             }
-        }
         return null;
     };
 
@@ -154,7 +152,7 @@ function V5() {
 
     const options = {
         responsive: true,
-        aspectRatio: 5,
+        maintainAspectRatio: false,
         elements: {
             arc: {
                 borderWidth: 0,
@@ -186,7 +184,7 @@ function V5() {
     }
 
     return (
-        <div>
+        <div className="content-container">
             <h1>Visualization 5</h1>
             <div>
                 <span style={{ color: 'red' }}>{errorMessage}</span>
@@ -205,30 +203,23 @@ function V5() {
                     {showDescription ? "Hide description" : "Show description"}
                 </button>
             </div>
-            <div className="chart-container">
-                {showDescription && (
-                    <div className="card" style={{ width: "24rem" }}>
+            <div>
+                {showDescription ? (
+                    <div className="card">
                         <div className="description">
                             <h5>Description</h5>
-                            <p>
-                                This chart shows the CO2 emissions by sectors. The data is from 2018 and is based on the World Resources Institute (WRI) dataset. By clicking on a sector, you can see the CO2 emissions by country for that sector.
-                            </p>
+                            <p>This chart shows the CO2 emissions by sectors. The data is from 2018 and is based on the World Resources Institute (WRI) dataset. By clicking on a sector, you can see the CO2 emissions by country for that sector.</p>
                             <p>To reset the chart, click on the "Go back" button.</p>
                         </div>
                         <h6 className="card-subtitle">Sources: </h6>
-                        <p>
-                            <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector" target="_blank" rel="noopener noreferrer" className="card-link">
-                                Description
-                            </a>
-                        </p>
-                        <p>
-                            <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx" target="_blank" rel="noopener noreferrer" className="card-link">
-                                Dataset
-                            </a>
-                        </p>
+                        <p> <a href="https://ourworldindata.org/emissions-by-sector#co2-emissions-by-sector" target="_blank" rel="noopener noreferrer" className="card-link">Description</a> </p>
+                        <p> <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx" target="_blank" rel="noopener noreferrer" className="card-link">Dataset</a> </p>
                     </div>
-                )}
-                {!showDescription && <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} style={{ width: "100%" }} />}
+                ) :
+                <div className="chart-container">
+                <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} />
+                </div>
+                }
             </div>
         </div>
     );

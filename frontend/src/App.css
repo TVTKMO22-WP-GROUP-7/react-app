@@ -1,12 +1,42 @@
-@media screen and (min-width: 600px) and (max-width: 1023px) {
+html, body, header {
+  min-width: 600px;
+}
 
-  .register,
-  .login {
-    width: 60%;
+@media only screen and (max-width: 800px){
+
+  .form-container-box {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    margin: 5px;
+    top: 0;
+  }
+
+  .form-box{
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  .form-box h4 {
+    font-size: 25px;
+  }
+
+  .form-box input {
+    width: 220px;
+    height: 35px;
+    margin-top: 10px;
+  }
+
+  .form-box button {
+    width: 205px;
+    height: 50px;
+    
   }
 
   .grid-container {
     grid-template-columns: 1fr 1fr;
+    height: 100%;
   }
 
   .parallel {
@@ -15,20 +45,9 @@
     grid-gap: 20px;
   }
 
-  h1,
-  p,
-  h2,
-  h3 {
-    font-size: 30px;
-  }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1366px) {
-
-  .register,
-  .login {
-    width: 50%;
-  }
+@media only screen and (max-width: 1024px) {
 
   .grid-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -45,40 +64,41 @@ input {
   display: flex;
 }
 
-.register-container {
+.passowrdinput {
+  width: 170px;
+}
+
+.form-container-box {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: relative;
 }
 
-.register {
+.form-box {
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
   padding: 20px;
   border: 1px solid black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.login {
+.custom-form-box {
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
   padding: 20px;
   border: 1px solid black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .default {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100vh;
   border: 1px solid black;
@@ -88,35 +108,10 @@ input {
   grid-column: span 4;
 }
 
-.delete {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  border: 1px solid black;
-}
-
-.changepassword {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.custom {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  border: 1px solid black;
-}
-
 button {
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;
+  margin-bottom: 15px;
   border-radius: 0.25rem;
   background-color: #007bff;
   color: #fff;
@@ -167,6 +162,15 @@ button:hover {
   justify-content: center;
   align-items: center;
   width: 300px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #29335c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 

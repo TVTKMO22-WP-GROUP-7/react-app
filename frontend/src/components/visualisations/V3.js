@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import axios from "axios";
 import { Chart as ChartJS } from "chart.js/auto";
 import Constants from "../Constants.json";
+import './Visu.css';
 
 
 function V3() {
@@ -153,7 +154,7 @@ function V3() {
 
     const optionsV3 = {
         responsive: true,
-       
+        maintainAspectRatio: false,
         stacked: false,
         plugins: {
             legend:
@@ -248,7 +249,7 @@ function V3() {
 
 
     return (
-        <div>
+        <div className="content-container">
             <h1>Visualization 3</h1>
             <div>
             <span style={{ color: 'red' }}>{errorMessage}</span>
@@ -256,20 +257,26 @@ function V3() {
             <div className="button-container">
                 <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>
-            <div className="container-v4">
-                {showDescription ? <div className="card mt-4" style={{ width: "24rem" }}>
+            <div>
+                {showDescription ? (
+                <div className="card">
                     <div className="description">
-                        <h5 className="description-title">Description</h5>
-                        <p className="description-text">This chart shows Evolution of global temperature over the past two million years.</p>
+                        <h5>Description</h5>
+                        <p>This chart shows Evolution of global temperature over the past two million years.</p>
                         <p>You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
                     </div>
-                    <h6 className="description-sources">Sources:</h6>
+                    <h6 className="card-subtitle">Sources:</h6>
                     <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
                     <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
                     <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
-                </div> : <Line data={data} options={optionsV3} alt="chart" style={{ width: "100%" }}></Line>}
+                </div>
+                ) : (
+                <div  className="chart-container">
+                    <Line data={data} options={optionsV3} alt="chart"/>
+                </div>
+                )}
             </div>
         </div>
 
     );
-} export default V3;
+}; export default V3;

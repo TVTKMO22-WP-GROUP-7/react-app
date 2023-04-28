@@ -14,46 +14,37 @@ export default function Login() {
 
     const handleLoginSubmit = async (e) => {
         setErrorMessage("")
-        if (username === "" || password === "") {
-            setErrorMessage("Username and password can't be empty")
-            setTimeout(() => setLoginState("idle"), 4000);
-        }
-        else {
+        e.preventDefault()
+
+         setLoginState("processing")
+
+        await axios.post(Constants.API_ADDRESS + "/login", {
+            username: username,
+            password: password,
+        }).then(response => {
+            const token = response.data
+            localStorage.setItem("token", token)
+            localStorage.setItem("username", username)
+            setAuthToken(token)
+            setLoginState("success");
             setErrorMessage("");
-            e.preventDefault()
-
-            setLoginState("processing")
-
-            await axios.post(Constants.API_ADDRESS + "/login", {
-                username: username,
-                password: password,
-            }).then(response => {
-                const token = response.data
-                localStorage.setItem("token", token)
-                localStorage.setItem("username", username)
-                setAuthToken(token)
-                setLoginState("success");
-                setErrorMessage("");
-                setTimeout(() => {
-                    setLoginState("idle")
-                    navigate('/', { replace: true });
-                    window.location.reload(false);
-                }, 5500);
-            }).catch(error => {
-                setLoginState("error");
-                setTimeout(() => setLoginState("idle"), 1500);
-                setErrorMessage("Wrong username or password");
-                console.log(error)
-            })
-
-        }
-
+            setTimeout(() => {
+                setLoginState("idle")
+                navigate('/', { replace: true });
+                window.location.reload(false);
+            }, 1500);
+        }).catch(error => {
+            setLoginState("error");
+            setTimeout(() => setLoginState("idle"), 2000);
+            setErrorMessage("Wrong username or password");
+            console.log(error)
+        })
     }
 
     useEffect(() => {
         const timeout = setTimeout(() => {
           setErrorMessage("");
-        }, 1500);
+        }, 2000);
       
         return () => clearTimeout(timeout);
       }, [errorMessage]);
@@ -85,8 +76,8 @@ export default function Login() {
 
     return (
         <div>
-            <div className='login-container'>
-                <div className="login">
+            <div className='form-container-box'>
+                <div className="form-box">
                     <h4>Login to private page</h4>
                     <form onSubmit={handleLoginSubmit}>
                         <input type="text"
