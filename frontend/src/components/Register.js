@@ -105,7 +105,7 @@ import Constants from './Constants.json';
           <div>
             <span style={{ color: 'red' }}>{errorMessage}</span>
           </div>
-          <div style={{ marginTop: '20px' }}>
+          <div className="horizontal-center">
             {
               registerControls
             }
