@@ -1,40 +1,20 @@
-@media screen and (min-width: 1366px){
-  h1,
-  h2,
-  h3 {
-    font-size: 30px;
-  }
-  p {
-    font-size: 20px;
-  }
+html, body, header {
+  min-width: 600px;
+}
+/* @media screen and (max-width: 1948px){
+
 }
 
-@media screen and (max-width: 1024px) {
+@media only screen and (max-width: 800px) {
   h1,
   p,
   h2,
   h3 {
     font-size: 20px;
   }
-}
 
-@media screen and (max-width: 768px) {
-  h1,
-  p,
-  h2,
-  h3 {
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  h1,
-  p,
-  h2,
-  h3 {
-    font-size: 12px;
-  }
-}
+ 
+} */
 
 .button-container {
   display: flex;
@@ -63,27 +43,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh;
-  width: 60%;
+  height: 60vh;
+  width: 90%;
   margin: 0 auto;
-}
-
-h1 {
-  color: #29335c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-h2 {
-  color: #29335c;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .description {
@@ -91,17 +53,6 @@ h2 {
   padding: 1px;
   margin-top: 40px;
   margin-bottom: 16px;
-}
-
-.selectedcountry {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  background-color: white;
 }
 
 .btn-outline-primary-mt2 {
@@ -132,38 +83,62 @@ h2 {
 
 .card {
   margin: 40px auto;
+  width: 24rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
+.selectedcountry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6px;
+  background-color: white;
+}
+
+.selectcountries {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+}
+
 .selected-countries-box {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 3px;
+  margin-bottom: 0px;
 }
 
 .selected-country {
   display: flex;
   align-items: center;
-  margin: 5px;
-  padding: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 3px;
   background-color: #f0f0f0;
   border-radius: 5px;
+  height: 25px;
   font-size: 14px;
 }
 
 .remove-country {
-  margin-left: 5px;
-  padding: 3px 5px;
+  margin-left: 4px;
+  padding: 3px 6px 3px 6px;
+  margin-top: 14px;
   border: none;
   background-color: #ff6666;
   color: #fff;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 8px;
 }
 
 .success-message {

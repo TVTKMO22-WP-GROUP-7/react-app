@@ -80,8 +80,8 @@ import Constants from './Constants.json';
   }
 
   return (
-    <div className="register-container">
-      <div className="register">
+    <div className="form-container-box">
+      <div className="form-box">
         <h4>Register new user</h4>
         <form onSubmit={handleRegisterSubmit}>
           <input type="text"

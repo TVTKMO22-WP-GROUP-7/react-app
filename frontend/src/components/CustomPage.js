@@ -259,8 +259,8 @@ export default function CustomPage() {
 
   return (
     <>
-      <div id='chart' className="custom">
-        <div className="form-check form-switch container-fluid py-5">
+      <div className="form-container-box">
+        <div className="custom-form-box">
           <table>
             <tr>
               <td>

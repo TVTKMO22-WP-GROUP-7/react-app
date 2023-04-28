@@ -85,26 +85,24 @@ export default function ChangePassword() {
   }
 
   return (
-    <>
-      <div className="changepassword">
-        <div>
+    <div className="form-container-box">
+      <div className="form-box">
           <h4>Change password</h4>
           <form onSubmit={handleChangePasswordSubmit}>
-            <input type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-            <input type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
-            <input type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
+            <input className="passowrdinput" type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <input className="passowrdinput" type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+            <input className="passowrdinput" type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
             <div>
-            <span style={{ color: 'red' }}>{errorMessage}</span>
-          </div>
-            <div>
+              <span style={{ color: 'red' }}>{errorMessage}</span>
+            </div>
+            <div style={{ marginTop: '20px' }}>
               {
                 passwordControls
               }
             </div>
           </form>
           <p> <Link to="/">Don't want to change password?</Link></p>
-        </div>
       </div>
-    </>
+    </div>
   );
 }

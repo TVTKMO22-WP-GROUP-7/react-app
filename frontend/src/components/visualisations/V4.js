@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import axios from "axios";
 import Constants from "../Constants.json";
-import "./Visu.css"
+import './Visu.css';
 
 function V4() {
 
@@ -62,7 +62,6 @@ function V4() {
             // Set country names
             const countryNames = Object.keys(data[0] || {}).filter(key => key !== 'year');
             setCountries(countryNames);
-
             setLoading(false);
 
         } catch (error) {
@@ -78,13 +77,12 @@ function V4() {
 
     useEffect(() => {
         fetchData(true); // fetch data with hidden datasets
-        //drawChartForSelectedCountries();
     }, []);
 
     // Define the chart options
     const chartOptions = {
         responsive: true,
-        sacked: false,
+        stacked: false,
         maintainAspectRatio: false,
         plugins: {
             legend: {
@@ -92,32 +90,32 @@ function V4() {
                 labels: {
                     filter: function (item) {
                         return selectedCountries.includes(item.text);
-                    }
+                    },
                 },
+            },
+            title: {
+                display: true,
+                text: 'CO2 Emissions Over Time',
+                font: {
+                    size: 20,
+                },
+            },
+        },
+        scales: {
+            y: {
+                type: "linear",
                 title: {
                     display: true,
-                    text: 'CO2 Emissions Over Time',
-                    font: {
-                        size: 20,
-                    },
-                }
-            },
-            scales: {
-                y: {
-                    type: "linear",
-                    title: {
-                        display: true,
-                        text: 'CO2 Emissions (tonnes)',
-                    },
-                    position: "left",
+                    text: 'CO2 Emissions (tonnes)',
                 },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Year',
-                        font: {
-                            size: 16,
-                        },
+                position: "left",
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Year',
+                    font: {
+                        size: 16,
                     },
                 },
             },
@@ -234,7 +232,7 @@ function V4() {
             </div>
             <div>
                 {showDescription ? (
-                    <div className="card" style={{ width: "24rem" }}>
+                    <div className="card">
                         <div className="description">
                             <h5>Description</h5>
                             <p>This chart shows the anthropogenic fossil carbon dioxide (CO2) emissions by country (territorial) starting from 1959. All values in million tonnes</p>
@@ -246,7 +244,8 @@ function V4() {
                         <p> <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noopener noreferrer" className="card-link">Download dataset </a> </p>
                     </div>
                 ) : (
-                    <div className="selectedcountry">
+                <>
+                    <div className="selectcountries">
                         <select onChange={handleCountryChange}>
                             <option value="">Select countries</option>
                             {countries.map((country) => (
@@ -255,21 +254,17 @@ function V4() {
                                 </option>
                             ))}
                         </select>
-                    </div>
-                    )}
-                <div className="selectedcountry">
-                    <SelectedCountriesBox selectedCountries={selectedCountries}
+                    </div>  
+                    <div className="selectedcountry">
+                        <SelectedCountriesBox selectedCountries={selectedCountries}
                         handleRemoveCountry={handleRemoveCountry} /> 
-                </div>
-                <div className="chart-container">  
-                    {!showDescription && (
-                        <>
-                            <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} alt="CO2 emissions chart data" style={{ width: "100%" }} />
-                        </>
-                    )}
-                </div>
+                    </div>
+                    <div className="chart-container">     
+                        <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} alt="CO2 emissions chart data" />
+                    </div>
+                </>
+                )}
             </div>
         </div>
     );
-
 } export default V4;
