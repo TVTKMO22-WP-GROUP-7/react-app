@@ -89,13 +89,13 @@ export default function ChangePassword() {
       <div className="form-box">
           <h4>Change password</h4>
           <form onSubmit={handleChangePasswordSubmit}>
-            <input className="passowrdinput" type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-            <input className="passowrdinput" type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
-            <input className="passowrdinput" type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
+            <input className="passwordinput" type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <input className="passwordinput" type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+            <input className="passwordinput" type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
             <div>
               <span style={{ color: 'red' }}>{errorMessage}</span>
             </div>
-            <div style={{ marginTop: '20px' }}>
+            <div className="horizontal-center">
               {
                 passwordControls
               }
