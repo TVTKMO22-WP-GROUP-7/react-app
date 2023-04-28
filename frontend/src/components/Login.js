@@ -93,11 +93,10 @@ export default function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}>
                         </input>
-                        <br></br>
-                        <div >
+                        <div>
                             <span style={{ color: 'red' }}>{errorMessage}</span>
                         </div>
-                        <div>
+                        <div className="horizontal-center">
                             {loginControls}
                         </div>
                         <p>New user? <Link to="/register">Register here</Link></p>

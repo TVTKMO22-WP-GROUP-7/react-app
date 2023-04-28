@@ -95,7 +95,7 @@ export default function DeleteAccount() {
           <div>
             <span style={{ color: 'red' }}>{errorMessage}</span>
           </div>
-          <div style={{ marginTop: '20px' }}>
+          <div className="horizontal-center">
             {
               deleteControls
             }
