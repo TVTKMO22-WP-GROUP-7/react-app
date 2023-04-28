@@ -104,21 +104,25 @@ function V5() {
             });
     }, []);
 
+
     const onClick = (event) => {
-        let element = getElementAtEvent(chartRef.current, event);
-            if (element[0] !== undefined) { // Add this check to avoid the error
-                if (element[0].index === 0) {
-                    setSelectedSector({ data: energyData, label: "Energy" });
-                } else if (element[0].index === 1) {
-                    setSelectedSector({ data: industrialData, label: "Industrial" });
-                } else if (element[0].index === 2) {
-                    setSelectedSector({ data: wasteData, label: "Waste" });
-                } else if (element[0].index === 3) {
-                    setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
-                }
+        if (selectedSector === null || selectedSector.label === "CO2 emissions all sectors") {
+          let element = getElementAtEvent(chartRef.current, event);
+          console.log(element);
+          if (element[0] !== undefined) {
+            if (element[0].index === 0) {
+              setSelectedSector({ data: energyData, label: "Energy" });
+            } else if (element[0].index === 1) {
+              setSelectedSector({ data: industrialData, label: "Industrial" });
+            } else if (element[0].index === 2) {
+              setSelectedSector({ data: wasteData, label: "Waste" });
+            } else if (element[0].index === 3) {
+              setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
             }
+         }
+        }
         return null;
-    };
+      };
 
 
     const data = {
@@ -189,12 +193,12 @@ function V5() {
             <div>
                 <span style={{ color: 'red' }}>{errorMessage}</span>
             </div>
-            <h2 className="selectedsector-container">{selectedSector ? selectedSector.label : "All sectors"}</h2>
+            <h2 className="selectedsector-container">{selectedSector ? selectedSector.label : "CO2 emissions all sectors"}</h2>
             <div className="button-container">
                 {showDescription ? null : (
                     <button
-                        onClick={() => setSelectedSector({ data: data1, label: "All sectors" })}
-                        style={{ display: selectedSector && selectedSector.label !== "All sectors" ? "block" : "none" }}
+                        onClick={() => setSelectedSector({ data: data1, label: "CO2 emissions all sectors" })}
+                        style={{ display: selectedSector && selectedSector.label !== "CO2 emissions all sectors" ? "block" : "none" }}
                     >
                         Go back
                     </button>
