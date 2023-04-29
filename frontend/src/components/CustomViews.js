@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Constants from './Constants.json';
 import './visualisations/Visu.css';
 
+
 import V1 from "./visualisations/V1";
 import V2 from "./visualisations/V2";
 import V3 from "./visualisations/V3";
@@ -24,13 +25,24 @@ export default function CustomViews() {
   //method to get data from backend
   useEffect(() => {
     axios.get(Constants.API_ADDRESS + '/customviews', {
+      
       params: {
         username: username
       }
+      
     }).then(response => {
+      setParallel(response.data.parallel || false);
       console.log(response.data);
+      if (response.data && response.data.length > 0) {
+        setParallel(response.data[0].parallel || false);
+        setData(response.data);
+      } else {
+        setErrorMessage("No custom views found");
+      }
+      
       setData(response.data);
       console.log(response.data[0].parallel);
+      
       if (response.data.length === 0) {
         setErrorMessage("No custom views found");
       }
@@ -133,8 +145,10 @@ export default function CustomViews() {
 
   //method to get layout
   const getLayout = () => {
-    const containerClass = parallel ? "grid-container parallel" : "grid-container";
-    const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };
+    const containerClass = parallel ? "grid-container parallel vertical" : "grid-container";
+    const containerStyle = parallel
+      ? { display: "grid", gridTemplateColumns: "1fr", gap: "20px" }
+      : { width: "100%" };
     return (
       <div className={containerClass} style={containerStyle}>
         {getCustomViews()}
