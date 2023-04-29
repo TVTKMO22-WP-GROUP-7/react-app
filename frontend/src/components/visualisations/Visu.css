@@ -113,6 +113,7 @@
   grid-template-columns: repeat(3, 2fr);
   grid-gap: 20px;
 }
+
 .grid-container.parallel.vertical .custom-view {
   height: 100%;
   padding: 20px;
