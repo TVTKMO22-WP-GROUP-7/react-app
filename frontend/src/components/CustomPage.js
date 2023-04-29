@@ -243,7 +243,7 @@ export default function CustomPage() {
 
   //method to create the layout of the custom view
   const getLayout = () => {
-    const containerClass = parallel ? "grid-container parallel" : "grid-container";
+    const containerClass = parallel ? "grid-container custom" : "grid-container";
     const containerStyle = parallel ? { display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" } : { width: "100%" };
     return (
       <div className={containerClass} style={containerStyle}>
