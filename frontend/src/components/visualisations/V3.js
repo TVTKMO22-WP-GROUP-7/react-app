@@ -8,12 +8,6 @@ import './Visu.css';
 
 function V3() {
 
-    function giveValue(dataObj) {
-        return { ...dataObj, value: 1 }
-      }
-      function giveValueHigh(dataObj) {
-        return { ...dataObj, value: 350 }
-      }
 
     const [showDescription, setShowDescription] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");

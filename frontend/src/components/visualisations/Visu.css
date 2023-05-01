@@ -101,21 +101,5 @@
   font-size: 8px;
 }
 
-.success-message {
-  color: #155724;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-}
 
-.parallel .grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 2fr);
-  grid-gap: 20px;
-}
-
-.grid-container.parallel.vertical .custom-view {
-  height: 100%;
-  padding: 20px;
-}
 

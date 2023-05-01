@@ -219,6 +219,13 @@ h2 {
   align-items: center;
   margin-bottom: 20px;
 }
+.link-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 160%;
+}
 
 .link:hover {
   text-decoration: underline;
@@ -231,4 +238,11 @@ h2 {
 
 p {
   display: flex;
+}
+
+.success-message {
+  color: #155724;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
 }
