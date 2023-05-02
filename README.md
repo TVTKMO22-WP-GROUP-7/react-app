@@ -6,7 +6,7 @@
 <br>tommi20128 - Tommi Paakkolanvaara
 <br>Haudihou - Joni Huttunen</h2>
 
-<h1>Interface plans:</h1>
+<h1>Software interfaces:</h1>
 
 <h2>Log in:</h2>
 
