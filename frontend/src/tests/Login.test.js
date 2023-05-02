@@ -1,7 +1,7 @@
 import Login from '../components/Login';
 import { BrowserRouter } from "react-router-dom";
 import '@testing-library/jest-dom/extend-expect';
-import { render, cleanup, screen, fireEvent, waitFor, act, getByPlaceholderText } from '@testing-library/react';
+import { render, cleanup, screen, fireEvent, waitFor } from '@testing-library/react';
 import Constants from '../components/Constants.json';
 import axios from 'axios';
 
@@ -77,9 +77,7 @@ describe('Login component', () => {
     fireEvent.click(loginButton);
     
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
-    await waitFor(() => {
-      expect(screen.getByText('Please enter your username')).toBeInTheDocument();
-    });
+    await waitFor(() => expect(screen.getByText('Please enter your username')).toBeInTheDocument());
   });
 
 
@@ -96,9 +94,7 @@ describe('Login component', () => {
     fireEvent.change(usernameInput, { target: { value: 'testuser' } });
     fireEvent.click(loginButton);
     
-    await waitFor(() => {
-      expect(screen.getByText('Please enter your password')).toBeInTheDocument();
-    });
+    await waitFor(() => expect(screen.getByText('Please enter your password')).toBeInTheDocument());
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
   });
 });

@@ -1,7 +1,7 @@
 import DeleteAccount from "../components/DeleteAccount";
 import { BrowserRouter } from "react-router-dom";
 import '@testing-library/jest-dom/extend-expect';
-import { render, cleanup, screen, fireEvent, waitFor, act } from "@testing-library/react";
+import { render, cleanup, screen, fireEvent, waitFor } from "@testing-library/react";
 import axios from "axios";
 
 jest.mock('axios');
@@ -70,10 +70,8 @@ describe('DeleteAccount component', () => {
         const submitButton = screen.getByText("Delete account");
         fireEvent.click(submitButton);
 
-        await waitFor(() => {expect(axios.delete).toHaveBeenCalledTimes(0);});
-            
-        await waitFor(() => 
-            expect(screen.getByText('Password can not be empty')).toBeInTheDocument());
+        await waitFor(() => expect(axios.delete).toHaveBeenCalledTimes(0));
+        await waitFor(() => expect(screen.getByText('Password can not be empty')).toBeInTheDocument());
     });
 })
 

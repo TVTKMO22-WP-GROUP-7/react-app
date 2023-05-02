@@ -22,7 +22,7 @@ export default function Register() {
       setErrorMessage("Password can not be empty")
       return;
     } else if (username === "") {
-      setErrorMessage("username can not be empty")
+      setErrorMessage("Username can not be empty")
       return;
     }
 
@@ -103,7 +103,7 @@ export default function Register() {
             onChange={(e) => setConfirmPassword(e.target.value)}>
           </input>
           <div>
-            <span id="testmsg" style={{ color: 'red' }}>{errorMessage}</span>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
           </div>
           <div className="horizontal-center">
             {

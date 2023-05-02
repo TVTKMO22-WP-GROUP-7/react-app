@@ -79,9 +79,7 @@ describe('Register component', () => {
       fireEvent.click(submitButton);
       
       await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
-      await waitFor(() => {
-        expect(screen.getByText('username can not be empty')).toBeInTheDocument();
-      });
+      await waitFor(() => expect(screen.getByText('Username can not be empty')).toBeInTheDocument());
     });
 
   it('Should be a failed registration when no password', async () => {
@@ -102,9 +100,7 @@ describe('Register component', () => {
       fireEvent.click(submitButton);
   
       await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
-      await waitFor(() => {
-        expect(screen.getByText('Password can not be empty')).toBeInTheDocument();
-      });
+      await waitFor(() => expect(screen.getByText('Password can not be empty')).toBeInTheDocument());
   });
 
   it('Should be a failed registration when password not match', async () => {
@@ -126,6 +122,5 @@ describe('Register component', () => {
 
       await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
   });
-
 
 });
