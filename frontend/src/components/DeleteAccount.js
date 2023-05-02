@@ -18,7 +18,7 @@ export default function DeleteAccount() {
     setErrorMessage("");
 
     if (password === "") {
-      setErrorMessage("Password can't be empty")
+      setErrorMessage("Password can not be empty")
     }
     else {
       event.preventDefault();
@@ -33,7 +33,6 @@ export default function DeleteAccount() {
         }
       }).then(response => {
         console.log(response);
-        console.log(response.config.url);
         setChangeDeleteState("success");
         localStorage.removeItem("username");
         localStorage.removeItem("token");

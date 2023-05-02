@@ -1,21 +1,21 @@
 import Login from '../components/Login';
 import { BrowserRouter } from "react-router-dom";
 import '@testing-library/jest-dom/extend-expect';
-import { render, cleanup, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, cleanup, screen, fireEvent, waitFor, act, getByPlaceholderText } from '@testing-library/react';
 import Constants from '../components/Constants.json';
 import axios from 'axios';
 
+jest.mock('axios');
 
 describe('Login component', () => {
     beforeEach(() => {
         localStorage.clear();
-        jest.mock('axios');
         axios.get = jest.fn().mockResolvedValue({ data: '' });
         axios.post = jest.fn().mockResolvedValue('');
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    jest.clearAllMocks();
     cleanup();
   });
 
@@ -60,54 +60,45 @@ describe('Login component', () => {
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(1));
     expect(axios.post).toHaveBeenCalledWith(Constants.API_ADDRESS + '/login', { username: 'testuser', password: 'testpassword' });
 
+    await waitFor(() => expect(screen.getByText('Login successful')).toBeInTheDocument());
     await waitFor(() => expect(localStorage.getItem('token')).toBe('token'));
     expect(localStorage.getItem('username')).toBe('testuser');
+    await waitFor(() => expect(window.location.pathname).toBe('/'));
   });
 
-  it('attempt to submit with no username', async () => {
-    const loginResponse = {
-      data: 'token',
-    };
-    axios.post.mockResolvedValue(loginResponse);
-    const { getByPlaceholderText, getByText } = render(
-        <BrowserRouter>
+  it('shows an error message if no username is entered', async () => {
+    render(
+      <BrowserRouter>
             <Login />
         </BrowserRouter>
     );
-    const usernameInput = getByPlaceholderText('Enter username');
-    const passwordInput = getByPlaceholderText('Enter password');
-    const loginButton = getByText('Login');
-
-    fireEvent.change(usernameInput, { target: { value: '' } });
-    fireEvent.change(passwordInput, { target: { value: 'password' } });
+    
+    const loginButton = screen.getByText('Login');
     fireEvent.click(loginButton);
-
+    
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
-    expect(localStorage.getItem('token')).toBe(null);
-    expect(localStorage.getItem('username')).toBe(null);
+    await waitFor(() => {
+      expect(screen.getByText('Please enter your username')).toBeInTheDocument();
+    });
   });
 
 
-  it('attempt to submit with no password', async () => {
-    const loginResponse = {
-      data: 'token',
-    };
-    axios.post.mockResolvedValue(loginResponse);
-    const { getByPlaceholderText, getByText } = render(
-        <BrowserRouter>
+  it('shows an error message if no password is entered', async () => {
+    render(
+      <BrowserRouter>
             <Login />
         </BrowserRouter>
     );
-    const usernameInput = getByPlaceholderText('Enter username');
-    const passwordInput = getByPlaceholderText('Enter password');
-    const loginButton = getByText('Login');
+    
+    const usernameInput = screen.getByPlaceholderText('Enter username');
+    const loginButton = screen.getByText('Login');
 
     fireEvent.change(usernameInput, { target: { value: 'testuser' } });
-    fireEvent.change(passwordInput, { target: { value: '' } });
     fireEvent.click(loginButton);
-
+    
+    await waitFor(() => {
+      expect(screen.getByText('Please enter your password')).toBeInTheDocument();
+    });
     await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
-    expect(localStorage.getItem('username')).toBe(null);
-    expect(localStorage.getItem('token')).toBe(null);
   });
 });
