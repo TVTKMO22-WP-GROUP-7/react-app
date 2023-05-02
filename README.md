@@ -8,9 +8,9 @@
 
 <h1>Introduction:</h1>
 
-Climate Change Visualizer 
+*Climate Change Visualizer* 
 
-Esittely 
+*Esittely* 
 
 Projekti on luotu Web-ohjelmoinnin Sovellusprojekti -kurssia varten, jossa tavoitteena on luoda ilmastonmuutokseen liittyvän tiedon visualisointityökalu. Projektin vaatimuksiin kuuluu mahdollisuus käyttäjän luomiseen käyttäjänimellä ja salasanalla, käyttäjän kirjautuminen sekä tilin poistaminen. Lisäksi lisäsimme toiminnallisuuksiin myös salasanan vaihdon. Käyttäjän on mahdollista tutkia kuvaajia ilman kirjautumista sekä kirjauduttuaan luoda henkilökohtainen visualisointinäkymä valitsemistaan visualisoinneista. Projektin lopuksi sovellus julkaistaan käytettäväksi julkiseen Internetiin Render-palvelun avulla.  
 
