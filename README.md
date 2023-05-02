@@ -6,6 +6,130 @@
 <br>tommi20128 - Tommi Paakkolanvaara
 <br>Haudihou - Joni Huttunen</h2>
 
+<h1>Introduction:</h1>
+
+Climate Change Visualizer 
+
+Esittely 
+
+ 
+
+Projekti on luotu Web-ohjelmoinnin Sovellusprojekti -kurssia varten, jossa tavoitteena on luoda ilmastonmuutokseen liittyvän tiedon visualisointityökalu. Projektin vaatimuksiin kuuluu mahdollisuus käyttäjän luomiseen käyttäjänimellä ja salasanalla, käyttäjän kirjautuminen sekä tilin poistaminen. Lisäksi lisäsimme toiminnallisuuksiin myös salasanan vaihdon. Käyttäjän on mahdollista tutkia kuvaajia ilman kirjautumista sekä kirjauduttuaan luoda henkilökohtainen visualisointinäkymä valitsemistaan visualisoinneista. Projektin lopuksi sovellus julkaistaan käytettäväksi julkiseen Internetiin Render-palvelun avulla.  
+
+ 
+
+Demo 
+
+Group 7 climateproject demo 
+
+
+
+Toiminnallisuudet 
+
+Ensimmäinen näkymä sivustolla on etusivu (kuva 1). Oletusetusivulla näkyvät V1 – V3 -visualisaatioiden esikatselut. Käyttäjän painaessa yläpalkista ”Change view”-painiketta, näkymäksi vaihtuu V4 – V5-visualisaatiot. Kunkin visualisaation alta löytyy ”Description”-painike, josta käyttäjä halutessaan voi tarkastella kyseessä olevan visualisaation kuvailun ja datojen lähteen.  
+
+ 
+
+ 
+
+Käyttäjäkohtaiset toiminnot: Rekisteröityminen, kirjautuminen, salasanan vaihto, tilin poistaminen 
+
+Jos asiakas ei ole kirjautunut sivustolle sisään, painamalla yläpalkista ”Login”-painiketta käyttäjä pääsee alla olevaan näkymään (kuva 2). Jos asiakas ei ole vielä luonut käyttäjätunnusta, se voidaan luoda painamalla ”Register here”. Käyttäjän luomisen onnistumisen jälkeen asiakas ohjataan takaisin kirjautumisnäkymään.  
+
+ 
+
+ 
+
+ 
+
+Sisäänkirjautumisen jälkeen asiakkaan on mahdollista muuttaa tilin salasanaa ”Change Password”-näkymän kautta. ”Custom view”-näkymässä asiakas pääsee luomaan omia visualisointinäkymiä, sekä tarkastelemaan jo luotuja näkymiä. ”Delete Account”-näkymässä asiakas pystyy poistamaan tilinsä kirjoittamalla salasanansa oikein. Samalla poistetaan myös kyseiseen tiliin linkitetyt visualisointinäkymät.  
+
+ 
+
+Teknologiat ja työohjelmat 
+
+ 
+
+Loimme tietokannan PostgreSQL-ohjelmalla. Projektin kehitysympäristönä toimi Visual Studio Code, jossa projektin backend-puoli toteutettiin Java-ohjelmointikielellä ja frontend-puoli React-ohjelmointikielellä. Versionhallintatyökaluna käytimme GitHub-ympäristöä, jonne sovelluskoodit on tallennettu projektille tehtyyn repositorioon (kuva 3). GitHubin kautta käytimme myös Kanban-tyylistä projektisuunnittelua.  
+
+ 
+
+ 
+
+ 
+
+Kuva 5. Kuvassa ryhmän GitHub-repositorio.  
+
+ 
+
+ 
+
+Vastuualueet 
+
+Alla kerromme lyhyesti, mitä kukin projektin jäsen teki projektin aikana.   
+
+ 
+
+Henna Hannila: Projektin alussa tein projektille pohjan, josta projektia lähdettiin työstämään. Työstin kokonaisuudessaan salasanan vaihdon sekä backendin, että frontendin puolelle. Dataseteistä valmistelin tietokantaan V1:n ja V5:n, lisäksi toteutin näiden tuonnin REST API:iin ja lopulta myös visualisoinnit pohjautuen V1- ja V5-datoihin. Teimme yhdessä Jonnan kanssa mahdollisuuden käyttäjäkohtaisten visualisointinäkymien luomiseen, käyttäjän jo luotujen visualisointinäkymien tarkasteluun sekä yksittäisen visualisointinäkymän tarkasteluun yksilöllisen URL:n kautta.  Lisäksi autoin myös muita projektin jäseniä ongelmatilanteissa sekä vastasin osaltani esittelytekstin kirjoittamisesta. 
+
+ 
+
+Joni Huttunen: Vastasin alun perin sovelluksen käyttöliittymän ulkoasusta ja asettelusta, käyttäjän luomisesta sekä käyttäjän sisäänkirjautumisesta. Lisäksi vastuullani oli V2-näkymän luominen tietokantaan sekä sen tuominen käyttöliittymään käyttäjän saataville. Lisäksi vastasin N1- ja N2-näkymien lopullisista asetelmista ja logiikasta. Vastasin myös sovelluksen lataamisesta palvelimelle sekä sovelluksen esittelyvideosta. Osallistuin myös esittelytekstin kirjoittamiseen. 
+
+ 
+
+Jonna Huotari: Vastuualueisiini kuului tilin poisto-ominaisuuden toteutus molempien, backend- että frontend- puolen osalta. Visualisoinneista toteutin V3-näkymän, datan tuonnin tietokantaan, yhdistämisen REST API:iin ja itse sovellukseen. Yhdessä Hennan kanssa toteutimme käyttäjäkohtaisten visualisointinäkymien luomisen, luotujen visualisointien tarkastelun, poiston ja yksittäisten visualisointinäkymien tarkastelun URL:n kautta. Olen myös kirjoittanut esittelytekstiä ja työstänyt REST API:iin liittyvän dokumentoinnin stoplight.io-työkalulla. 
+
+ 
+
+Tommi Paakkolanvaara: Vastuualueisiini kuului salasanan kryptaaminen ja käyttäjän sisäänkirjautuminen sekä backendin- että frontendin-puolelle. Frontendin puolella vastasin myös navigointipalkin luomisesta. Dataseteistä vastuullani oli V4-tallentaminen tietokantaan, yhdistäminen REST API:iin ja lopulliseen sovellukseen. Vastasin myös testikoodeista sekä sovelluksen responsiivisuudesta. 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+   
+
+Käyttöönotto 
+
+ 
+
+Kloonaa repo haluamaasi kansioon: git clone https://github.com/TVTKMO22-WP-GROUP-7/react-app.git 
+
+ 
+
+Lataa projektiin tarvittavat riippuvaisuudet: npm install projektin, frontend/ sekä backend/-juuressa. 
+
+ 
+
+Luo PostgreSQL-tietokanta nimelle climateproject (tai muulla nimellä, mutta muuta siinä tapauksessa backend-puolelta application.properties-tiedostosta). Tarvittaessa muokkaa myös postgren käyttäjätunnus ja salasana vastaamaan omaasi. Lisäksi jos käyttämäsi portti on eri kuin projektissa määritelty portti, tulee myös se muuttaa yllä mainitussa tiedostosta, sekä frontendin puolella Constants.json-tiedostossa. 
+
+ 
+
+   
+
+ 
+
+Linkki palvelimelle: Sovellusta ei saatu onnistuneesti palvelimelle 
+
+ 
+
+Linkki GitHubiin: https://github.com/TVTKMO22-WP-GROUP-7/react-app 
+
+ 
+
+Linkki projektin Stoplightiin: https://projekti2023.stoplight.io/ 
+
+ 
+
+Linkki käyttöliittymän suunnitteluun (Wireframe): https://wireframe.cc/pro/pp/58b322e12650968 
+
 <h1>Software interfaces:</h1>
 
 <h2>Log in:</h2>
