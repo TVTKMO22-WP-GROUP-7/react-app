@@ -32,6 +32,6 @@
 
 ![changepasswordclimate](https://user-images.githubusercontent.com/112495020/235762297-74b5f05e-dc66-4f0f-8ea9-d917fec6fa13.png)
 
-<h2>Account delete:</h2>
+<h2>Delete account:</h2>
 
 ![deleteaccclimate](https://user-images.githubusercontent.com/112495020/235762316-a735afd0-8ea7-4179-9fe1-bc72aa5fd874.png)
