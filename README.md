@@ -8,15 +8,19 @@
 
 <h1>Introduction:</h1>
 
+
 **Climate Change Visualizer**
+
 
 **Esittely**
 
 Projekti on luotu Web-ohjelmoinnin Sovellusprojekti -kurssia varten, jossa tavoitteena on luoda ilmastonmuutokseen liittyvän tiedon visualisointityökalu. Projektin vaatimuksiin kuuluu mahdollisuus käyttäjän luomiseen käyttäjänimellä ja salasanalla, käyttäjän kirjautuminen sekä tilin poistaminen. Lisäksi lisäsimme toiminnallisuuksiin myös salasanan vaihdon. Käyttäjän on mahdollista tutkia kuvaajia ilman kirjautumista sekä kirjauduttuaan luoda henkilökohtainen visualisointinäkymä valitsemistaan visualisoinneista. Projektin lopuksi sovellus julkaistaan käytettäväksi julkiseen Internetiin Render-palvelun avulla.  
 
+
 **Demovideo**
 
 https://www.youtube.com/watch?v=jZRkC9VPi5s
+
 
 **Toiminnallisuudet**
 
@@ -34,6 +38,7 @@ Jos asiakas ei ole kirjautunut sivustolle sisään, painamalla yläpalkista ”L
 
 Sisäänkirjautumisen jälkeen asiakkaan on mahdollista muuttaa tilin salasanaa ”Change Password”-näkymän kautta. ”Custom view”-näkymässä asiakas pääsee luomaan omia visualisointinäkymiä, sekä tarkastelemaan jo luotuja näkymiä. ”Delete Account”-näkymässä asiakas pystyy poistamaan tilinsä kirjoittamalla salasanansa oikein. Samalla poistetaan myös kyseiseen tiliin linkitetyt visualisointinäkymät.  
 
+
 **Teknologiat ja työohjelmat**
 
 Loimme tietokannan PostgreSQL-ohjelmalla. Projektin kehitysympäristönä toimi Visual Studio Code, jossa projektin backend-puoli toteutettiin Java-ohjelmointikielellä ja frontend-puoli React-ohjelmointikielellä. Versionhallintatyökaluna käytimme GitHub-ympäristöä, jonne sovelluskoodit on tallennettu projektille tehtyyn repositorioon (kuva 3). GitHubin kautta käytimme myös Kanban-tyylistä projektisuunnittelua.  
@@ -41,6 +46,7 @@ Loimme tietokannan PostgreSQL-ohjelmalla. Projektin kehitysympäristönä toimi 
 ![climaterepopic](https://user-images.githubusercontent.com/112495020/235764237-c2dc147b-5b03-45ff-a8c2-5da52cacae24.png)
 
 *Kuva 5. Kuvassa ryhmän GitHub-repositorio.*  
+
 
 **Vastuualueet**
 
@@ -53,6 +59,7 @@ Alla kerromme lyhyesti, mitä kukin projektin jäsen teki projektin aikana. �
 **Jonna Huotari:** Vastuualueisiini kuului tilin poisto-ominaisuuden toteutus molempien, backend- että frontend- puolen osalta. Visualisoinneista toteutin V3-näkymän, datan tuonnin tietokantaan, yhdistämisen REST API:iin ja itse sovellukseen. Yhdessä Hennan kanssa toteutimme käyttäjäkohtaisten visualisointinäkymien luomisen, luotujen visualisointien tarkastelun, poiston ja yksittäisten visualisointinäkymien tarkastelun URL:n kautta. Olen myös kirjoittanut esittelytekstiä ja työstänyt REST API:iin liittyvän dokumentoinnin stoplight.io-työkalulla. 
 
 **Tommi Paakkolanvaara:** Vastuualueisiini kuului salasanan kryptaaminen ja käyttäjän sisäänkirjautuminen sekä backendin- että frontendin-puolelle. Frontendin puolella vastasin myös navigointipalkin luomisesta. Dataseteistä vastuullani oli V4-tallentaminen tietokantaan, yhdistäminen REST API:iin ja lopulliseen sovellukseen. Vastasin myös testikoodeista sekä sovelluksen responsiivisuudesta. 
+
 
 **Käyttöönotto**
 
