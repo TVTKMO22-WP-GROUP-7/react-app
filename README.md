@@ -10,28 +10,28 @@
 
 <h2>Log in:</h2>
 
-![Log in](https://user-images.githubusercontent.com/112495020/225019355-0a5234bc-1659-4829-912b-0a6677198eba.png)
+![loginclimate](https://user-images.githubusercontent.com/112495020/235762082-93405be7-74c1-4cfe-8265-d69d1c675aa5.png)
 
 <h2>Create new account:</h2>
 
-![User creation](https://user-images.githubusercontent.com/112495020/225369714-897cc3fc-aba4-4a68-93d3-7b89234d0fdb.png)
+![registerclimate](https://user-images.githubusercontent.com/112495020/235762142-996be653-397a-4646-ac48-9c81c6eadc87.png)
 
 <h2>Homescreen 1:</h2>
 
-![Homescreen 1](https://user-images.githubusercontent.com/112495020/226171402-beb3ee7f-79ba-4c9e-8052-1446a7692e90.png)
+![home1climate](https://user-images.githubusercontent.com/112495020/235762213-f9e97398-d124-4a41-a8c0-9a703b4454fe.png)
 
 <h2>Homescreen 2:</h2>
 
-![Homescreen 2](https://user-images.githubusercontent.com/112495020/226171350-f0f1601a-0278-4a6c-bd71-dd93a1770896.png)
+![home2climate](https://user-images.githubusercontent.com/112495020/235762243-12d2c5d8-c54b-4b04-8949-558bedc69f62.png)
 
 <h2>Custom page:</h2>
 
-![Custom page](https://user-images.githubusercontent.com/112495020/226171473-1cc785d1-4a9c-4f09-bbfd-1d3369145247.png)
+![custompageclimate](https://user-images.githubusercontent.com/112495020/235762271-56533917-90f8-47e9-8bb1-1a0792ce807c.png)
 
 <h2>Change password:</h2>
 
-![Change password](https://user-images.githubusercontent.com/112495020/226171672-e5210bd8-cb77-4c80-9b15-0abdab1500e8.png)
+![changepasswordclimate](https://user-images.githubusercontent.com/112495020/235762297-74b5f05e-dc66-4f0f-8ea9-d917fec6fa13.png)
 
 <h2>Account delete:</h2>
 
-![Account delete](https://user-images.githubusercontent.com/112495020/226171098-ccc78f50-e336-4fe8-8764-121e840d38be.png)
+![deleteaccclimate](https://user-images.githubusercontent.com/112495020/235762316-a735afd0-8ea7-4179-9fe1-bc72aa5fd874.png)
