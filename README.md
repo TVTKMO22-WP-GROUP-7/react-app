@@ -18,9 +18,9 @@ Projekti on luotu Web-ohjelmoinnin Sovellusprojekti -kurssia varten, jossa tavoi
 
  
 
-Demo 
+Demovideo
 
-Group 7 climateproject demo 
+https://www.youtube.com/watch?v=jZRkC9VPi5s
 
 
 
@@ -28,7 +28,7 @@ Toiminnallisuudet
 
 Ensimmäinen näkymä sivustolla on etusivu (kuva 1). Oletusetusivulla näkyvät V1 – V3 -visualisaatioiden esikatselut. Käyttäjän painaessa yläpalkista ”Change view”-painiketta, näkymäksi vaihtuu V4 – V5-visualisaatiot. Kunkin visualisaation alta löytyy ”Description”-painike, josta käyttäjä halutessaan voi tarkastella kyseessä olevan visualisaation kuvailun ja datojen lähteen.  
 
- 
+ ![home1climate](https://user-images.githubusercontent.com/112495020/235763939-9f4d849c-ee3c-4348-a149-183b57a2a342.png)
 
  
 
@@ -36,10 +36,9 @@ Käyttäjäkohtaiset toiminnot: Rekisteröityminen, kirjautuminen, salasanan vai
 
 Jos asiakas ei ole kirjautunut sivustolle sisään, painamalla yläpalkista ”Login”-painiketta käyttäjä pääsee alla olevaan näkymään (kuva 2). Jos asiakas ei ole vielä luonut käyttäjätunnusta, se voidaan luoda painamalla ”Register here”. Käyttäjän luomisen onnistumisen jälkeen asiakas ohjataan takaisin kirjautumisnäkymään.  
 
- 
+![loginclimate](https://user-images.githubusercontent.com/112495020/235764000-9b3f1619-2301-43d8-9044-5d688400f5f3.png)
 
  
-
  
 
 Sisäänkirjautumisen jälkeen asiakkaan on mahdollista muuttaa tilin salasanaa ”Change Password”-näkymän kautta. ”Custom view”-näkymässä asiakas pääsee luomaan omia visualisointinäkymiä, sekä tarkastelemaan jo luotuja näkymiä. ”Delete Account”-näkymässä asiakas pystyy poistamaan tilinsä kirjoittamalla salasanansa oikein. Samalla poistetaan myös kyseiseen tiliin linkitetyt visualisointinäkymät.  
@@ -52,11 +51,10 @@ Teknologiat ja työohjelmat
 
 Loimme tietokannan PostgreSQL-ohjelmalla. Projektin kehitysympäristönä toimi Visual Studio Code, jossa projektin backend-puoli toteutettiin Java-ohjelmointikielellä ja frontend-puoli React-ohjelmointikielellä. Versionhallintatyökaluna käytimme GitHub-ympäristöä, jonne sovelluskoodit on tallennettu projektille tehtyyn repositorioon (kuva 3). GitHubin kautta käytimme myös Kanban-tyylistä projektisuunnittelua.  
 
- 
+![climaterepopic](https://user-images.githubusercontent.com/112495020/235764237-c2dc147b-5b03-45ff-a8c2-5da52cacae24.png)
 
  
 
- 
 
 Kuva 5. Kuvassa ryhmän GitHub-repositorio.  
 
