@@ -2,58 +2,58 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Constants from './Constants.json';
-  
-  export default function Register() {
-  
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const navigate = useNavigate();
-    const [changeRegisterState, setChangeRegisterState] = useState("idle");
-    const [errorMessage, setErrorMessage] = useState("");
-  
-    const handleRegisterSubmit = async (event) => {
-      setErrorMessage("");
-      event.preventDefault();
-      if (password !== confirmPassword) {
-        setErrorMessage("Password and Confirm Password does not match")
-        return;
-      } else if (password === "") {
-        setErrorMessage("Password can't be empty")
-        return;
-      }  else if (username === "") {
-        setErrorMessage("username can't be empty")
-        return;
-      }
-    
-      setChangeRegisterState("processing");
-      axios.post(Constants.API_ADDRESS + "/register", {
-        username: username,
-        password: password,
-      }).then(response => {
-        console.log(response)
-        setChangeRegisterState("success");
-        setTimeout(() => {
-          setChangeRegisterState("idle")
-          navigate("/login", { replace: true });
-        }, 1500);
-      }).catch(error => {
-        setChangeRegisterState("error");
-        setTimeout(() => {
-          setChangeRegisterState("idle")
-        }, 1500);
-        setErrorMessage("User already exists. Please pick another username")
-        console.log(error)
-      })
+
+export default function Register() {
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+  const [changeRegisterState, setChangeRegisterState] = useState("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleRegisterSubmit = async (event) => {
+    setErrorMessage("");
+    event.preventDefault();
+    if (password !== confirmPassword) {
+      setErrorMessage("Password and Confirm Password does not match")
+      return;
+    } else if (password === "") {
+      setErrorMessage("Password can't be empty")
+      return;
+    } else if (username === "") {
+      setErrorMessage("username can't be empty")
+      return;
     }
-  
-    useEffect(() => {
-      const timeout = setTimeout(() => {
-        setErrorMessage("");
+
+    setChangeRegisterState("processing");
+    axios.post(Constants.API_ADDRESS + "/register", {
+      username: username,
+      password: password,
+    }).then(response => {
+      console.log(response)
+      setChangeRegisterState("success");
+      setTimeout(() => {
+        setChangeRegisterState("idle")
+        navigate("/login", { replace: true });
       }, 1500);
-    
-      return () => clearTimeout(timeout);
-    }, [errorMessage]);
+    }).catch(error => {
+      setChangeRegisterState("error");
+      setTimeout(() => {
+        setChangeRegisterState("idle")
+      }, 1500);
+      setErrorMessage("User already exists. Please pick another username")
+      console.log(error)
+    })
+  }
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setErrorMessage("");
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, [errorMessage]);
 
 
   let registerControls = null;

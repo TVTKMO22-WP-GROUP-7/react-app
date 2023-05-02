@@ -16,7 +16,7 @@ export default function Login() {
         setErrorMessage("")
         e.preventDefault()
 
-         setLoginState("processing")
+        setLoginState("processing")
 
         await axios.post(Constants.API_ADDRESS + "/login", {
             username: username,
@@ -43,13 +43,13 @@ export default function Login() {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-          setErrorMessage("");
+            setErrorMessage("");
         }, 2000);
-      
-        return () => clearTimeout(timeout);
-      }, [errorMessage]);
 
-      
+        return () => clearTimeout(timeout);
+    }, [errorMessage]);
+
+
     let loginControls = null;
     switch (loginState) {
         case "idle":

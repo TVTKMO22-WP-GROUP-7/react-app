@@ -107,22 +107,22 @@ function V5() {
 
     const onClick = (event) => {
         if (selectedSector === null || selectedSector.label === "CO2 emissions all sectors") {
-          let element = getElementAtEvent(chartRef.current, event);
-          console.log(element);
-          if (element[0] !== undefined) {
-            if (element[0].index === 0) {
-              setSelectedSector({ data: energyData, label: "Energy" });
-            } else if (element[0].index === 1) {
-              setSelectedSector({ data: industrialData, label: "Industrial" });
-            } else if (element[0].index === 2) {
-              setSelectedSector({ data: wasteData, label: "Waste" });
-            } else if (element[0].index === 3) {
-              setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
+            let element = getElementAtEvent(chartRef.current, event);
+            console.log(element);
+            if (element[0] !== undefined) {
+                if (element[0].index === 0) {
+                    setSelectedSector({ data: energyData, label: "Energy" });
+                } else if (element[0].index === 1) {
+                    setSelectedSector({ data: industrialData, label: "Industrial" });
+                } else if (element[0].index === 2) {
+                    setSelectedSector({ data: wasteData, label: "Waste" });
+                } else if (element[0].index === 3) {
+                    setSelectedSector({ data: afoluData, label: "Agriculture, Forestry & Land use (Afolu)" });
+                }
             }
-         }
         }
         return null;
-      };
+    };
 
 
     const data = {
@@ -220,9 +220,9 @@ function V5() {
                         <p> <a href="https://ourworldindata.org/uploads/2020/09/Global-GHG-Emissions-by-sector-based-on-WRI-2020.xlsx" target="_blank" rel="noopener noreferrer" className="card-link">Dataset</a> </p>
                     </div>
                 ) :
-                <div className="chart-container">
-                <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} />
-                </div>
+                    <div className="chart-container">
+                        <Doughnut data={data} options={options} ref={chartRef} onClick={onClick} />
+                    </div>
                 }
             </div>
         </div>

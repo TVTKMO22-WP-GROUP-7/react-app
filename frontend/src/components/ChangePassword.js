@@ -57,7 +57,7 @@ export default function ChangePassword() {
     const timeout = setTimeout(() => {
       setErrorMessage("");
     }, 1500);
-  
+
     return () => clearTimeout(timeout);
   }, [errorMessage]);
 
@@ -87,21 +87,21 @@ export default function ChangePassword() {
   return (
     <div className="form-container-box">
       <div className="form-box">
-          <h4>Change password</h4>
-          <form onSubmit={handleChangePasswordSubmit}>
-            <input className="passwordinput" type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-            <input className="passwordinput" type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
-            <input className="passwordinput" type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
-            <div>
-              <span style={{ color: 'red' }}>{errorMessage}</span>
-            </div>
-            <div className="horizontal-center">
-              {
-                passwordControls
-              }
-            </div>
-          </form>
-          <p> <Link to="/">Don't want to change password?</Link></p>
+        <h4>Change password</h4>
+        <form onSubmit={handleChangePasswordSubmit}>
+          <input className="passwordinput" type="password" name="password" placeholder="Enter your current password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+          <input className="passwordinput" type="password" name="newPassword" placeholder="Enter your new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+          <input className="passwordinput" type="password" name="confirmedPassword" placeholder="Enter confirmed password" value={confirmedPassword} onChange={(e) => setConfirmedPassword(e.target.value)}></input>
+          <div>
+            <span style={{ color: 'red' }}>{errorMessage}</span>
+          </div>
+          <div className="horizontal-center">
+            {
+              passwordControls
+            }
+          </div>
+        </form>
+        <p> <Link to="/">Don't want to change password?</Link></p>
       </div>
     </div>
   );
