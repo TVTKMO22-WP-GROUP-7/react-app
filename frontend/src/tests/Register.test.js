@@ -5,11 +5,11 @@ import { render, cleanup, fireEvent, screen, waitFor } from "@testing-library/re
 import Constants from '../components/Constants.json';
 import axios from 'axios';
 
+jest.mock('axios');
 
 describe('Register component', () => {
   beforeEach(() => {
     localStorage.clear();
-    jest.mock('axios');
     axios.post = jest.fn().mockResolvedValue('');
   });
 
@@ -77,8 +77,30 @@ describe('Register component', () => {
       fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
       fireEvent.change(confirmPasswordInput, { target: { value: 'testpassword' } });
       fireEvent.click(submitButton);
-
+      
       await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
+      await waitFor(() => expect(screen.getByText('Username can not be empty')).toBeInTheDocument());
+    });
+
+  it('Should be a failed registration when no password', async () => {
+    render(
+      <BrowserRouter>
+        <Register />
+      </BrowserRouter>
+      );
+      
+      const usernameInput = screen.getByPlaceholderText("Enter username");
+      const passwordInput = screen.getByPlaceholderText("Enter password");
+      const confirmPasswordInput = screen.getByPlaceholderText("Enter confirm password");
+      const submitButton = screen.getByText("Register");
+      
+      fireEvent.change(usernameInput, { target: { value: 'testuser' } });
+      fireEvent.change(passwordInput, { target: { value: '' } });
+      fireEvent.change(confirmPasswordInput, { target: { value: '' } });
+      fireEvent.click(submitButton);
+  
+      await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
+      await waitFor(() => expect(screen.getByText('Password can not be empty')).toBeInTheDocument());
   });
 
   it('Should be a failed registration when password not match', async () => {
@@ -96,26 +118,6 @@ describe('Register component', () => {
       fireEvent.change(usernameInput, { target: { value: 'testuser' } });
       fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
       fireEvent.change(confirmPasswordInput, { target: { value: 'wrongpassword' } });
-      fireEvent.click(submitButton);
-
-      await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));
-  });
-
-  it('Should be a failed registration when no passwords', async () => {
-    render(
-      <BrowserRouter>
-        <Register />
-      </BrowserRouter>
-      );
-    
-      const usernameInput = screen.getByPlaceholderText("Enter username");
-      const passwordInput = screen.getByPlaceholderText("Enter password");
-      const confirmPasswordInput = screen.getByPlaceholderText("Enter confirm password");
-      const submitButton = screen.getByText("Register");
-    
-      fireEvent.change(usernameInput, { target: { value: 'testuser' } });
-      fireEvent.change(passwordInput, { target: { value: '' } });
-      fireEvent.change(confirmPasswordInput, { target: { value: '' } });
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(axios.post).toHaveBeenCalledTimes(0));

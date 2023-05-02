@@ -3,12 +3,12 @@ import { BrowserRouter } from "react-router-dom";
 import '@testing-library/jest-dom/extend-expect';
 import { render, cleanup, screen, fireEvent, waitFor } from "@testing-library/react";
 import axios from "axios";
-import { act } from "@testing-library/react";
+
+jest.mock('axios');
 
 describe('DeleteAccount component', () => {
     beforeEach(() => {
         localStorage.clear();
-        jest.mock('axios');
         axios.get = jest.fn().mockResolvedValue({ data: '' });
         axios.post = jest.fn().mockResolvedValue('');
         axios.delete = jest.fn(() => Promise.resolve());
@@ -37,7 +37,6 @@ describe('DeleteAccount component', () => {
             expect(loginLink).toBeInTheDocument();
     })
 
-    //Ei toimi oikein
     it("Should be a successful deletion", async () => {
         const loginResponse = {
             data: 'testpassword',
@@ -49,37 +48,31 @@ describe('DeleteAccount component', () => {
               </BrowserRouter>
           );
 
-
         const passwordInput = getByPlaceholderText("Enter your password");
         const submitButton = getByText("Delete account");
-
-
-        await act(async () => {
-            fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
-            fireEvent.click(submitButton);
-            await waitFor(() => expect(axios.delete).toHaveBeenCalledTimes(1));
-        });
+        fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
+        fireEvent.click(submitButton);
+      
+        await waitFor(() => expect(axios.delete).toHaveBeenCalledTimes(1));
     })
 
-    // it("Should be a failed deletion", async () => {
-    //     const loginResponse = {
-    //         data: 'testpassword',
-    //         };
-    //         axios.post.mockResolvedValue(loginResponse);
-    //         const { getByPlaceholderText, getByText } = render(
-    //             <BrowserRouter>
-    //                 <DeleteAccount />
-    //             </BrowserRouter>
-    //         );
+    it("Should be a failed deletion if no password is entered", async () => {
+        const loginResponse = {
+            data: 'testpassword',
+          };
+          axios.post.mockResolvedValue(loginResponse);
+          render(
+              <BrowserRouter>
+                  <DeleteAccount />
+              </BrowserRouter>
+          );
 
-    //     const passwordInput = getByPlaceholderText("Enter your password");
-    //     const submitButton = getByText("Delete account");
+        const submitButton = screen.getByText("Delete account");
+        fireEvent.click(submitButton);
 
-    //     await act(async () => {
-    //         fireEvent.change(passwordInput, { target: { value: 'wrongpassword' } });
-    //         fireEvent.click(submitButton);
-            
-    //         await waitFor(() => expect(axios.delete).toHaveBeenCalledTimes(0));
-    //     });
-    //})
-});
+        await waitFor(() => expect(axios.delete).toHaveBeenCalledTimes(0));
+        await waitFor(() => expect(screen.getByText('Password can not be empty')).toBeInTheDocument());
+    });
+})
+
+

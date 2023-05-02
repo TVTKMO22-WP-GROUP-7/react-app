@@ -16,29 +16,37 @@ export default function Login() {
         setErrorMessage("")
         e.preventDefault()
 
-        setLoginState("processing")
-
-        await axios.post(Constants.API_ADDRESS + "/login", {
-            username: username,
-            password: password,
-        }).then(response => {
-            const token = response.data
-            localStorage.setItem("token", token)
-            localStorage.setItem("username", username)
-            setAuthToken(token)
-            setLoginState("success");
-            setErrorMessage("");
-            setTimeout(() => {
-                setLoginState("idle")
-                navigate('/', { replace: true });
-                window.location.reload(false);
-            }, 1500);
-        }).catch(error => {
+        if (!username) {
+            setErrorMessage('Please enter your username');
+        } else if (!password) {
+            setErrorMessage('Please enter your password');
+        } else {
+ 
+            setLoginState("processing")
+            
+            await axios.post(Constants.API_ADDRESS + "/login", {
+                username: username,
+                password: password,
+            }).then(response => {
+                console.log(response)
+                const token = response.data
+                localStorage.setItem("token", token)
+                localStorage.setItem("username", username)
+                setAuthToken(token)
+                setLoginState("success");
+                setErrorMessage("");
+                setTimeout(() => {
+                    setLoginState("idle")
+                    navigate('/', { replace: true });
+                    window.location.reload(false);
+                }, 1500);
+            }).catch(error => {
             setLoginState("error");
             setTimeout(() => setLoginState("idle"), 2000);
             setErrorMessage("Wrong username or password");
             console.log(error)
         })
+        }
     }
 
     useEffect(() => {

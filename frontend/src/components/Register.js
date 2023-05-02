@@ -19,10 +19,10 @@ export default function Register() {
       setErrorMessage("Password and Confirm Password does not match")
       return;
     } else if (password === "") {
-      setErrorMessage("Password can't be empty")
+      setErrorMessage("Password can not be empty")
       return;
     } else if (username === "") {
-      setErrorMessage("username can't be empty")
+      setErrorMessage("Username can not be empty")
       return;
     }
 
