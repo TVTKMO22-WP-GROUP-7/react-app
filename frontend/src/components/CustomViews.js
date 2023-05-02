@@ -2,25 +2,22 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Constants from './Constants.json';
 import './visualisations/Visu.css';
-import { useNavigate, Link } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 
 export default function CustomViews() {
   const username = localStorage.getItem('username');
   const [data, setData] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate()
-  
 
   //method to get data from backend
   useEffect(() => {
     axios.get(Constants.API_ADDRESS + '/customviews', {
-      
+
       params: {
         username: username
       }
-      
+
     }).then(response => {
       console.log(response.data);
       if (response.data && response.data.length > 0) {
@@ -28,9 +25,9 @@ export default function CustomViews() {
       } else {
         setErrorMessage("No custom views found");
       }
-      
+
       setData(response.data);
-      
+
       if (response.data.length === 0) {
         setErrorMessage("No custom views found");
       }
@@ -50,14 +47,14 @@ export default function CustomViews() {
         console.log("OK");
         window.location.reload();
         setTimeout(() => {
-        }, 1500); 
+        }, 1500);
       })
       .catch(error => {
         console.log(error.response.data);
       });
   };
 
- 
+
   //handles the data, what to show
   const getCustomViews = () => {
     return data.map((view, index) => {
@@ -99,14 +96,14 @@ export default function CustomViews() {
 
       return (
         <div className="grid-container" key={`view-${index}`}>
-          <div className="link-custom">
+          <div className="link">
             <a href={`http://localhost:3000/custom/${view.url}`} target="_blank" rel="noreferrer">Custom view {view.id}</a>
           </div>
           <form className='button-container' >
-          <div className="delete-button">
-          <Button onClick={() => deleteCustomView(view.id)}>Delete</Button>
-    </div>
-    </form>
+            <div className="delete-button">
+              <Button onClick={() => deleteCustomView(view.id)}>Delete</Button>
+            </div>
+          </form>
         </div>
       );
     });

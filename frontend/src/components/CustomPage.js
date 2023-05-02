@@ -72,7 +72,7 @@ export default function CustomPage() {
     })
   }
 
-//methods to create the custom view
+  //methods to create the custom view
   const handleChangeV1 = event => {
     if (event.target.checked && saveView) {
       setCreateV1(true)

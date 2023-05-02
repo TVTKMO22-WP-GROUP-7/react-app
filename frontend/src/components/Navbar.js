@@ -64,7 +64,7 @@ function Navbar() {
     );
   } else {
     return (
-		<NotLoggedNavbar></NotLoggedNavbar>
+      <NotLoggedNavbar></NotLoggedNavbar>
     );
   }
 }

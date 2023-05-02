@@ -244,25 +244,25 @@ function V4() {
                         <p> <a href="https://data.icos-cp.eu/licence_accept?ids=%5B%22lApekzcmd4DRC34oGXQqOxbJ%22%5D" target="_blank" rel="noopener noreferrer" className="card-link">Download dataset </a> </p>
                     </div>
                 ) : (
-                <>
-                    <div className="selectcountries">
-                        <select onChange={handleCountryChange}>
-                            <option value="">Select countries</option>
-                            {countries.map((country) => (
-                                <option key={country} value={country}>
-                                    {country}
-                                </option>
-                            ))}
-                        </select>
-                    </div>  
-                    <div className="selectedcountry">
-                        <SelectedCountriesBox selectedCountries={selectedCountries}
-                        handleRemoveCountry={handleRemoveCountry} /> 
-                    </div>
-                    <div className="chart-container">     
-                        <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} alt="CO2 emissions chart data" />
-                    </div>
-                </>
+                    <>
+                        <div className="selectcountries">
+                            <select onChange={handleCountryChange}>
+                                <option value="">Select countries</option>
+                                {countries.map((country) => (
+                                    <option key={country} value={country}>
+                                        {country}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="selectedcountry">
+                            <SelectedCountriesBox selectedCountries={selectedCountries}
+                                handleRemoveCountry={handleRemoveCountry} />
+                        </div>
+                        <div className="chart-container">
+                            <Line data={{ labels: chartData.labels, datasets: chartData.datasets }} options={chartOptions} alt="CO2 emissions chart data" />
+                        </div>
+                    </>
                 )}
             </div>
         </div>

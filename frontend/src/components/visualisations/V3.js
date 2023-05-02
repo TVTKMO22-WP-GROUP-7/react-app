@@ -26,13 +26,13 @@ function V3() {
 
             setGlobalData(modifiedData);
         })
-        .catch((error) => {
-            if (error.message === "Network Error")
-              setErrorMessage("No connection to the server.");
-            if (error.response && (error.response.status === 404 || error.response.status === 500))
-              setErrorMessage("No data found");
-            console.log(error);
-          });
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     };
 
     useEffect(() => {
@@ -53,13 +53,13 @@ function V3() {
 
             setCarbonData(modifiedData3);
         })
-        .catch((error) => {
-            if (error.message === "Network Error")
-              setErrorMessage("No connection to the server.");
-            if (error.response && (error.response.status === 404 || error.response.status === 500))
-              setErrorMessage("No data found");
-            console.log(error);
-          });
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     };
 
     useEffect(() => {
@@ -72,21 +72,21 @@ function V3() {
         axios.get(Constants.API_ADDRESS + "/v3event").then((response) => {
             console.log(response.data);
 
-    // Multiply yearG by 1000
-    const modifiedData2 = response.data.map((item) => ({
-        ...item,
-        years_ago: item.years_ago * 100,
-    }));
+            // Multiply yearG by 1000
+            const modifiedData2 = response.data.map((item) => ({
+                ...item,
+                years_ago: item.years_ago * 100,
+            }));
 
             setEventData(modifiedData2);
         })
-        .catch((error) => {
-            if (error.message === "Network Error")
-              setErrorMessage("No connection to the server.");
-            if (error.response && (error.response.status === 404 || error.response.status === 500))
-              setErrorMessage("No data found");
-            console.log(error);
-          });
+            .catch((error) => {
+                if (error.message === "Network Error")
+                    setErrorMessage("No connection to the server.");
+                if (error.response && (error.response.status === 404 || error.response.status === 500))
+                    setErrorMessage("No data found");
+                console.log(error);
+            });
     };
 
     useEffect(() => {
@@ -139,8 +139,8 @@ function V3() {
                 pointRadius: 6,
                 pointStyle: 'triangle',
                 xAxisID: "x",
-                yAxisID:"y2"
-                
+                yAxisID: "y2"
+
             },
 
         ],
@@ -157,25 +157,25 @@ function V3() {
             },
             tooltips: {
                 label: function (context) {
-          
+
                     if (context.dataset.label === "event") {
-                      return context.raw.event;
+                        return context.raw.event;
                     } else {
-                      return context.formattedValue;
+                        return context.formattedValue;
                     }
-                  },
-                  title: function (context) {
+                },
+                title: function (context) {
                     if (context?.[0]?.raw.years_ago === undefined && context?.[0]?.raw.yearC != null && context?.[0]?.raw.yearG === null) {
-                      return "Year " + context[0].label;
+                        return "Year " + context[0].label;
                     }
                     if (context?.[0]?.raw.years_ago === undefined && context?.[0]?.raw.yearG != null && context?.[0]?.raw.yearC != null) {
-                      return "Year " + context[0].label;
+                        return "Year " + context[0].label;
                     }
                     else if (context.length > 0) {
-                      return context[0].raw.years_ago + " years ago";
+                        return context[0].raw.years_ago + " years ago";
                     }
-          
-                  }
+
+                }
             },
 
             title: {
@@ -186,7 +186,7 @@ function V3() {
                 },
             },
             fullSize: true,
-           
+
         },
 
         scales: {
@@ -232,7 +232,7 @@ function V3() {
             y2: {
                 display: false,
             },
-        
+
         },
     };
 
@@ -246,28 +246,28 @@ function V3() {
         <div className="content-container">
             <h1>Visualization 3</h1>
             <div>
-            <span style={{ color: 'red' }}>{errorMessage}</span>
-          </div>
+                <span style={{ color: 'red' }}>{errorMessage}</span>
+            </div>
             <div className="button-container">
                 <button onClick={toggleDescription} className="btn btn-outline-primary-mt2">{showDescription ? "Hide description" : "Show description"}</button>
             </div>
             <div>
                 {showDescription ? (
-                <div className="card">
-                    <div className="description">
-                        <h5>Description</h5>
-                        <p>This chart shows Evolution of global temperature over the past two million years.</p>
-                        <p>You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
+                    <div className="card">
+                        <div className="description">
+                            <h5>Description</h5>
+                            <p>This chart shows Evolution of global temperature over the past two million years.</p>
+                            <p>You can also see some of important milestones about human evolution that are related to Co2 and temperature changes.</p>
+                        </div>
+                        <h6 className="card-subtitle">Sources:</h6>
+                        <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
+                        <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
+                        <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
                     </div>
-                    <h6 className="card-subtitle">Sources:</h6>
-                    <p> <a href="https://climate.fas.harvard.edu/files/climate/files/snyder_2016.pdf/" target="_blank" rel="noopener noreferrer" className="card-link">Description </a></p>
-                    <p> <a href="http://carolynsnyder.com/publications.php" target="_blank" rel="noopener noreferrer" className="card-link">Datasets</a></p>
-                    <p> <a href="https://www.southampton.ac.uk/~cpd/history.html" target="_blank" rel="noopener noreferrer" className="card-link">Human Evolution</a></p>
-                </div>
                 ) : (
-                <div  className="chart-container">
-                    <Line data={data} options={optionsV3} alt="chart"/>
-                </div>
+                    <div className="chart-container">
+                        <Line data={data} options={optionsV3} alt="chart" />
+                    </div>
                 )}
             </div>
         </div>
