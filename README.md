@@ -28,6 +28,10 @@
 
 ![custompageclimate](https://user-images.githubusercontent.com/112495020/235762271-56533917-90f8-47e9-8bb1-1a0792ce807c.png)
 
+<h2>Custom views:</h2>
+
+![customviewsclimate](https://user-images.githubusercontent.com/112495020/235762964-fdc8fb4f-a776-450d-9130-af954c884884.png)
+
 <h2>Change password:</h2>
 
 ![changepasswordclimate](https://user-images.githubusercontent.com/112495020/235762297-74b5f05e-dc66-4f0f-8ea9-d917fec6fa13.png)
