@@ -28,7 +28,7 @@ Ensimmäinen näkymä sivustolla on etusivu (kuva 1). Oletusetusivulla näkyvät
 
 ![home1climate](https://user-images.githubusercontent.com/112495020/235763939-9f4d849c-ee3c-4348-a149-183b57a2a342.png)
 
-*Vierailevan käyttäjän näkymä* 
+*Kuva 1: Etusivu* 
 
 ![climateloginpic](https://user-images.githubusercontent.com/112495020/235764687-f4989ad4-f74a-4324-bdaf-1b31ad136fef.png)
 
@@ -38,7 +38,7 @@ Jos asiakas ei ole kirjautunut sivustolle sisään, painamalla yläpalkista ”L
 
 ![Logini](https://user-images.githubusercontent.com/112495020/235959685-8fe636d8-14c7-41d5-973d-81d87edb5fd2.png)
 
-*Kirjautumisnäkymä*
+*Kuva 2: Kirjautumisnäkymä*
 
 Sisäänkirjautumisen jälkeen asiakkaan on mahdollista muuttaa tilin salasanaa ”Change Password”-näkymän kautta. ”Custom view”-näkymässä asiakas pääsee luomaan omia visualisointinäkymiä, sekä tarkastelemaan jo luotuja näkymiä. ”Delete Account”-näkymässä asiakas pystyy poistamaan tilinsä kirjoittamalla salasanansa oikein. Samalla poistetaan myös kyseiseen tiliin linkitetyt visualisointinäkymät.  
 
@@ -49,7 +49,7 @@ Loimme tietokannan PostgreSQL-ohjelmalla. Projektin kehitysympäristönä toimi 
 
 ![climaterepopic](https://user-images.githubusercontent.com/112495020/235764237-c2dc147b-5b03-45ff-a8c2-5da52cacae24.png)
 
-*Kuva 5. Kuvassa ryhmän GitHub-repositorio.*  
+*Kuva 3: Ryhmän GitHub-repositorio*  
 
 
 **Vastuualueet**
