@@ -71,7 +71,6 @@ Lataa projektiin tarvittavat riippuvaisuudet: npm install projektin, frontend/ s
 
 Luo PostgreSQL-tietokanta nimelle climateproject (tai muulla nimellä, mutta muuta siinä tapauksessa backend-puolelta application.properties-tiedostosta). Tarvittaessa muokkaa myös postgren käyttäjätunnus ja salasana vastaamaan omaasi. Lisäksi jos käyttämäsi portti on eri kuin projektissa määritelty portti, tulee myös se muuttaa yllä mainitussa tiedostosta, sekä frontendin puolella Constants.json-tiedostossa. 
 
-**Linkki palvelimelle:** Sovellusta ei saatu onnistuneesti palvelimelle 
 
 **Linkki GitHubiin:** https://github.com/TVTKMO22-WP-GROUP-7/react-app 
 
