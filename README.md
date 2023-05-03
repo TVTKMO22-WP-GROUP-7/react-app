@@ -30,9 +30,7 @@ Ensimmäinen näkymä sivustolla on etusivu (kuva 1). Oletusetusivulla näkyvät
 
 *Kuva 1: Etusivu* 
 
-![climateloginpic](https://user-images.githubusercontent.com/112495020/235764687-f4989ad4-f74a-4324-bdaf-1b31ad136fef.png)
-
-*Sisäänkirjautuneen käyttäjän toiminnot: Rekisteröityminen, kirjautuminen, salasanan vaihto, tilin poistaminen* 
+**Sisäänkirjautuneen käyttäjän toiminnot: Rekisteröityminen, kirjautuminen, salasanan vaihto, tilin poistaminen**
 
 Jos asiakas ei ole kirjautunut sivustolle sisään, painamalla yläpalkista ”Login”-painiketta käyttäjä pääsee alla olevaan näkymään (kuva 2). Jos asiakas ei ole vielä luonut käyttäjätunnusta, se voidaan luoda painamalla ”Register here”. Käyttäjän luomisen onnistumisen jälkeen asiakas ohjataan takaisin kirjautumisnäkymään.  
 
