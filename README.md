@@ -38,6 +38,8 @@ Jos asiakas ei ole kirjautunut sivustolle sisään, painamalla yläpalkista ”L
 
 ![Logini](https://user-images.githubusercontent.com/112495020/235959685-8fe636d8-14c7-41d5-973d-81d87edb5fd2.png)
 
+*Kirjautumisnäkymä*
+
 Sisäänkirjautumisen jälkeen asiakkaan on mahdollista muuttaa tilin salasanaa ”Change Password”-näkymän kautta. ”Custom view”-näkymässä asiakas pääsee luomaan omia visualisointinäkymiä, sekä tarkastelemaan jo luotuja näkymiä. ”Delete Account”-näkymässä asiakas pystyy poistamaan tilinsä kirjoittamalla salasanansa oikein. Samalla poistetaan myös kyseiseen tiliin linkitetyt visualisointinäkymät.  
 
 
